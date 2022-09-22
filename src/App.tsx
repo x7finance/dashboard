@@ -32,15 +32,16 @@ function App() {
 
   const [connected, setConnected] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState('');
   const [syncing, setSyncing] = useState(new Array(0));
   const [balance, setBalance] = useState(initialStatus);
   const [ethPrice, setEthPrice] = useState(0);
   const [x7PriceData, setX7PriceData] = useState(null);
   const [valueCurrency, setValueCurrency] = useState('ETH');
   const [node, setNode] = useState(readSelectedNode);
-  const [errorSnackBarOpen, setErrorSnackBarOpen] = useState(false);
-  const [snackBarText, setSnackBarText] = useState("");
+  const [SnackBarOpen, setSnackBarOpen] = useState(false);
+  const [snackBarText, setSnackBarText] = useState('');
+  const [snackBarSeverity, setSnackBarSeverity] = useState('error');
   const [openWalletConnectionDialog, setOpenWalletConnectionDialog] = useState(false);
 
   const SmartContract = new SmartContractService(node);
@@ -106,6 +107,10 @@ function App() {
   }
 
   useEffect(() => {
+    MetaMaskService.setActionRejectedErrorNotification(handleUserRejectedAction, handleUserActionSuccessfulNotification);
+  })
+
+  useEffect(() => {
     getEthPrice((data: string) => { setEthPrice(Number(data)) });
     const interval = setInterval(() => {
       getEthPrice((data: string) => { setEthPrice(Number(data)) });
@@ -169,8 +174,9 @@ function App() {
   }
 
   const handleGetDataError = (tokenName: string) => {
-    setSnackBarText("Error while gathering data, please try with another node")
-    setErrorSnackBarOpen(true);
+    setSnackBarSeverity('error');
+    setSnackBarText('Error while gathering data, please try with another node')
+    setSnackBarOpen(true);
     setBalance(initialStatus);
     setSyncing(syncing.filter((el) => {
       return el !== tokenName;
@@ -178,20 +184,34 @@ function App() {
   }
 
   const wrongWalletAddress = () => {
-    setSnackBarText("Wallet you entered is not valid, please make sure wallet address is correct.")
-    setErrorSnackBarOpen(true);
+    setSnackBarSeverity('error');
+    setSnackBarText("Wallet you entered is not valid, please make sure wallet address is correct.");
+    setSnackBarOpen(true);
   }
 
   const handleNotConnected = () => {
-    setSnackBarText("Please connect a wallet first")
-    setErrorSnackBarOpen(true);
+    setSnackBarSeverity('error');
+    setSnackBarText("Please connect a wallet first");
+    setSnackBarOpen(true);
   }
 
-  const handleCloseErrorSnackbar = (_event?: React.SyntheticEvent | Event, reason?: string) => {
+  const handleUserRejectedAction = (message: string) => {
+    setSnackBarSeverity('error');
+    setSnackBarText(message);
+    setSnackBarOpen(true);
+  }
+
+  const handleUserActionSuccessfulNotification = (notification: string) => {
+    setSnackBarSeverity('success');
+    setSnackBarText(notification);
+    setSnackBarOpen(true);
+  }
+
+  const handleCloseSnackbar = (_event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
-    setErrorSnackBarOpen(false);
+    setSnackBarOpen(false);
   }
 
   const toggleWalletConnectionDialog = (status: boolean) => {
@@ -310,8 +330,8 @@ function App() {
               <Route path="/community" element={<CommunityComponent />} />
             </Routes>
           </Box>
-          <Snackbar sx={{ mt: 10 }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} open={errorSnackBarOpen} autoHideDuration={6000} onClose={handleCloseErrorSnackbar}>
-            <Alert onClose={handleCloseErrorSnackbar} severity="error" sx={{ width: '100%' }}>
+          <Snackbar sx={{ mt: 10 }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} open={SnackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
+            <Alert onClose={handleCloseSnackbar} severity={snackBarSeverity == 'error' ? 'error' : 'success'} sx={{ width: '100%' }}>
               {snackBarText}
             </Alert>
           </Snackbar>

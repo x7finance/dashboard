@@ -1,7 +1,8 @@
 import React from 'react'
-import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button } from '@mui/material';
+import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button, Checkbox } from '@mui/material';
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
+import DashboardUtilityComponent from './DashboardUtilityComponent';
 
 interface DashboardComponentProps {
     tokens: object,
@@ -11,7 +12,7 @@ interface DashboardComponentProps {
     setNode: Function,
     ethPrice: number,
     smartContract: SmartContractService,
-    updateValues: Function
+    updateValues: Function,
 }
 
 export default function DashboardComponent({ updateValues, setNode, tokens, x7priceData, ethPrice, valueCurrency, node, smartContract }: DashboardComponentProps) {
@@ -76,6 +77,8 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 valueCurrency={valueCurrency}
                 tokenData={tokenData}
                 setTokenData={setTokenData} />
+
+                <DashboardUtilityComponent />
 
             <Divider sx={{ mt: 3 }} />
             <Typography mt={3} variant='h5' width={'100%'} display="flex" flexDirection="row">Configuration</Typography>
