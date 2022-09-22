@@ -44,7 +44,7 @@ export default function WalletConnectionDialog({ open, toggleDialog, connectMeta
                     gap: 4,
                 }}>
                 <Paper sx={{ justifyItems: 'center', flex: 1, display: 'flex' }}>
-                    <Button sx={{ m: 2, display: 'flex', flex: 1, flexDirection: 'column' }} onClick={() => {
+                    <Button sx={{ m: 2, display: 'flex', flex: 1, flexDirection: 'column' }} color='inherit' onClick={() => {
                         if (window.ethereum?.isMetaMask) {
                             setWalletAddress('')
                             toggleDialog(false);
@@ -54,14 +54,15 @@ export default function WalletConnectionDialog({ open, toggleDialog, connectMeta
                         }
                     }}>
                         <img src={metamaskLogo} width={60} height={60}></img>
-                        <Typography ml={2.5} variant={'h6'}>Connect with Metamask</Typography>
+                        <Typography ml={2.5} variant={'h6'} color='inherit'>Connect with Metamask</Typography>
                     </Button>
                 </Paper>
                 <Paper sx={{ pt: 2, pb: 2, display: 'grid', flex: 1, justifyItems: "center" }}>
                     <Typography variant={'h6'} sx={{ pb: 2 }}>Input wallet address</Typography>
-                    <Box p={2} flex={1} width={'100%'}>
+                    <Box p={2} flex={1} width={'100%'} >
                         <TextField value={walletAddress} onChange={(event) => { setWalletAddress(event.target.value) }} label='Wallet' variant='outlined' fullWidth >
                         </TextField>
+                        <Button variant='outlined' color='success' sx={{ mt: 2, pt: 1.5, pb: 1.5, pl: 5, pr: 5 }} onClick={onCloseDialog}>Connect</Button>
                     </Box>
                 </Paper>
             </Box>
