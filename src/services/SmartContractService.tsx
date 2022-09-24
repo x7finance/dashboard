@@ -1,5 +1,5 @@
 import Web3 from 'web3';
-import * as Addresses from '../SmartContractAddresses';
+import * as Addresses from '../EthereumAddresses';
 import * as abis from '../ABIs';
 
 class SmartContractService {

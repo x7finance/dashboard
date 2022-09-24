@@ -6,12 +6,12 @@ import { CircularProgress, CssBaseline, Toolbar, AppBar, Typography, IconButton,
 import MenuIcon from '@mui/icons-material/Menu';
 import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
-import * as Addresses from './SmartContractAddresses'
+import * as Addresses from './EthereumAddresses'
 
 import MetaMaskService from './services/MetaMaskService'
 import SmartContractService from './services/SmartContractService';
 import { getEthPrice } from './services/UniswapService'
-// import V2ResourcesComponent from './components/Resources/V2/V2ResourcesComponent';
+import V2ResourcesComponent from './components/Resources/V2/V2ResourcesComponent';
 import ResponsiveDrawer from './components/ResponsiveDrawerComponent';
 import DashboardComponent from './components/Dashboard/DashboardComponent';
 import UniswapTradeComponent from './components/Trading/UniswapTradeComponent';
@@ -116,9 +116,9 @@ function App() {
       getEthPrice((data: string) => { setEthPrice(Number(data)) });
     }, 10000);
     startPollingX7(10000);
-    return () => clearInterval(interval);
 
-  }, [])
+    return () => clearInterval(interval);
+  }, [startPollingX7])
 
   const switchValueCurrency = () => {
     if (valueCurrency === 'ETH') {
@@ -325,13 +325,13 @@ function App() {
               }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} />} />
               <Route path="/trade" element={<UniswapTradeComponent />} />
               <Route path="/v1" element={<V1ResourcesComponent />} />
-              {/* <Route path="/v2" element={<V2ResourcesComponent />} /> */}
+              <Route path="/v2" element={<V2ResourcesComponent />} />
               <Route path="/ecosystem" element={<EcosystemComponent />} />
               <Route path="/community" element={<CommunityComponent />} />
             </Routes>
           </Box>
           <Snackbar sx={{ mt: 10 }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} open={SnackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
-            <Alert onClose={handleCloseSnackbar} severity={snackBarSeverity == 'error' ? 'error' : 'success'} sx={{ width: '100%' }}>
+            <Alert onClose={handleCloseSnackbar} severity={snackBarSeverity === 'error' ? 'error' : 'success'} sx={{ width: '100%' }}>
               {snackBarText}
             </Alert>
           </Snackbar>

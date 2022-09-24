@@ -53,7 +53,7 @@ export default function WalletConnectionDialog({ open, toggleDialog, connectMeta
                             alert("You need metamask for this");
                         }
                     }}>
-                        <img src={metamaskLogo} width={60} height={60}></img>
+                        <img alt={'Metamask logo'} src={metamaskLogo} width={60} height={60}></img>
                         <Typography ml={2.5} variant={'h6'} color='inherit'>Connect with Metamask</Typography>
                     </Button>
                 </Paper>
