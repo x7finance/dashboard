@@ -87,6 +87,7 @@ export default function V2ResourcesComponent() {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            <ResourcesComponentTableRow name="X7V1toV2Migration" contract={Addresses.MigrationContract} description="Smart Contract for orchestrating the X7 Finance V1 to V2 Migration" path={`https://etherscan.io/address/${Addresses.MigrationContract}`} />
                             <ResourcesComponentTableRow name="X7TokenBurner" contract={Addresses.TokenBurner_X7100} description="Smart contract for burning tokens" path={`https://etherscan.io/address/${Addresses.TokenBurner_X7100}`} />
                             <ResourcesComponentTableRow name="X7TokenTimeLock" contract={Addresses.TokenTimeLock_X7} description="ERC-20 Token Time Lock" path={`https://etherscan.io/address/${Addresses.TokenTimeLock_X7}`} />
                             <ResourcesComponentTableRow name="X7EcosystemSplitter" contract={Addresses.EcoSystemSplitter} description="Smart contract for balancing revenue across all revenue streams in the X7 system" path={`https://etherscan.io/address/${Addresses.EcoSystemSplitter}`} />

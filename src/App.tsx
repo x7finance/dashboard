@@ -7,7 +7,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useQuery } from '@apollo/client'
 import gql from 'graphql-tag'
 import * as Addresses from './EthereumAddresses'
-
 import MetaMaskService from './services/MetaMaskService'
 import SmartContractService from './services/SmartContractService';
 import { getEthPrice } from './services/UniswapService'
@@ -39,12 +38,38 @@ function App() {
   const [x7PriceData, setX7PriceData] = useState(null);
   const [valueCurrency, setValueCurrency] = useState('ETH');
   const [node, setNode] = useState(readSelectedNode);
+  const SmartContract = new SmartContractService(node);
   const [SnackBarOpen, setSnackBarOpen] = useState(false);
   const [snackBarText, setSnackBarText] = useState('');
   const [snackBarSeverity, setSnackBarSeverity] = useState('error');
   const [openWalletConnectionDialog, setOpenWalletConnectionDialog] = useState(false);
+  const [migrationStatus, setMigrationStatus] = useState(readMigrationStatus);
+  const [migrationSyncing, setMigrationSyncing] = useState(new Array(0));
+  const [migratedTokens, setMigratedTokens] = useState({
+    x7m105: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7dao: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7001: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7002: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7003: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7004: { amount: 0, percentage: 0, formattedAmount: 0 },
+    x7005: { amount: 0, percentage: 0, formattedAmount: 0 },
+  });
 
-  const SmartContract = new SmartContractService(node);
+
+  function readMigrationStatus(): boolean {
+    SmartContract.getMigrationStatus((status: boolean) => {
+      return status;
+    }, () => {
+      handleUserRejectedAction("Could not read the state of the contract.");
+      return false;
+    });
+    return false;
+  }
+
+  useEffect(() => {
+    readMigratedTokens();
+  }, []);
 
   function readSelectedNode(): string {
     const selectedNode = localStorage.getItem("selectedNode");
@@ -54,6 +79,73 @@ function App() {
     }
     return "https://cloudflare-eth.com";
   }
+
+  function readMigratedTokens() {
+    const migratedTok = { ...migratedTokens }
+    setMigrationSyncing(["x7dao", "x7m105", "x7001", "x7002", "x7003", "x7004", "x7005"]);
+    SmartContract.getX7Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7dao";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7 migration tokens") });
+    SmartContract.getX7M105Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7m105.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7m105";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7M105 migration tokens") });
+    SmartContract.getX7DAOBalance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7dao.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7DAO migration tokens") });
+    SmartContract.getX7001Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7001.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7001";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7001 migration tokens") });
+    SmartContract.getX7002Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7002.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7002";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7002 migration tokens") });
+    SmartContract.getX7003Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7003.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7003";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7003 migration tokens") });
+    SmartContract.getX7004Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7004.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7004";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7004 migration tokens") });
+    SmartContract.getX7005Balance(Addresses.MigrationContract, (tokenBalance: number) => {
+      migratedTok.x7005.amount = tokenBalance;
+      setMigrationSyncing(migrationSyncing.filter((el) => {
+        return el !== "x7005";
+      }));
+    }, () => { handleUserRejectedAction("Error reading amount of X7005 migration tokens") });
+    setMigratedTokens(migratedTok);
+  }
+
+  useEffect(() => {
+    var migratedTok = { ...migratedTokens };
+    if (migrationSyncing.length === 0) {
+      Object.entries(migratedTokens).forEach(([_, value]) => {
+        var tokensDec = value.amount / (10 ** 18);
+        value.formattedAmount = Number(tokensDec.toFixed(4));
+        value.percentage = Number((tokensDec / 1000000).toFixed(2));
+
+      });
+    }
+    setMigratedTokens(migratedTok);
+  }, [migrationSyncing])
 
   function switchNode(nodeURL: string) {
     localStorage.setItem('selectedNode', nodeURL);
@@ -275,7 +367,6 @@ function App() {
     checkConnection();
   }
 
-
   return (
     <div className="App">
       <Router>
@@ -308,7 +399,6 @@ function App() {
                   <Button color='error' variant='outlined' onClick={disconnect}>Disconnect</Button>
                 }
                 {isSyncing()}
-
               </Toolbar>
             </AppBar>
           </Box>
@@ -319,10 +409,12 @@ function App() {
               <Route path="/" element={<DashboardComponent updateValues={() => {
                 if (connected) {
                   applyAddress(address);
+                  readMigratedTokens();
+                  setMigrationStatus(readMigrationStatus);
                 } else {
                   handleNotConnected();
                 }
-              }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} />} />
+              }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} migratedTokens={migratedTokens} migrationStatus={migrationStatus} />} />
               <Route path="/trade" element={<UniswapTradeComponent />} />
               <Route path="/v1" element={<V1ResourcesComponent />} />
               <Route path="/v2" element={<V2ResourcesComponent />} />

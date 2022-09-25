@@ -12,6 +12,7 @@ class SmartContractService {
     x7003 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7003);
     x7004 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7004);
     x7005 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7005);
+    migrationContract = new this.web3.eth.Contract(abis.MigrationContractABI, Addresses.MigrationContract);
 
     handleTheCall = (contract: typeof this.web3.eth.Contract.prototype, address: string, callback: Function, error: Function) => {
         contract.methods.balanceOf(address).call(function (err: any, balance: BigInt) {
@@ -45,40 +46,43 @@ class SmartContractService {
         this.handleTheCall(this.x7dao, address, callback, error);
     }
 
-
     getX7M105Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7m105, address, callback, error);
-
     }
 
     getX7Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7, address, callback, error);
-
     }
 
     getX7001Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7001, address, callback, error);
-
     }
 
     getX7002Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7002, address, callback, error);
-
     }
 
     getX7003Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7003, address, callback, error);
-
     }
 
     getX7004Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7004, address, callback, error);
-
     }
 
     getX7005Balance(address: string, callback: Function, error: Function) {
         this.handleTheCall(this.x7005, address, callback, error);
+    }
 
+    getMigrationStatus(callback: Function, error: Function) {
+        this.migrationContract.methods.postMigration().call(function (err: any, status: any) {
+            if (err) {
+                error();
+                console.error(err);
+                return;
+            }
+            callback(status)
+        });
     }
 }
 

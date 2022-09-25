@@ -1,8 +1,28 @@
-import React from 'react'
-import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button, Checkbox } from '@mui/material';
+import { useEffect, useState } from 'react'
+import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button } from '@mui/material';
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
 import DashboardUtilityComponent from './DashboardUtilityComponent';
+import SyncIcon from '@mui/icons-material/Sync';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import * as Addresses from '../../EthereumAddresses'
+
+export interface MigrationElementData {
+    amount: number,
+    percentage: number,
+    formattedAmount: number,
+}
+
+export interface MigrationData {
+    x7m105: MigrationElementData,
+    x7: MigrationElementData,
+    x7dao: MigrationElementData,
+    x7001: MigrationElementData,
+    x7002: MigrationElementData,
+    x7003: MigrationElementData,
+    x7004: MigrationElementData,
+    x7005: MigrationElementData,
+}
 
 interface DashboardComponentProps {
     tokens: object,
@@ -13,15 +33,18 @@ interface DashboardComponentProps {
     ethPrice: number,
     smartContract: SmartContractService,
     updateValues: Function,
+    migratedTokens: MigrationData,
+    migrationStatus: boolean,
 }
 
-export default function DashboardComponent({ updateValues, setNode, tokens, x7priceData, ethPrice, valueCurrency, node, smartContract }: DashboardComponentProps) {
-    const [tokenData, setTokenData] = React.useState(Array<TokenData>);
+export default function DashboardComponent({ updateValues, setNode, tokens, x7priceData, ethPrice, valueCurrency, node, smartContract, migratedTokens, migrationStatus }: DashboardComponentProps) {
+    const [tokenData, setTokenData] = useState(Array<TokenData>);
     const totalValueUSD = tokenData.reduce((total, element) => total + element.valueUSD, 0);
     const totalValueETH = tokenData.reduce((total, element) => total + element.valueETH, 0);
     const totalHoldingPercent = tokenData.reduce((total, element) => total + element.tokens, 0) / 8000000;
     var totalMajorTokensHolding = 0;
-    tokenData.map(element => {
+
+    tokenData.forEach(element => {
         if (element.name.toUpperCase() === "X7M105" || element.name.toUpperCase() === "X7" || element.name.toUpperCase() === "X7DAO") {
             totalMajorTokensHolding += element.tokens;
         }
@@ -30,7 +53,20 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     return (
         <Box>
             <Box
-                sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr' }, gap: 5, rowGap: 3 }}>
+                sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 2fr 2fr' }, gap: 5, rowGap: 3 }}>
+                <Container maxWidth={'sm'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Typography>
+                            Migration status:
+                        </Typography>
+                        <Typography variant="h3" mt={1}>
+                            {migrationStatus
+                                ? <CheckCircleOutlineIcon sx={{ fontSize: '2em' }} color='success' />
+                                : <SyncIcon sx={{ fontSize: '2em' }} color='warning' />
+                            }
+                        </Typography>
+                    </Paper>
+                </Container>
                 <Container maxWidth={'sm'}>
                     <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
                         <Typography>
@@ -70,6 +106,34 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 </Container>
 
             </Box>
+            <Typography variant={'h3'}>Migrated tokens</Typography>
+
+            <Box sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr ' }, gap: 5, rowGap: 3 }}>
+                <Container maxWidth={'md'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Table>
+                            <TableBody>
+                                <MigratedDataTableRow tokenName={"X7DAO"} percentage={migratedTokens.x7dao.percentage} formattedAmount={migratedTokens.x7dao.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7M105"} percentage={migratedTokens.x7m105.percentage} formattedAmount={migratedTokens.x7m105.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7"} percentage={migratedTokens.x7.percentage} formattedAmount={migratedTokens.x7.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7001"} percentage={migratedTokens.x7001.percentage} formattedAmount={migratedTokens.x7001.formattedAmount} />
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </Container>
+                <Container maxWidth={'md'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Table>
+                            <TableBody>
+                                <MigratedDataTableRow tokenName={"X7002"} percentage={migratedTokens.x7002.percentage} formattedAmount={migratedTokens.x7002.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7003"} percentage={migratedTokens.x7003.percentage} formattedAmount={migratedTokens.x7003.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7004"} percentage={migratedTokens.x7004.percentage} formattedAmount={migratedTokens.x7004.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7005"} percentage={migratedTokens.x7005.percentage} formattedAmount={migratedTokens.x7005.formattedAmount} />
+                            </TableBody>
+                        </Table>
+                    </Paper>
+                </Container>
+            </Box>
             <TokenListComponent
                 tokens={tokens}
                 ethPrice={ethPrice}
@@ -78,13 +142,13 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 tokenData={tokenData}
                 setTokenData={setTokenData} />
 
-                <DashboardUtilityComponent />
+            <DashboardUtilityComponent />
 
             <Divider sx={{ mt: 3 }} />
             <Typography mt={3} variant='h5' width={'100%'} display="flex" flexDirection="row">Configuration</Typography>
             <Box sx={{ mt: 3, width: '100%' }} display="flex" flexDirection="row">
                 <Button variant='outlined' color='inherit' sx={{ marginRight: 3 }}
-                    onClick={() => { updateValues() }}>Refresh data</Button>
+                    onClick={() => { updateValues(); }}>Refresh data</Button>
                 <FormControl>
                     <InputLabel id="select-node-label">Node</InputLabel>
                     <Select
@@ -108,5 +172,28 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 </FormControl>
             </Box>
         </Box >
+    );
+}
+
+interface MigratedDataTableRowProps {
+    tokenName: string,
+    percentage: number,
+    formattedAmount: number,
+}
+
+function MigratedDataTableRow({ tokenName, percentage, formattedAmount }: MigratedDataTableRowProps) {
+    return (
+        <TableRow>
+            <TableCell sx={{ borderBottom: "none" }}>
+                <Typography variant="h6">
+                    {tokenName}
+                </Typography>
+            </TableCell>
+            <TableCell sx={{ borderBottom: "none" }}>
+                <Typography variant="h6">
+                    {percentage} % ({formattedAmount.toLocaleString()})
+                </Typography>
+            </TableCell>
+        </TableRow>
     );
 }

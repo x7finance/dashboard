@@ -68,7 +68,7 @@ class MetaMaskService {
                     this.actionSuccessNotification('Token(s) have been successfully added to your MetaMask account!');
                 }
                 else
-                    console.log('Couldn\'t add it MetMask, Please contact @WoxieX on Telegram if you found this problem!');
+                    console.error('Couldn\'t add it MetMask, Please contact @WoxieX on Telegram if you found this problem!');
             })
             .catch((error: any) => {
                 if (error.code === 4001) {
