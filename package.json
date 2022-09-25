@@ -22,6 +22,7 @@
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "react": "^18.2.0",
+    "react-countdown": "^2.3.2",
     "react-dom": "^18.2.0",
     "react-medium-image-zoom": "^5.0.2",
     "react-router-dom": "^6.4.0",

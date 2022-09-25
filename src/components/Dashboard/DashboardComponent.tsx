@@ -1,17 +1,28 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button } from '@mui/material';
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
 import DashboardUtilityComponent from './DashboardUtilityComponent';
 import SyncIcon from '@mui/icons-material/Sync';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import * as Addresses from '../../EthereumAddresses'
+import Countdown from 'react-countdown';
 
 export interface MigrationElementData {
     amount: number,
     percentage: number,
     formattedAmount: number,
 }
+
+// interface TokenToDeductData {
+//     address: string,
+//     value: number,
+// }
+
+// interface TokensToDeduct {
+//     x7m105: Array<TokenToDeductData>
+//     x7: Array<TokenToDeductData>
+//     x7dao: Array<TokenToDeductData>
+// }
 
 export interface MigrationData {
     x7m105: MigrationElementData,
@@ -50,6 +61,16 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
         }
     });
     totalMajorTokensHolding /= 3000000;
+
+    var dateNFT = new Date(0);
+    dateNFT.setUTCSeconds(1664164811);
+    var dateSnapshot = new Date(0);
+    dateSnapshot.setUTCSeconds(1664251211)
+
+    var dateMigration = new Date(0);
+    dateMigration.setUTCSeconds(1664337611);
+
+
     return (
         <Box>
             <Box
@@ -108,7 +129,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
             </Box>
             <Typography variant={'h3'}>Migrated tokens</Typography>
 
-            <Box sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr ' }, gap: 5, rowGap: 3 }}>
+            <Box sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr' }, gap: 5, rowGap: 3 }}>
                 <Container maxWidth={'md'}>
                     <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
                         <Table>
@@ -131,6 +152,41 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                                 <MigratedDataTableRow tokenName={"X7005"} percentage={migratedTokens.x7005.percentage} formattedAmount={migratedTokens.x7005.formattedAmount} />
                             </TableBody>
                         </Table>
+                    </Paper>
+                </Container>
+            </Box>
+
+            <Typography variant={'h3'}>Timers</Typography>
+            <Box
+                sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr 1fr' }, gap: 5, rowGap: 3 }}>
+                <Container maxWidth={'sm'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Typography>
+                            NFT sale:
+                        </Typography>
+                        <Typography variant="h3" mt={1}>
+                            <Countdown date={dateNFT} />
+                        </Typography>
+                    </Paper>
+                </Container>
+                <Container maxWidth={'sm'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Typography>
+                            Snapshot:
+                        </Typography>
+                        <Typography variant="h3" mt={1}>
+                        <Countdown date={dateSnapshot} />
+                        </Typography>
+                    </Paper>
+                </Container>
+                <Container maxWidth={'sm'}>
+                    <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
+                        <Typography>
+                            Migration starts:
+                        </Typography>
+                        <Typography variant="h3" mt={1}>
+                        <Countdown date={dateMigration} />
+                        </Typography>
                     </Paper>
                 </Container>
             </Box>
