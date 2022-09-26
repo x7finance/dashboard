@@ -1,11 +1,38 @@
 import { ApolloClient, InMemoryCache } from '@apollo/client'
 import axios from 'axios'
+import gql from 'graphql-tag'
+import * as Addresses from '../EthereumAddresses'
 
 export const client = new ApolloClient({
     uri: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2',
     cache: new InMemoryCache(),
 })
 
+export const X7_ECOSYSTEM_PRICE_QUERY = gql`
+{
+  tokens(
+    where:{
+      id_in:[
+        "${Addresses.X7DAO}",
+        "${Addresses.X7}",
+        "${Addresses.X7m105}",
+        "${Addresses.X7001}",
+        "${Addresses.X7002}",
+        "${Addresses.X7003}",
+        "${Addresses.X7004}",
+        "${Addresses.X7005}",
+      ]
+    }
+  )
+  {
+    id, 
+    symbol, 
+    name, 
+    decimals, 
+    txCount, 
+    derivedETH
+  }
+}`;
 
 export function getEthPrice(callback: Function) {
     axios.get('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd').then((response) => {
@@ -15,12 +42,3 @@ export function getEthPrice(callback: Function) {
         console.error(err);
     })
 }
-class UniswapService {
-
-
-
-}
-
-const instance = new UniswapService();
-Object.seal(instance);
-export default instance;

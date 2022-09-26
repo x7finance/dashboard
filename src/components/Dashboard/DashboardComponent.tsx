@@ -6,23 +6,13 @@ import DashboardUtilityComponent from './DashboardUtilityComponent';
 import SyncIcon from '@mui/icons-material/Sync';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Countdown from 'react-countdown';
+import { TokenBalance } from '../../InitialValues'
 
 export interface MigrationElementData {
     amount: number,
     percentage: number,
     formattedAmount: number,
 }
-
-// interface TokenToDeductData {
-//     address: string,
-//     value: number,
-// }
-
-// interface TokensToDeduct {
-//     x7m105: Array<TokenToDeductData>
-//     x7: Array<TokenToDeductData>
-//     x7dao: Array<TokenToDeductData>
-// }
 
 export interface MigrationData {
     x7m105: MigrationElementData,
@@ -36,7 +26,7 @@ export interface MigrationData {
 }
 
 interface DashboardComponentProps {
-    tokens: object,
+    tokens: TokenBalance,
     x7priceData: any,
     valueCurrency: string,
     node: string,
@@ -60,10 +50,12 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
             totalMajorTokensHolding += element.tokens;
         }
     });
+
     totalMajorTokensHolding /= 3000000;
 
     var dateNFT = new Date(0);
     dateNFT.setUTCSeconds(1664164811);
+
     var dateSnapshot = new Date(0);
     dateSnapshot.setUTCSeconds(1664251211)
 
@@ -94,7 +86,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                             Value in <b>{valueCurrency}</b>:
                         </Typography>
                         <Typography variant="h3">
-                            {valueCurrency === 'USD' ? totalValueUSD.toFixed(2) : totalValueETH.toFixed(3)}
+                            {valueCurrency === 'USD' ? Number(totalValueUSD.toFixed(2)).toLocaleString() : Number(totalValueETH.toFixed(3)).toLocaleString()}
                         </Typography>
                     </Paper>
                 </Container>
@@ -175,7 +167,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                             Snapshot:
                         </Typography>
                         <Typography variant="h3" mt={1}>
-                        <Countdown date={dateSnapshot} />
+                            <Countdown date={dateSnapshot} />
                         </Typography>
                     </Paper>
                 </Container>
@@ -185,7 +177,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                             Migration starts:
                         </Typography>
                         <Typography variant="h3" mt={1}>
-                        <Countdown date={dateMigration} />
+                            <Countdown date={dateMigration} />
                         </Typography>
                     </Paper>
                 </Container>

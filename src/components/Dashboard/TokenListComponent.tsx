@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react'
 import { Paper, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material/';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { TokenBalance } from '../../InitialValues'
 
 
 interface Props {
-    tokens: object;
+    tokens: TokenBalance;
     ethPrice: number,
     x7PriceData: object,
     valueCurrency: string,
@@ -23,26 +24,26 @@ export interface TokenData {
 }
 
 export default function TokenListComponent({ tokens, ethPrice, x7PriceData, valueCurrency, tokenData, setTokenData }: Props) {
-    const data = useMemo(parseData, [JSON.stringify(tokens), x7PriceData, ethPrice]);
+    const data = useMemo(parseData, [tokens, x7PriceData, ethPrice, parseData]);
 
     function parseData() {
         const dataObject = new Array<TokenData>();
-        Object.entries(tokens).map(([key, value]) => {
+        Object.entries(tokens).forEach(([key, value]) => {
             var derivedETH = 0;
             var address = "";
             if (x7PriceData) {
-                Object.entries(x7PriceData).map(([_, valueX7]) => {
+                Object.entries(x7PriceData).forEach(([_, valueX7]) => {
                     if (valueX7.symbol.toUpperCase() === key.toUpperCase()) {
                         derivedETH = valueX7.derivedETH;
                         address = valueX7.id;
                     }
                 });
             }
-            var numberOfTokens = (value / Math.pow(10, 18));
+            var numberOfTokens = (value.balance / Math.pow(10, 18));
             var valueInETH = derivedETH * numberOfTokens;
             var valueInUSD = ethPrice * valueInETH;
 
-            dataObject.push({ contractAddress: address, name: key, tokens: numberOfTokens, derivedETH: derivedETH, percentOfSupply: (value / (1000000 * Math.pow(10, 18))), valueUSD: valueInUSD, valueETH: valueInETH })
+            dataObject.push({ contractAddress: address, name: key, tokens: numberOfTokens, derivedETH: derivedETH, percentOfSupply: (value.balance / (1000000 * Math.pow(10, 18))), valueUSD: valueInUSD, valueETH: valueInETH })
         });
         return dataObject;
     }

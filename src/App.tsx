@@ -5,7 +5,6 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CircularProgress, CssBaseline, Toolbar, AppBar, Typography, IconButton, Button, Box, Snackbar, Alert } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useQuery } from '@apollo/client'
-import gql from 'graphql-tag'
 import * as Addresses from './EthereumAddresses'
 import MetaMaskService from './services/MetaMaskService'
 import SmartContractService from './services/SmartContractService';
@@ -18,6 +17,8 @@ import V1ResourcesComponent from './components/Resources/V1/V1ResourcesComponent
 import EcosystemComponent from './components/Ecosystem/EcosystemComponent';
 import CommunityComponent from './components/Community/CommunityComponent';
 import WalletConnectionDialog from './components/WalletConnectionDialog'
+import { initialStatus, initialMigratedTokens, initialAlreadyMigratedTokens } from './InitialValues';
+import { X7_ECOSYSTEM_PRICE_QUERY } from './services/UniswapService'
 
 const drawerWidth = 240;
 const darkTheme = createTheme({
@@ -27,8 +28,6 @@ const darkTheme = createTheme({
 })
 
 function App() {
-  const initialStatus = { "x7dao": 0, "x7m105": 0, "x7": 0, "x7001": 0, "x7002": 0, "x7003": 0, "x7004": 0, "x7005": 0 };
-
   const [connected, setConnected] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [address, setAddress] = useState('');
@@ -45,154 +44,20 @@ function App() {
   const [openWalletConnectionDialog, setOpenWalletConnectionDialog] = useState(false);
   const [migrationStatus, setMigrationStatus] = useState(readMigrationStatus);
   const [migrationSyncing, setMigrationSyncing] = useState(new Array(0));
-  const [migratedTokens, setMigratedTokens] = useState({
-    x7m105: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7dao: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7001: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7002: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7003: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7004: { amount: 0, percentage: 0, formattedAmount: 0 },
-    x7005: { amount: 0, percentage: 0, formattedAmount: 0 },
-  });
-  const [tokensToDeduct, setTokensToDeduct] = useState({
-    x7m105: [{
-      address: "0x000000000000000000000000000000000000dead",
-      value: 0
-    }, {
-      address: "0x8bb2361bbb59c5956af2e4dee2b58dd202c606c1",
-      value: 0
-    }],
-    x7: [{
-      address: "0x5b15a4a040e7a6f24f14898eac6efefbe807ec01",
-      value: 0
-    }],
-    x7dao: [{
-      address: "0x3238d3d9a1d21f1786cb1c732382e0c8658a7ad0",
-      value: 0
-    }],
-    x7001: [{
-      address: "0x4e3da394d5f4e8c161fe91a236563caeec2b093d",
-      value: 0
-    }, {
-      address: "0x0755b4690912e154ab6e70bf511970311941af81",
-      value: 0
-    }, {
-      address: "0xfcba812cd7a18a4a73b282a835a672cca5c294c0",
-      value: 0
-    }, {
-      address: "0xb1ee2974def469a62ecce25ea9323ec3330b339e",
-      value: 0
-    }, {
-      address: "0x0367ee0eee4f36241af8c22c53253cbe6e92637a",
-      value: 0
-    }
-    ],
-    x7002: [
-      {
-        address: "0x4e3da394d5f4e8c161fe91a236563caeec2b093d",
-        value: 0
-      },
-      {
-        address: "0xa0f6ea8e8df140146e0595f90e8c0d32823c9435",
-        value: 0
-      },
-      {
-        address: "0x4005cb4fc7cc01de8675c6703dd1ec2e2174f4b1",
-        value: 0
-      },
-      {
-        address: "0xfe55eb5239e3f956e40586917143e541028f6f06",
-        value: 0
-      },
-      {
-        address: "0x4073597b2bad443d94247ae9dd6011f43088fee1",
-        value: 0
-      }
-    ],
-    x7003: [
-      {
-        address: "0x0755b4690912e154ab6e70bf511970311941af81",
-        value: 0
-      },
-      {
-        address: "0x4005cb4fc7cc01de8675c6703dd1ec2e2174f4b1",
-        value: 0
-      },
-      {
-        address: "0xae3069c6cfbee71bca61696c87681a4c2df131c8",
-        value: 0
-      },
-      {
-        address: "0x26331f4c80f84068529d13d5cb64e38f0158c30a",
-        value: 0
-      },
-      {
-        address: "0x6537a62e884c55894ae6d93dfc9b428730a0580a",
-        value: 0
-      }
-    ],
-    x7004: [
-      {
-        address: "0xfcba812cd7a18a4a73b282a835a672cca5c294c0",
-        value: 0
-      },
-      {
-        address: "0xfe55eb5239e3f956e40586917143e541028f6f06",
-        value: 0
-      },
-      {
-        address: "0xed7a3910d42c069c32add88f83f608f39ecbcd98",
-        value: 0
-      },
-      {
-        address: "0x26331f4c80f84068529d13d5cb64e38f0158c30a",
-        value: 0
-      },
-      {
-        address: "0x8ef34625aec17541b6147a40a3840c918263655e",
-        value: 0
-      }
-    ],
-    x7005: [
-      {
-        address: "0xb1ee2974def469a62ecce25ea9323ec3330b339e",
-        value: 0
-      },
-      {
-        address: "0xa0f6ea8e8df140146e0595f90e8c0d32823c9435",
-        value: 0
-      },
-      {
-        address: "0xed7a3910d42c069c32add88f83f608f39ecbcd98",
-        value: 0
-      },
-      {
-        address: "0xae3069c6cfbee71bca61696c87681a4c2df131c8",
-        value: 0
-      },
-      {
-        address: "0xac0a75c270809b7af6cf02277a17c17e27074577",
-        value: 0
-      }
-    ]
-  });
-
+  const [migratedTokens, setMigratedTokens] = useState(initialMigratedTokens);
+  const [tokensToDeduct, setTokensToDeduct] = useState(initialAlreadyMigratedTokens);
 
   function readMigrationStatus(): boolean {
     SmartContract.getMigrationStatus((status: boolean) => {
       return status;
     }, () => {
-      handleUserRejectedAction("Could not read the state of the contract.");
+      handleUserActionFailed("Could not read the state of the contract.");
       return false;
     });
     return false;
   }
 
-  useEffect(() => {
-    readMigratedTokens();
-    getAllTokensToDeduct();
-  }, []);
+
 
   function readSelectedNode(): string {
     const selectedNode = localStorage.getItem("selectedNode");
@@ -206,149 +71,35 @@ function App() {
   function readMigratedTokens() {
     const migratedTok = { ...migratedTokens }
     setMigrationSyncing(["x7dao", "x7m105", "x7001", "x7002", "x7003", "x7004", "x7005"]);
-    SmartContract.getX7Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7dao";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7 migration tokens") });
-    SmartContract.getX7M105Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7m105.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7m105";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7M105 migration tokens") });
-    SmartContract.getX7DAOBalance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7dao.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7DAO migration tokens") });
-    SmartContract.getX7001Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7001.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7001";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7001 migration tokens") });
-    SmartContract.getX7002Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7002.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7002";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7002 migration tokens") });
-    SmartContract.getX7003Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7003.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7003";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7003 migration tokens") });
-    SmartContract.getX7004Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7004.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7004";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7004 migration tokens") });
-    SmartContract.getX7005Balance(Addresses.MigrationContract, (tokenBalance: number) => {
-      migratedTok.x7005.amount = tokenBalance;
-      setMigrationSyncing(migrationSyncing.filter((el) => {
-        return el !== "x7005";
-      }));
-    }, () => { handleUserRejectedAction("Error reading amount of X7005 migration tokens") });
+    Object.entries(migratedTok).forEach(([key, value]) => {
+      SmartContract.getBalance2(key,
+        Addresses.MigrationContract, (tokenBalance: number) => {
+          value.amount = tokenBalance;
+          setMigrationSyncing(migrationSyncing.filter((el) => {
+            return el !== key;
+          }));
+        }, (err: any) => {
+          handleUserActionFailed("Error reading amount of X7 migration tokens")
+          console.error(err);
+        });
+    });
     setMigratedTokens(migratedTok);
   }
 
   function getAllTokensToDeduct() {
     const tokens = { ...tokensToDeduct };
-    const toSync = [...migrationSyncing];
 
-    tokens.x7m105.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7M105Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
+    Object.entries(tokens).forEach(([key, value]) => {
+      value.alreadyMigrated.forEach(element => {
+        SmartContract.getBalance2(key, element.address, (value: number) => {
+          element.value = value;
+          setTokensToDeduct(tokens);
+        }, (err: any) => {
+          console.error(err);
         });
-      }, () => { })
-    });
-    tokens.x7.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7dao.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7DAOBalance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7002.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7002Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7003.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7003Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7004.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7004Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7005.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7005Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    tokens.x7001.forEach(element => {
-      toSync.push(element.address);
-      SmartContract.getX7001Balance(element.address, (value: number) => {
-        element.value = value; toSync.filter((el) => {
-          return el !== element.address;
-        });
-      }, () => { })
-    });
-    setTokensToDeduct(tokens);
-    setMigrationSyncing(toSync);
-  }
-
-  useEffect(() => {
-    if (migrationSyncing.length === 0) {
-      const migratedTok = { ...migratedTokens };
-      Object.entries(migratedTokens).forEach(([key, value]) => {
-        var totalToAdd = 0;
-        Object.entries(tokensToDeduct).forEach(([key2, value2]) => {
-          if (key2 === key) {
-            value2.forEach(element => {
-              totalToAdd += Number(element.value);
-            });
-          }
-        });
-
-        var tokensDec = totalToAdd / (10 ** 18) + value.amount / (10 ** 18);
-        value.formattedAmount = Number(tokensDec.toFixed(4));
-        value.percentage = Number((tokensDec / 1000000).toFixed(2));
       });
-      setMigratedTokens(migratedTok);
-    }
-  }, [migrationSyncing])
+    });
+  }
 
   function switchNode(nodeURL: string) {
     localStorage.setItem('selectedNode', nodeURL);
@@ -357,39 +108,6 @@ function App() {
       applyAddress(address);
     }
   }
-
-  useEffect(() => {
-    var status = localStorage.getItem("stayConnected");
-    if (status) {
-      setConnected(status === "true" ? true : false);
-    }
-  }, [setConnected])
-
-  const X7_ECOSYSTEM_PRICE_QUERY = gql`
-  {
-    tokens(
-      where:{
-        id_in:[
-          "${Addresses.X7DAO}",
-          "${Addresses.X7}",
-          "${Addresses.X7m105}",
-          "${Addresses.X7001}",
-          "${Addresses.X7002}",
-          "${Addresses.X7003}",
-          "${Addresses.X7004}",
-          "${Addresses.X7005}",
-        ]
-      }
-    )
-    {
-      id, 
-      symbol, 
-      name, 
-      decimals, 
-      txCount, 
-      derivedETH
-    }
-  }`;
 
   const { loading: loadingX7, error: errorX7, data: x7EcosystemData, startPolling: startPollingX7 } = useQuery(X7_ECOSYSTEM_PRICE_QUERY)
   if (!loadingX7) {
@@ -402,8 +120,38 @@ function App() {
   }
 
   useEffect(() => {
-    MetaMaskService.setActionRejectedErrorNotification(handleUserRejectedAction, handleUserActionSuccessfulNotification);
-  })
+    MetaMaskService.setActionRejectedErrorNotification(handleUserActionFailed, handleUserActionSuccessfulNotification);
+    readMigratedTokens();
+    getAllTokensToDeduct();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (migrationSyncing.length !== 0)
+      return;
+    const migratedTok = { ...migratedTokens };
+    Object.entries(migratedTok).forEach(([key, value]) => {
+      var totalToAdd = 0;
+      Object.entries(tokensToDeduct).forEach(([key2, value2]) => {
+        if (key2 === key) {
+          value2.alreadyMigrated.forEach(element => {
+            totalToAdd += Number(element.value);
+          });
+        }
+      });
+
+      var tokensDec = totalToAdd / (10 ** 18) + value.amount / (10 ** 18);
+      value.formattedAmount = Number(tokensDec.toFixed(4));
+      value.percentage = Number((tokensDec / 1000000).toFixed(2));
+    });
+  }, [migratedTokens, tokensToDeduct, migrationSyncing])
+
+  useEffect(() => {
+    var status = localStorage.getItem("stayConnected");
+    if (status) {
+      setConnected(status === "true" ? true : false);
+    }
+  }, [setConnected])
 
   useEffect(() => {
     getEthPrice((data: string) => { setEthPrice(Number(data)) });
@@ -413,7 +161,7 @@ function App() {
     startPollingX7(10000);
 
     return () => clearInterval(interval);
-  }, [startPollingX7])
+  }, [startPollingX7]);
 
   const switchValueCurrency = () => {
     if (valueCurrency === 'ETH') {
@@ -431,8 +179,6 @@ function App() {
     if (syncing.length === 0)
       return "";
     return (<Box sx={{ pl: "10px" }}><CircularProgress size={25} /></Box>);
-
-
   }
 
   const checkConnection = () => {
@@ -469,9 +215,7 @@ function App() {
   }
 
   const handleGetDataError = (tokenName: string) => {
-    setSnackBarSeverity('error');
-    setSnackBarText('Error while gathering data, please try with another node')
-    setSnackBarOpen(true);
+    handleUserActionFailed('Error while gathering data, please try with another node')
     setBalance(initialStatus);
     setSyncing(syncing.filter((el) => {
       return el !== tokenName;
@@ -479,18 +223,14 @@ function App() {
   }
 
   const wrongWalletAddress = () => {
-    setSnackBarSeverity('error');
-    setSnackBarText("Wallet you entered is not valid, please make sure wallet address is correct.");
-    setSnackBarOpen(true);
+    handleUserActionFailed('Wallet you entered is not valid, please make sure wallet address is correct.');
   }
 
   const handleNotConnected = () => {
-    setSnackBarSeverity('error');
-    setSnackBarText("Please connect a wallet first");
-    setSnackBarOpen(true);
+    handleUserActionFailed('Please connect a wallet first.');
   }
 
-  const handleUserRejectedAction = (message: string) => {
+  const handleUserActionFailed = (message: string) => {
     setSnackBarSeverity('error');
     setSnackBarText(message);
     setSnackBarOpen(true);
@@ -515,54 +255,14 @@ function App() {
 
   function getAllBalances(wallet: string) {
     const balances = { ...balance };
-    SmartContract.getX7DAOBalance(wallet, (tokenBalance: number) => {
-      balances.x7dao = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7dao";
-      }));
-    }, () => handleGetDataError("x7dao"));
-    SmartContract.getX7M105Balance(wallet, (tokenBalance: number) => {
-      balances.x7m105 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7m105";
-      }));
-    }, () => handleGetDataError("x7m105"));
-    SmartContract.getX7Balance(wallet, (tokenBalance: number) => {
-      balances.x7 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7";
-      }));
-    }, () => handleGetDataError("x7"));
-    SmartContract.getX7001Balance(wallet, (tokenBalance: number) => {
-      balances.x7001 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7001";
-      }));
-    }, () => handleGetDataError("x7001"));
-    SmartContract.getX7002Balance(wallet, (tokenBalance: number) => {
-      balances.x7002 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7002";
-      }));
-    }, () => handleGetDataError("x7002"));
-    SmartContract.getX7003Balance(wallet, (tokenBalance: number) => {
-      balances.x7003 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7003";
-      }));
-    }, () => handleGetDataError("x7003"));
-    SmartContract.getX7004Balance(wallet, (tokenBalance: number) => {
-      balances.x7004 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7004";
-      }));
-    }, () => handleGetDataError("x7004"));
-    SmartContract.getX7005Balance(wallet, (tokenBalance: number) => {
-      balances.x7005 = tokenBalance;
-      setSyncing(syncing.filter((el) => {
-        return el !== "x7005";
-      }));
-    }, () => handleGetDataError("x7005"));
+    Object.entries(balances).forEach(([key, value]) => {
+      SmartContract.getBalance2(key, wallet, (tokenBalance: number) => {
+        value.balance = tokenBalance;
+        setSyncing(syncing.filter((el) => {
+          return el !== key;
+        }));
+      }, () => handleGetDataError(key));
+    });
     setBalance(balances);
   }
 
@@ -578,28 +278,18 @@ function App() {
           <WalletConnectionDialog open={openWalletConnectionDialog} toggleDialog={toggleWalletConnectionDialog} connectMetamask={connectMetamask} setAddress={setAddress} openSnackbar={wrongWalletAddress} address={address} applyAddress={applyAddress} setConnected={setConnected} />
           <Box sx={{ flexGrow: 1 }}>
             <AppBar
-              position="fixed"
-              sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: { sm: `${drawerWidth}px` },
-              }}>
+              position="fixed" sx={{ width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` } }}>
               <Toolbar>
-                <IconButton
-                  color="inherit"
-                  aria-label="open drawer"
-                  edge="start"
-                  onClick={handleDrawerToggle}
-                  sx={{ mr: 2, display: { sm: 'none' } }}>
+                <IconButton color="inherit" aria-label="open drawer" edge="start" onClick={handleDrawerToggle} sx={{ mr: 2, display: { sm: 'none' } }}>
                   <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" align='left' sx={{ flexGrow: 1 }} component="div">
                   X7 Dashboard
                 </Typography>
                 <Button color='inherit' onClick={switchValueCurrency} sx={{ mr: '10px' }}>{valueCurrency}</Button>
-                {!connected ?
-                  <Button color='success' variant='outlined' onClick={() => toggleWalletConnectionDialog(true)}>Connect</Button>
-                  :
-                  <Button color='error' variant='outlined' onClick={disconnect}>Disconnect</Button>
+                {!connected
+                  ? <Button color='success' variant='outlined' onClick={() => toggleWalletConnectionDialog(true)}>Connect</Button>
+                  : <Button color='error' variant='outlined' onClick={disconnect}>Disconnect</Button>
                 }
                 {isSyncing()}
               </Toolbar>
@@ -617,7 +307,7 @@ function App() {
                 } else {
                   handleNotConnected();
                 }
-              }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} migratedTokens={migratedTokens} migrationStatus={migrationStatus}  />} />
+              }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} migratedTokens={migratedTokens} migrationStatus={migrationStatus} />} />
               <Route path="/trade" element={<UniswapTradeComponent />} />
               <Route path="/v1" element={<V1ResourcesComponent />} />
               <Route path="/v2" element={<V2ResourcesComponent />} />
