@@ -18,7 +18,7 @@ export interface BalanceResponse {
 
 class SmartContractService {
     web3: Web3 = new Web3();
-    x7dao = new this.web3.eth.Contract(abis.x7daoABI, Addresses.X7DAO);
+    x7daoV1 = new this.web3.eth.Contract(abis.x7daoABI, Addresses.X7DAO);
     x7m105 = new this.web3.eth.Contract(abis.x7m105ABI, Addresses.X7m105);
     x7 = new this.web3.eth.Contract(abis.x7ABI, Addresses.X7);
     x7001 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7001);
@@ -27,8 +27,16 @@ class SmartContractService {
     x7004 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7004);
     x7005 = new this.web3.eth.Contract(abis.x7000ABI, Addresses.X7005);
 
+    x7dao = new this.web3.eth.Contract(abis.X7DAOv2ABI, Addresses.X7DAOv2);
+    x7r = new this.web3.eth.Contract(abis.X7RABI, Addresses.X7R);
+    x7101 = new this.web3.eth.Contract(abis.X7100ABI, Addresses.X7101);
+    x7102 = new this.web3.eth.Contract(abis.X7100ABI, Addresses.X7102);
+    x7103 = new this.web3.eth.Contract(abis.X7100ABI, Addresses.X7103);
+    x7104 = new this.web3.eth.Contract(abis.X7100ABI, Addresses.X7104);
+    x7105 = new this.web3.eth.Contract(abis.X7100ABI, Addresses.X7105);
+
     mappingKeyToContract = {
-        x7dao: this.x7dao,
+        x7daoV1: this.x7daoV1,
         x7m105: this.x7m105,
         x7: this.x7,
         x7001: this.x7001,
@@ -36,6 +44,13 @@ class SmartContractService {
         x7003: this.x7003,
         x7004: this.x7004,
         x7005: this.x7005,
+        x7dao: this.x7dao,
+        x7r: this.x7r,
+        x7101: this.x7101, 
+        x7102: this.x7102,
+        x7103: this.x7103,
+        x7104: this.x7104,
+        x7105: this.x7105,
     }
     migrationContract = new this.web3.eth.Contract(abis.MigrationContractABI, Addresses.MigrationContract);
 
@@ -68,7 +83,7 @@ class SmartContractService {
     async getBalance3(tokenName: string, address: string): Promise<BalanceResponse> {
         const value = this.findCorrectContract(tokenName);
         const balance = await value?.methods.balanceOf(address).call();
-        return { tokenName: tokenName, balance: balance, address:address };
+        return { tokenName: tokenName, balance: balance, address: address };
     }
 
     findCorrectContract(tokenName: string): Contract | undefined {

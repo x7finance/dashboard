@@ -4,7 +4,7 @@ interface TokenBalanceData {
   balance: number,
 }
 
-export interface TokenBalance {
+export interface TokenBalanceV1 {
   x7dao: TokenBalanceData,
   x7m105: TokenBalanceData,
   x7: TokenBalanceData,
@@ -13,6 +13,17 @@ export interface TokenBalance {
   x7003: TokenBalanceData,
   x7004: TokenBalanceData,
   x7005: TokenBalanceData,
+}
+
+export interface TokenBalanceV2 {
+  x7dao: TokenBalanceData,
+  x7r: TokenBalanceData,
+  // x7d?: TokenBalanceData,
+  x7101: TokenBalanceData,
+  x7102: TokenBalanceData,
+  x7103: TokenBalanceData,
+  x7104: TokenBalanceData,
+  x7105: TokenBalanceData,
 }
 
 interface AlreadyMigratedArrayData {
@@ -45,7 +56,7 @@ export interface MigratedTokensData {
 export interface MigratedTokens {
   x7m105: MigratedTokensData,
   x7: MigratedTokensData,
-  x7dao: MigratedTokensData,
+  x7daoV1: MigratedTokensData,
   x7001: MigratedTokensData,
   x7002: MigratedTokensData,
   x7003: MigratedTokensData,
@@ -54,14 +65,13 @@ export interface MigratedTokens {
 }
 
 export const initialStatus = {
-  x7m105: { balance: 0, address: Addresses.X7m105 },
-  x7: { balance: 0, address: Addresses.X7 },
-  x7dao: { balance: 0, address: Addresses.X7DAO },
-  x7001: { balance: 0, address: Addresses.X7001 },
-  x7002: { balance: 0, address: Addresses.X7002 },
-  x7003: { balance: 0, address: Addresses.X7003 },
-  x7004: { balance: 0, address: Addresses.X7004 },
-  x7005: { balance: 0, address: Addresses.X7005 },
+  x7r: { balance: 0, address: Addresses.X7R },
+  x7dao: { balance: 0, address: Addresses.X7DAOv2 },
+  x7101: { balance: 0, address: Addresses.X7101 },
+  x7102: { balance: 0, address: Addresses.X7102 },
+  x7103: { balance: 0, address: Addresses.X7103 },
+  x7104: { balance: 0, address: Addresses.X7104 },
+  x7105: { balance: 0, address: Addresses.X7105 },
 };
 
 export const initialUserMigratedTokens = {
@@ -78,7 +88,7 @@ export const initialUserMigratedTokens = {
 export const initialMigratedTokens = {
   x7m105: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7: { amount: 0, percentage: 0, formattedAmount: 0 },
-  x7dao: { amount: 0, percentage: 0, formattedAmount: 0 },
+  x7daoV1: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7001: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7002: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7003: { amount: 0, percentage: 0, formattedAmount: 0 },

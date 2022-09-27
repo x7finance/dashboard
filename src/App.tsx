@@ -111,7 +111,7 @@ function App() {
   }
 
   function readUserMigratedTokensStatus(walletAddress: string) {
-    const promises = Object.entries(balance).map(([key, value]) => SmartContract.getUserMigrationStatus(key, value.address, walletAddress));
+    const promises = Object.entries(Addresses.V1TokensObjects).map(([_, value]) => SmartContract.getUserMigrationStatus(value.tokenName, value.address, walletAddress));
     Promise.all(promises).then((responses) => {
       const data = { ...userMigratedTokens };
       Object.entries(data).forEach(([key, value]) => {

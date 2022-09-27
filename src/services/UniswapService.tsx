@@ -13,14 +13,13 @@ export const X7_ECOSYSTEM_PRICE_QUERY = gql`
   tokens(
     where:{
       id_in:[
-        "${Addresses.X7DAO}",
-        "${Addresses.X7}",
-        "${Addresses.X7m105}",
-        "${Addresses.X7001}",
-        "${Addresses.X7002}",
-        "${Addresses.X7003}",
-        "${Addresses.X7004}",
-        "${Addresses.X7005}",
+        "${Addresses.X7DAOv2}",
+        "${Addresses.X7R}",
+        "${Addresses.X7101}",
+        "${Addresses.X7102}",
+        "${Addresses.X7103}",
+        "${Addresses.X7104}",
+        "${Addresses.X7105}",
       ]
     }
   )

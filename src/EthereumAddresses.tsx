@@ -7,6 +7,17 @@ export const X7002 = "0x70021e5eda64e68f035356ea3dce14ef87b6f105";
 export const X7003 = "0x70036ddf2f2850f6d1b9d78d652776a0d1cab105";
 export const X7004 = "0x70041db5acdf2f8aa648a000fa4a87067abae105";
 export const X7005 = "0x7005d9011f4275747d5cb38bc3deb0c46edbd105";
+export const V1Tokens = [X7DAO, X7m105, X7, X7001, X7002, X7003, X7004, X7005];
+export const V1TokensObjects = {
+    x7DAO: { address: X7DAO, tokenName: "X7DAO" },
+    X7M105: { address: X7m105, tokenName: "X7M105" },
+    X7: { address: X7, tokenName: "X7" },
+    X7001: { address: X7001, tokenName: "X7001" },
+    X7002: { address: X7002, tokenName: "X7002" },
+    X7003: { address: X7003, tokenName: "X7003" },
+    X7004: { address: X7004, tokenName: "X7004" },
+    X7005: { address: X7005, tokenName: "X7005" },
+};
 
 //V2
 export const X7R = "0x70008f18fc58928dce982b0a69c2c21ff80dca54";
@@ -17,6 +28,18 @@ export const X7102 = "0x7102dc82ef61bfb0410b1b1bf8ea74575bf0a105";
 export const X7103 = "0x7103ebdbf1f89be2d53eff9b3cf996c9e775c105";
 export const X7104 = "0x7104d1f179cc9cc7fb5c79be6da846e3fbc4c105";
 export const X7105 = "0x7105faa4a26ed1c67b8b2b41bec98f06ee21d105";
+export const V2Tokens = { X7R, X7DAOv2, X7D, X7101, X7102, X7103, X7104, X7105 }
+export const V2TokensObjects = {
+    x7R: { address: X7R, tokenName: "X7R" },
+    X7DAOv2: { address: X7DAOv2, tokenName: "X7DAO" },
+    X7D: { address: X7D, tokenName: "X7D" },
+    X7101: { address: X7101, tokenName: "X7101" },
+    X7102: { address: X7102, tokenName: "X7102" },
+    X7103: { address: X7103, tokenName: "X7103" },
+    X7104: { address: X7104, tokenName: "X7104" },
+    X7105: { address: X7105, tokenName: "X7105" }
+}
+
 
 export const LiquidityHub_X7R = "0x712a166e741405fcb9815aa5c3442f2cd3328ebb";
 export const LiquidityHub_X7DAOv2 = "0x7da0a524d323cddaf3d465ba617230f6b91d3ebb";

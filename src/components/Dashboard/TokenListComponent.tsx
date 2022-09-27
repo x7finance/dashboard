@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react'
 import { Paper, Container, IconButton, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material/';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
-import { TokenBalance } from '../../InitialValues'
+import { TokenBalanceV2 } from '../../InitialValues'
 
 
 interface Props {
-    tokens: TokenBalance;
+    tokens: TokenBalanceV2;
     ethPrice: number,
     x7PriceData: object,
     valueCurrency: string,
@@ -57,7 +57,7 @@ export default function TokenListComponent({ tokens, ethPrice, x7PriceData, valu
     const openInNewTab = (tokenAddress: string) => {
         window.open("https://etherscan.io/token/" + tokenAddress, '_blank', 'noopener,noreferrer');
     };
-
+    console.log(data);
     return (
         <Container maxWidth={'md'}>
             <TableContainer component={Paper} >

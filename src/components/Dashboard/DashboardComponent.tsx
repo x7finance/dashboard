@@ -6,7 +6,7 @@ import DashboardUtilityComponent from './DashboardUtilityComponent';
 import SyncIcon from '@mui/icons-material/Sync';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Countdown from 'react-countdown';
-import { TokenBalance } from '../../InitialValues'
+import { TokenBalanceV2 } from '../../InitialValues'
 import MigratedDataTableRow from './MigratedDataTableRowComponent';
 
 export interface MigrationElementData {
@@ -18,7 +18,7 @@ export interface MigrationElementData {
 export interface MigrationData {
     x7m105: MigrationElementData,
     x7: MigrationElementData,
-    x7dao: MigrationElementData,
+    x7daoV1: MigrationElementData,
     x7001: MigrationElementData,
     x7002: MigrationElementData,
     x7003: MigrationElementData,
@@ -45,7 +45,7 @@ export interface UserMigrationData {
 }
 
 interface DashboardComponentProps {
-    tokens: TokenBalance,
+    tokens: TokenBalanceV2,
     x7priceData: any,
     valueCurrency: string,
     node: string,
@@ -63,16 +63,16 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     const [tokenData, setTokenData] = useState(Array<TokenData>);
     const totalValueUSD = tokenData.reduce((total, element) => total + element.valueUSD, 0);
     const totalValueETH = tokenData.reduce((total, element) => total + element.valueETH, 0);
-    const totalHoldingPercent = tokenData.reduce((total, element) => total + element.tokens, 0) / 8000000;
+    const totalHoldingPercent = tokenData.reduce((total, element) => total + element.tokens, 0) / 7000000;
     var totalMajorTokensHolding = 0;
 
     tokenData.forEach(element => {
-        if (element.name.toUpperCase() === "X7M105" || element.name.toUpperCase() === "X7" || element.name.toUpperCase() === "X7DAO") {
+        if (element.name.toLowerCase() === "x7r" || element.name.toLowerCase() === "x7dao") {
             totalMajorTokensHolding += element.tokens;
         }
     });
 
-    totalMajorTokensHolding /= 3000000;
+    totalMajorTokensHolding /= 2000000;
 
     var dateNFT = new Date(0);
     dateNFT.setUTCSeconds(1664164811);
@@ -105,6 +105,8 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
         return elements;
     }
 
+    console.log(tokens);
+    
     return (
         <Box>
             <Box
@@ -148,7 +150,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                                 </TableRow>
                                 <TableRow>
                                     <TableCell sx={{ borderBottom: "none" }}>
-                                        Total X7, X7M105,<br /> X7DAO holding</TableCell>
+                                        Total X7R,<br /> X7DAO holding</TableCell>
                                     <TableCell sx={{ borderBottom: "none" }}>
                                         <Typography variant="h5">
                                             {totalMajorTokensHolding.toFixed(5)}%
@@ -168,7 +170,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                     <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
                         <Table>
                             <TableBody>
-                                <MigratedDataTableRow tokenName={"X7DAO"} percentage={migratedTokens.x7dao.percentage} formattedAmount={migratedTokens.x7dao.formattedAmount} />
+                                <MigratedDataTableRow tokenName={"X7DAO"} percentage={migratedTokens.x7daoV1.percentage} formattedAmount={migratedTokens.x7daoV1.formattedAmount} />
                                 <MigratedDataTableRow tokenName={"X7M105"} percentage={migratedTokens.x7m105.percentage} formattedAmount={migratedTokens.x7m105.formattedAmount} />
                                 <MigratedDataTableRow tokenName={"X7"} percentage={migratedTokens.x7.percentage} formattedAmount={migratedTokens.x7.formattedAmount} />
                                 <MigratedDataTableRow tokenName={"X7001"} percentage={migratedTokens.x7001.percentage} formattedAmount={migratedTokens.x7001.formattedAmount} />
