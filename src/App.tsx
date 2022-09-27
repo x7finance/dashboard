@@ -121,10 +121,13 @@ function App() {
 
   useEffect(() => {
     MetaMaskService.setActionRejectedErrorNotification(handleUserActionFailed, handleUserActionSuccessfulNotification);
-    readMigratedTokens();
     getAllTokensToDeduct();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    readMigratedTokens();
+  }, [tokensToDeduct]);
 
   useEffect(() => {
     if (migrationSyncing.length !== 0)
