@@ -44,6 +44,7 @@ function App() {
   const [openWalletConnectionDialog, setOpenWalletConnectionDialog] = useState(false);
   const [migrationStatus, setMigrationStatus] = useState(readMigrationStatus);
   const [migrationSyncing, setMigrationSyncing] = useState(new Array(0));
+  const [deductMigrationSyncing, setDeductMigrationSyncing] = useState(new Array(0));
   const [migratedTokens, setMigratedTokens] = useState(initialMigratedTokens);
   const [tokensToDeduct, setTokensToDeduct] = useState(initialAlreadyMigratedTokens);
 
@@ -89,16 +90,27 @@ function App() {
   function getAllTokensToDeduct() {
     const tokens = { ...tokensToDeduct };
 
+    const toSync = new Array(0);
+    Object.entries(tokens).forEach(([_, value]) => {
+      value.alreadyMigrated.forEach((element) => {
+        toSync.push(element.address);
+      })
+    });
+    setDeductMigrationSyncing(toSync);
+
     Object.entries(tokens).forEach(([key, value]) => {
       value.alreadyMigrated.forEach(element => {
         SmartContract.getBalance2(key, element.address, (value: number) => {
           element.value = value;
-          setTokensToDeduct(tokens);
+          setDeductMigrationSyncing(deductMigrationSyncing.filter((el) => {
+            return el !== element.address;
+          }));          
         }, (err: any) => {
           console.error(err);
         });
       });
     });
+    setTokensToDeduct(tokens);
   }
 
   function switchNode(nodeURL: string) {
@@ -122,16 +134,15 @@ function App() {
   useEffect(() => {
     MetaMaskService.setActionRejectedErrorNotification(handleUserActionFailed, handleUserActionSuccessfulNotification);
     getAllTokensToDeduct();
+    readMigratedTokens();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    readMigratedTokens();
-  }, [tokensToDeduct]);
-
-  useEffect(() => {
-    if (migrationSyncing.length !== 0)
+    if (migrationSyncing.length !== 0 || deductMigrationSyncing.length !== 0){
       return;
+    }
+    
     const migratedTok = { ...migratedTokens };
     Object.entries(migratedTok).forEach(([key, value]) => {
       var totalToAdd = 0;
@@ -147,7 +158,7 @@ function App() {
       value.formattedAmount = Number(tokensDec.toFixed(4));
       value.percentage = Number((tokensDec / 1000000).toFixed(2));
     });
-  }, [migratedTokens, tokensToDeduct, migrationSyncing])
+  }, [migratedTokens, tokensToDeduct, migrationSyncing, deductMigrationSyncing])
 
   useEffect(() => {
     var status = localStorage.getItem("stayConnected");
