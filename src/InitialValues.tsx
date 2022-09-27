@@ -15,16 +15,66 @@ export interface TokenBalance {
   x7005: TokenBalanceData,
 }
 
+interface AlreadyMigratedArrayData {
+  address: string,
+  value: number,
+}
+
+interface AlreadyMigratedTokensData {
+  contract: string,
+  alreadyMigrated: Array<AlreadyMigratedArrayData>,
+}
+
+export interface AlreadyMigratedTokens {
+  x7m105: AlreadyMigratedTokensData,
+  x7: AlreadyMigratedTokensData,
+  x7dao: AlreadyMigratedTokensData,
+  x7001: AlreadyMigratedTokensData,
+  x7002: AlreadyMigratedTokensData,
+  x7003: AlreadyMigratedTokensData,
+  x7004: AlreadyMigratedTokensData,
+  x7005: AlreadyMigratedTokensData,
+}
+
+export interface MigratedTokensData {
+  amount: number,
+  percentage: number,
+  formattedAmount: number
+}
+
+export interface MigratedTokens {
+  x7m105: MigratedTokensData,
+  x7: MigratedTokensData,
+  x7dao: MigratedTokensData,
+  x7001: MigratedTokensData,
+  x7002: MigratedTokensData,
+  x7003: MigratedTokensData,
+  x7004: MigratedTokensData,
+  x7005: MigratedTokensData,
+}
+
 export const initialStatus = {
-  x7dao: { balance: 0 },
-  x7m105: { balance: 0 },
-  x7: { balance: 0 },
-  x7001: { balance: 0 },
-  x7002: { balance: 0 },
-  x7003: { balance: 0 },
-  x7004: { balance: 0 },
-  x7005: { balance: 0 },
+  x7m105: { balance: 0, address: Addresses.X7m105 },
+  x7: { balance: 0, address: Addresses.X7 },
+  x7dao: { balance: 0, address: Addresses.X7DAO },
+  x7001: { balance: 0, address: Addresses.X7001 },
+  x7002: { balance: 0, address: Addresses.X7002 },
+  x7003: { balance: 0, address: Addresses.X7003 },
+  x7004: { balance: 0, address: Addresses.X7004 },
+  x7005: { balance: 0, address: Addresses.X7005 },
 };
+
+export const initialUserMigratedTokens = {
+  x7m105: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7dao: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7001: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7002: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7003: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7004: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+  x7005: { amount: 0, percentage: 0, formattedAmount: 0, status: false },
+};
+
 export const initialMigratedTokens = {
   x7m105: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7: { amount: 0, percentage: 0, formattedAmount: 0 },
@@ -35,6 +85,7 @@ export const initialMigratedTokens = {
   x7004: { amount: 0, percentage: 0, formattedAmount: 0 },
   x7005: { amount: 0, percentage: 0, formattedAmount: 0 },
 };
+
 export const initialAlreadyMigratedTokens = {
   x7m105: {
     contract: Addresses.X7m105,

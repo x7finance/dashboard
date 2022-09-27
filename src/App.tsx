@@ -7,7 +7,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useQuery } from '@apollo/client'
 import * as Addresses from './EthereumAddresses'
 import MetaMaskService from './services/MetaMaskService'
-import SmartContractService from './services/SmartContractService';
+import SmartContractService, { BalanceResponse } from './services/SmartContractService';
 import { getEthPrice } from './services/UniswapService'
 import V2ResourcesComponent from './components/Resources/V2/V2ResourcesComponent';
 import ResponsiveDrawer from './components/ResponsiveDrawerComponent';
@@ -17,7 +17,7 @@ import V1ResourcesComponent from './components/Resources/V1/V1ResourcesComponent
 import EcosystemComponent from './components/Ecosystem/EcosystemComponent';
 import CommunityComponent from './components/Community/CommunityComponent';
 import WalletConnectionDialog from './components/WalletConnectionDialog'
-import { initialStatus, initialMigratedTokens, initialAlreadyMigratedTokens } from './InitialValues';
+import { initialStatus, initialMigratedTokens, initialAlreadyMigratedTokens, initialUserMigratedTokens, AlreadyMigratedTokens, MigratedTokens } from './InitialValues';
 import { X7_ECOSYSTEM_PRICE_QUERY } from './services/UniswapService'
 
 const drawerWidth = 240;
@@ -43,10 +43,9 @@ function App() {
   const [snackBarSeverity, setSnackBarSeverity] = useState('error');
   const [openWalletConnectionDialog, setOpenWalletConnectionDialog] = useState(false);
   const [migrationStatus, setMigrationStatus] = useState(readMigrationStatus);
-  const [migrationSyncing, setMigrationSyncing] = useState(new Array(0));
-  const [deductMigrationSyncing, setDeductMigrationSyncing] = useState(new Array(0));
-  const [migratedTokens, setMigratedTokens] = useState(initialMigratedTokens);
+  const [migratedTokens, setMigratedTokens] = useState({ ...initialMigratedTokens });
   const [tokensToDeduct, setTokensToDeduct] = useState(initialAlreadyMigratedTokens);
+  const [userMigratedTokens, setUserMigratedTokens] = useState({ ...initialUserMigratedTokens });
 
   function readMigrationStatus(): boolean {
     SmartContract.getMigrationStatus((status: boolean) => {
@@ -58,8 +57,6 @@ function App() {
     return false;
   }
 
-
-
   function readSelectedNode(): string {
     const selectedNode = localStorage.getItem("selectedNode");
 
@@ -69,49 +66,65 @@ function App() {
     return "https://cloudflare-eth.com";
   }
 
-  function readMigratedTokens() {
-    const migratedTok = { ...migratedTokens }
-    setMigrationSyncing(["x7dao", "x7m105", "x7001", "x7002", "x7003", "x7004", "x7005"]);
-    Object.entries(migratedTok).forEach(([key, value]) => {
-      SmartContract.getBalance2(key,
-        Addresses.MigrationContract, (tokenBalance: number) => {
-          value.amount = tokenBalance;
-          setMigrationSyncing(migrationSyncing.filter((el) => {
-            return el !== key;
-          }));
-        }, (err: any) => {
-          handleUserActionFailed("Error reading amount of X7 migration tokens")
-          console.error(err);
+  function readMigratedTokens(tokensToDeduct: AlreadyMigratedTokens) {
+    var promises = Object.entries(migratedTokens).map(([key, _]) => SmartContract.getBalance3(key, Addresses.MigrationContract))
+    Promise.all(promises).then((response) => {
+
+      const data = { ...migratedTokens };
+      response.forEach(element => {
+        Object.entries(data).forEach(([key, value]) => {
+          if (element.tokenName === key) {
+            value.amount = element.balance;
+          }
         });
+      });
+      calculateTokenValues(data, tokensToDeduct);
+      setMigratedTokens(data);
+      setTokensToDeduct(tokensToDeduct);
     });
-    setMigratedTokens(migratedTok);
   }
 
   function getAllTokensToDeduct() {
-    const tokens = { ...tokensToDeduct };
-
-    const toSync = new Array(0);
-    Object.entries(tokens).forEach(([_, value]) => {
-      value.alreadyMigrated.forEach((element) => {
-        toSync.push(element.address);
-      })
-    });
-    setDeductMigrationSyncing(toSync);
-
-    Object.entries(tokens).forEach(([key, value]) => {
+    var promises = Array<Promise<BalanceResponse>>(0);
+    Object.entries(tokensToDeduct).forEach(([key, value]) => {
       value.alreadyMigrated.forEach(element => {
-        SmartContract.getBalance2(key, element.address, (value: number) => {
-          element.value = value;
-          setDeductMigrationSyncing(deductMigrationSyncing.filter((el) => {
-            return el !== element.address;
-          }));          
-        }, (err: any) => {
-          console.error(err);
-        });
+        promises.push(SmartContract.getBalance3(key, element.address))
       });
     });
-    setTokensToDeduct(tokens);
+
+    Promise.all(promises).then((responses) => {
+      const data = { ...tokensToDeduct }
+
+      Object.entries(data).forEach(([key, value]) => {
+        for (const am of value.alreadyMigrated) {
+          for (const response of responses) {
+            if (response.tokenName === key) {
+              if (am.address === response.address) {
+                am.value = response.balance;
+              }
+            }
+          }
+        }
+      });
+      readMigratedTokens(data);
+    });
   }
+
+  function readUserMigratedTokensStatus(walletAddress: string) {
+    const promises = Object.entries(balance).map(([key, value]) => SmartContract.getUserMigrationStatus(key, value.address, walletAddress));
+    Promise.all(promises).then((responses) => {
+      const data = { ...userMigratedTokens };
+      Object.entries(data).forEach(([key, value]) => {
+        responses.forEach(element => {
+          if (element.tokenName === key) {
+            value.status = element.status;
+          }
+        });
+      });
+      setUserMigratedTokens(data);
+    });
+  }
+
 
   function switchNode(nodeURL: string) {
     localStorage.setItem('selectedNode', nodeURL);
@@ -134,21 +147,15 @@ function App() {
   useEffect(() => {
     MetaMaskService.setActionRejectedErrorNotification(handleUserActionFailed, handleUserActionSuccessfulNotification);
     getAllTokensToDeduct();
-    readMigratedTokens();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (migrationSyncing.length !== 0 || deductMigrationSyncing.length !== 0){
-      return;
-    }
-    
-    const migratedTok = { ...migratedTokens };
+  function calculateTokenValues(migratedTok: MigratedTokens, tokensToDeduct: AlreadyMigratedTokens) {
     Object.entries(migratedTok).forEach(([key, value]) => {
       var totalToAdd = 0;
       Object.entries(tokensToDeduct).forEach(([key2, value2]) => {
         if (key2 === key) {
-          value2.alreadyMigrated.forEach(element => {
+          value2.alreadyMigrated.forEach((element: any) => {
             totalToAdd += Number(element.value);
           });
         }
@@ -158,7 +165,7 @@ function App() {
       value.formattedAmount = Number(tokensDec.toFixed(4));
       value.percentage = Number((tokensDec / 1000000).toFixed(2));
     });
-  }, [migratedTokens, tokensToDeduct, migrationSyncing, deductMigrationSyncing])
+  }
 
   useEffect(() => {
     var status = localStorage.getItem("stayConnected");
@@ -226,6 +233,7 @@ function App() {
     setConnected(true);
     setSyncing(["x7dao", "x7m105", "x7001", "x7002", "x7003", "x7004", "x7005"])
     getAllBalances(wallet);
+    readUserMigratedTokensStatus(wallet);
   }
 
   const handleGetDataError = (tokenName: string) => {
@@ -313,15 +321,16 @@ function App() {
           <Box component="main" sx={{ p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, ml: { sm: `${drawerWidth}px` } }}>
             <Toolbar />
             <Routes>
-              <Route path="/" element={<DashboardComponent updateValues={() => {
-                if (connected) {
-                  applyAddress(address);
-                  readMigratedTokens();
-                  setMigrationStatus(readMigrationStatus);
-                } else {
-                  handleNotConnected();
-                }
-              }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} migratedTokens={migratedTokens} migrationStatus={migrationStatus} />} />
+              <Route path="/" element={
+                <DashboardComponent updateValues={() => {
+                  if (connected) {
+                    applyAddress(address);
+                    // readMigratedTokens();
+                    setMigrationStatus(readMigrationStatus);
+                  } else {
+                    handleNotConnected();
+                  }
+                }} setNode={switchNode} tokens={balance} ethPrice={ethPrice} x7priceData={x7PriceData} valueCurrency={valueCurrency} node={node} smartContract={SmartContract} migratedTokens={migratedTokens} migrationStatus={migrationStatus} userMigratedTokens={userMigratedTokens} connected={connected} />} />
               <Route path="/trade" element={<UniswapTradeComponent />} />
               <Route path="/v1" element={<V1ResourcesComponent />} />
               <Route path="/v2" element={<V2ResourcesComponent />} />

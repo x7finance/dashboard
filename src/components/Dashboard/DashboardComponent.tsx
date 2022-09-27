@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button } from '@mui/material';
+import { useMemo, useState } from 'react'
+import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button, TableHead } from '@mui/material';
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
 import DashboardUtilityComponent from './DashboardUtilityComponent';
@@ -7,6 +7,7 @@ import SyncIcon from '@mui/icons-material/Sync';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import Countdown from 'react-countdown';
 import { TokenBalance } from '../../InitialValues'
+import MigratedDataTableRow from './MigratedDataTableRowComponent';
 
 export interface MigrationElementData {
     amount: number,
@@ -25,6 +26,24 @@ export interface MigrationData {
     x7005: MigrationElementData,
 }
 
+export interface UserMigrationElementData {
+    amount: number,
+    percentage: number,
+    formattedAmount: number,
+    status: boolean,
+}
+
+export interface UserMigrationData {
+    x7m105: UserMigrationElementData,
+    x7: UserMigrationElementData,
+    x7dao: UserMigrationElementData,
+    x7001: UserMigrationElementData,
+    x7002: UserMigrationElementData,
+    x7003: UserMigrationElementData,
+    x7004: UserMigrationElementData,
+    x7005: UserMigrationElementData,
+}
+
 interface DashboardComponentProps {
     tokens: TokenBalance,
     x7priceData: any,
@@ -36,9 +55,11 @@ interface DashboardComponentProps {
     updateValues: Function,
     migratedTokens: MigrationData,
     migrationStatus: boolean,
+    userMigratedTokens: UserMigrationData,
+    connected: boolean,
 }
 
-export default function DashboardComponent({ updateValues, setNode, tokens, x7priceData, ethPrice, valueCurrency, node, smartContract, migratedTokens, migrationStatus }: DashboardComponentProps) {
+export default function DashboardComponent({ updateValues, setNode, tokens, x7priceData, ethPrice, valueCurrency, node, smartContract, migratedTokens, migrationStatus, userMigratedTokens, connected }: DashboardComponentProps) {
     const [tokenData, setTokenData] = useState(Array<TokenData>);
     const totalValueUSD = tokenData.reduce((total, element) => total + element.valueUSD, 0);
     const totalValueETH = tokenData.reduce((total, element) => total + element.valueETH, 0);
@@ -62,6 +83,27 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     var dateMigration = new Date(0);
     dateMigration.setUTCSeconds(1664337611);
 
+    var migratedString = useMemo(parseMigratedData, [userMigratedTokens]);
+    var notMigratedString = useMemo(parseNotMigratedData, [userMigratedTokens])
+
+
+    function parseMigratedData() {
+        const elements = new Array(0);
+        Object.entries(userMigratedTokens).forEach(([key, value]) => {
+            if (value.status)
+                elements.push(<Typography variant='h6' key={key}>{key}</Typography>)
+        });
+        return elements;
+    }
+
+    function parseNotMigratedData() {
+        const elements = new Array(0);
+        Object.entries(userMigratedTokens).forEach(([key, value]) => {
+            if (!value.status)
+                elements.push(<Typography variant='h6' key={key}>{key}</Typography>);
+        });
+        return elements;
+    }
 
     return (
         <Box>
@@ -148,6 +190,41 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 </Container>
             </Box>
 
+            {connected ? <>
+                <Typography variant={'h3'}>Snapshot of your wallet</Typography>
+
+                <Box sx={{ pt: 2, pb: 5 }}>
+                    <Container maxWidth={'md'}>
+                        <Paper sx={{ p: 3, height: '100%', display: 'inline-flex' }} elevation={8}  >
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell align='center'>
+                                            <Typography color='green' variant='h4' >Snapshot</Typography>
+                                        </TableCell>
+                                        <TableCell align='center'>
+                                            <Typography color='red' variant='h4'>Not snapshot</Typography>
+                                            (tokens that you didn't own<br /> shows here too)
+                                        </TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell align='center'>
+                                            {migratedString}
+                                        </TableCell>
+                                        <TableCell align='center'>
+                                            {notMigratedString}
+                                        </TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </Paper>
+                    </Container>
+                </Box>
+            </>
+                : <></>}
+
             <Typography variant={'h3'}>Timers</Typography>
             <Box
                 sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr 1fr' }, gap: 5, rowGap: 3 }}>
@@ -223,25 +300,3 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     );
 }
 
-interface MigratedDataTableRowProps {
-    tokenName: string,
-    percentage: number,
-    formattedAmount: number,
-}
-
-function MigratedDataTableRow({ tokenName, percentage, formattedAmount }: MigratedDataTableRowProps) {
-    return (
-        <TableRow>
-            <TableCell sx={{ borderBottom: "none" }}>
-                <Typography variant="h6">
-                    {tokenName}
-                </Typography>
-            </TableCell>
-            <TableCell sx={{ borderBottom: "none" }}>
-                <Typography variant="h6">
-                    {percentage} % ({formattedAmount.toLocaleString()})
-                </Typography>
-            </TableCell>
-        </TableRow>
-    );
-}

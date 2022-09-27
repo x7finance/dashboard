@@ -1,6 +1,20 @@
 import Web3 from 'web3';
+import { Contract } from "web3-eth-contract"
 import * as Addresses from '../EthereumAddresses';
 import * as abis from '../ABIs';
+
+
+interface UserMigrationStatusResponse {
+    status: boolean,
+    tokenName: string,
+}
+
+export interface BalanceResponse {
+    tokenName: string,
+    balance: number,
+    address: string
+}
+
 
 class SmartContractService {
     web3: Web3 = new Web3();
@@ -25,7 +39,7 @@ class SmartContractService {
     }
     migrationContract = new this.web3.eth.Contract(abis.MigrationContractABI, Addresses.MigrationContract);
 
-    getBalance = (contract: typeof this.web3.eth.Contract.prototype, address: string, callback: Function, error: Function) => {
+    getBalance = (contract: Contract, address: string, callback: Function, error: Function) => {
         contract.methods.balanceOf(address).call(function (err: any, balance: BigInt) {
             if (err) {
                 error();
@@ -49,6 +63,30 @@ class SmartContractService {
                 });
             }
         });
+    }
+
+    async getBalance3(tokenName: string, address: string): Promise<BalanceResponse> {
+        const value = this.findCorrectContract(tokenName);
+        const balance = await value?.methods.balanceOf(address).call();
+        return { tokenName: tokenName, balance: balance, address:address };
+    }
+
+    findCorrectContract(tokenName: string): Contract | undefined {
+        var contract = undefined;
+        Object.entries(this.mappingKeyToContract).find(([key, value]) => {
+            if (key === tokenName) {
+                contract = value;
+                return true;
+            }
+            return false;
+        });
+        return contract;
+    }
+
+
+    async getUserMigrationStatus(tokenName: string, tokenAddress: string, address: string): Promise<UserMigrationStatusResponse> {
+        const status = await this.migrationContract.methods.isAv1TokenHolder(tokenAddress, address).call();
+        return { status: status, tokenName: tokenName };
     }
 
     constructor(nodeUrl: string) {
