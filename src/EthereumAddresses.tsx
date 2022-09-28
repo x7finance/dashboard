@@ -51,7 +51,7 @@ export const Discount_X7DAOv2 = "0x7da05D75f51056f3B83b43F397668Cf6A5051cDa";
 
 export const TokenBurner_X7100 = "0x70008F0B06060A31515733DB6dCB515c64f3DeAd";
 export const TokenTimeLock_X7 = "0x7000f4cddca46fb77196466c3833be4e89ab810c";
-export const EcoSystemSplitter = "0x700021C10741C106816AcEAB9CEA80945FbBF888";
+export const EcoSystemSplitter = "0x70001BA1BA4d85739E7B6A7C646B8aba5ed6c888";
 export const TreasurySplitter = "0x70001e625F8C763BE03ffb4135789c7116fef999";
 
 export const MigrationContract = "0x710515Bf543fDb6834144F9269BBf0D1d32B1702";

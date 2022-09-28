@@ -19,6 +19,7 @@ import CommunityComponent from './components/Community/CommunityComponent';
 import WalletConnectionDialog from './components/WalletConnectionDialog'
 import { initialStatus, initialMigratedTokens, initialAlreadyMigratedTokens, initialUserMigratedTokens, AlreadyMigratedTokens, MigratedTokens } from './InitialValues';
 import { X7_ECOSYSTEM_PRICE_QUERY } from './services/UniswapService'
+import GameComponent from './components/Game/GameComponent';
 
 const drawerWidth = 240;
 const darkTheme = createTheme({

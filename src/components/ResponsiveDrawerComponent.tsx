@@ -33,6 +33,7 @@ export default function ResponsiveDrawer({ mobileOpen, setMobileOpen }: any) {
         <RDListItem text={"Community"} path={"/community"} itemKey={"community"} icon={"forum"} />
         <RDListItem text={"Resources V1"} path={"/v1"} itemKey={"resources-v1"} icon={"inventory"} />
         <RDListItem text={"Resources V2"} path={"/v2"} itemKey={"resources-v2"} icon={"local_shipping"} />
+        <RDListGame text={"Game"} path={"/game"} itemKey={"game"} icon={"videogame_asset"} />
       </List>
     </div>
   );
@@ -42,6 +43,22 @@ export default function ResponsiveDrawer({ mobileOpen, setMobileOpen }: any) {
     return (
       <ListItem key={itemKey} disablePadding>
         <Link to={path} onClick={() => { if (mobileOpen) handleDrawerToggle() }} style={{ color: "inherit", textDecoration: "none" }}>
+          <ListItemButton>
+            <ListItemIcon>
+              <Icon>
+                {icon}
+              </Icon>
+            </ListItemIcon>
+            <ListItemText primary={text} />
+          </ListItemButton>
+        </Link>
+      </ListItem>)
+  }
+
+  function RDListGame({ path, text, itemKey, icon }: RDListItemProps) {
+    return (
+      <ListItem key={itemKey} disablePadding>
+        <Link to={path} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none" }}>
           <ListItemButton>
             <ListItemIcon>
               <Icon>

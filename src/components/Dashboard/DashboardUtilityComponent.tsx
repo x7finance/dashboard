@@ -34,7 +34,7 @@ export default function DashboardUtilityComponent() {
             <Divider sx={{ mt: 3 }} />
             <Typography mt={3} variant='h5' width={'100%'} display="flex" flexDirection="row">Utility</Typography>
             <Box display="flex" sx={{ justifyContent: "start", pt: 3 }}>
-                <DashboardAddTokensToMetamaskList tokenData={tokenListDataV1} setTokenListData={setTokenListData} title={'V1'} />
+                {/* <DashboardAddTokensToMetamaskList tokenData={tokenListDataV1} setTokenListData={setTokenListData} title={'V1'} /> */}
                 <DashboardAddTokensToMetamaskList tokenData={tokenListDataV2} setTokenListData={setTokenListDataV2} title={'V2'} />
             </Box>
         </Box>

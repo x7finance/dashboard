@@ -26,7 +26,7 @@ export default function UniswapTradeComponent() {
                 <Paper elevation={10} sx={{ display: 'inline-flex', minWidth: "300px", maxWidth: "800px", width: '100%', }}>
                     <iframe onLoad={frameLoaded}
                         title="Uniswap"
-                        src="https://app.uniswap.org/#/swap?outputCurrency=0x7105AA393b9cF9b2497b460837313EA3dBA67Da0"
+                        src="https://app.uniswap.org/#/swap?outputCurrency=0x7105e64bf67eca3ae9b123f0e5ca2b83b2ef2da0"
                         height={800}
                         width="100%"
                         style={{

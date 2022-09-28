@@ -57,7 +57,7 @@ export default function TokenListComponent({ tokens, ethPrice, x7PriceData, valu
     const openInNewTab = (tokenAddress: string) => {
         window.open("https://etherscan.io/token/" + tokenAddress, '_blank', 'noopener,noreferrer');
     };
-    console.log(data);
+
     return (
         <Container maxWidth={'md'}>
             <TableContainer component={Paper} >

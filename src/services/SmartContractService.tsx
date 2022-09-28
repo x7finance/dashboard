@@ -101,7 +101,7 @@ class SmartContractService {
 
     async getUserMigrationStatus(tokenName: string, tokenAddress: string, address: string): Promise<UserMigrationStatusResponse> {
         const status = await this.migrationContract.methods.isAv1TokenHolder(tokenAddress, address).call();
-        return { status: status, tokenName: tokenName };
+        return { status: status, tokenName: tokenName.toLowerCase() };
     }
 
     constructor(nodeUrl: string) {

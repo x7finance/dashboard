@@ -3,11 +3,11 @@ import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, T
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
 import DashboardUtilityComponent from './DashboardUtilityComponent';
-import SyncIcon from '@mui/icons-material/Sync';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import Countdown from 'react-countdown';
+// import SyncIcon from '@mui/icons-material/Sync';
+// import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+// import Countdown from 'react-countdown';
 import { TokenBalanceV2 } from '../../InitialValues'
-import MigratedDataTableRow from './MigratedDataTableRowComponent';
+// import MigratedDataTableRow from './MigratedDataTableRowComponent';
 
 export interface MigrationElementData {
     amount: number,
@@ -83,8 +83,8 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     var dateMigration = new Date(0);
     dateMigration.setUTCSeconds(1664337611);
 
-    var migratedString = useMemo(parseMigratedData, [userMigratedTokens]);
-    var notMigratedString = useMemo(parseNotMigratedData, [userMigratedTokens])
+    // var migratedString = useMemo(parseMigratedData, [userMigratedTokens]);
+    // var notMigratedString = useMemo(parseNotMigratedData, [userMigratedTokens])
 
 
     function parseMigratedData() {
@@ -104,14 +104,12 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
         });
         return elements;
     }
-
-    console.log(tokens);
     
     return (
         <Box>
             <Box
-                sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 2fr 2fr' }, gap: 5, rowGap: 3 }}>
-                <Container maxWidth={'sm'}>
+                sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '2fr 2fr' }, gap: 5, rowGap: 3 }}>
+                {/* <Container maxWidth={'sm'}>
                     <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
                         <Typography>
                             Migration status:
@@ -123,7 +121,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                             }
                         </Typography>
                     </Paper>
-                </Container>
+                </Container> */}
                 <Container maxWidth={'sm'}>
                     <Paper sx={{ p: 3, height: '100%' }} elevation={8} >
                         <Typography>
@@ -163,7 +161,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 </Container>
 
             </Box>
-            <Typography variant={'h3'}>Migrated tokens</Typography>
+            {/* <Typography variant={'h3'}>Migrated tokens</Typography>
 
             <Box sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr' }, gap: 5, rowGap: 3 }}>
                 <Container maxWidth={'md'}>
@@ -190,8 +188,8 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                         </Table>
                     </Paper>
                 </Container>
-            </Box>
-
+            </Box> */}
+{/* 
             {connected ? <>
                 <Typography variant={'h3'}>Snapshot of your wallet</Typography>
 
@@ -225,9 +223,9 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                     </Container>
                 </Box>
             </>
-                : <></>}
+                : <></>} */}
 
-            <Typography variant={'h3'}>Timers</Typography>
+            {/* <Typography variant={'h3'}>Timers</Typography>
             <Box
                 sx={{ pt: 2, pb: 5, display: 'inline-grid', gridTemplateColumns: { md: '1fr 1fr 1fr' }, gap: 5, rowGap: 3 }}>
                 <Container maxWidth={'sm'}>
@@ -260,7 +258,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                         </Typography>
                     </Paper>
                 </Container>
-            </Box>
+            </Box> */}
             <TokenListComponent
                 tokens={tokens}
                 ethPrice={ethPrice}
