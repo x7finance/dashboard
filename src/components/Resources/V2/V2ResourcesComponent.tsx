@@ -3,7 +3,6 @@ import ResourcesComponentTableRow from '../ResourcesComponentTableRow';
 import * as Addresses from '../../../EthereumAddresses';
 
 export default function V2ResourcesComponent() {
-    //yet to come
     return (
         <Box>
             <Typography variant='h4' pb={3}>Tokens</Typography>

@@ -1,5 +1,5 @@
-import { useMemo, useState } from 'react'
-import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button, TableHead } from '@mui/material';
+import { useEffect, useRef, useState } from 'react'
+import { Select, MenuItem, Box, Table, Paper, Typography, Container, TableRow, TableCell, TableBody, FormControl, SelectChangeEvent, InputLabel, Divider, Button } from '@mui/material';
 import TokenListComponent, { TokenData } from './TokenListComponent';
 import SmartContractService from '../../services/SmartContractService';
 import DashboardUtilityComponent from './DashboardUtilityComponent';
@@ -87,24 +87,37 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
     // var notMigratedString = useMemo(parseNotMigratedData, [userMigratedTokens])
 
 
-    function parseMigratedData() {
-        const elements = new Array(0);
-        Object.entries(userMigratedTokens).forEach(([key, value]) => {
-            if (value.status)
-                elements.push(<Typography variant='h6' key={key}>{key}</Typography>)
-        });
-        return elements;
-    }
+    // function parseMigratedData() {
+    //     const elements = new Array(0);
+    //     Object.entries(userMigratedTokens).forEach(([key, value]) => {
+    //         if (value.status)
+    //             elements.push(<Typography variant='h6' key={key}>{key}</Typography>)
+    //     });
+    //     return elements;
+    // }
 
-    function parseNotMigratedData() {
-        const elements = new Array(0);
-        Object.entries(userMigratedTokens).forEach(([key, value]) => {
-            if (!value.status)
-                elements.push(<Typography variant='h6' key={key}>{key}</Typography>);
-        });
-        return elements;
-    }
-    
+    // function parseNotMigratedData() {
+    //     const elements = new Array(0);
+    //     Object.entries(userMigratedTokens).forEach(([key, value]) => {
+    //         if (!value.status)
+    //             elements.push(<Typography variant='h6' key={key}>{key}</Typography>);
+    //     });
+    //     return elements;
+    // }
+
+    const x7daoRef = useRef<HTMLDivElement>(null);
+    useEffect(() => {
+        const script2 = document.createElement('script');
+        script2.src = "https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js";
+        script2.async = true;
+        script2.setAttribute("coin-id", "x7dao");
+        script2.setAttribute("currency", "usd");
+        script2.setAttribute("height", "300");
+        script2.setAttribute("locale", "en");
+        script2.setAttribute("background-color", "#121212");
+        x7daoRef.current?.appendChild(script2);
+    }, []);
+
     return (
         <Box>
             <Box
@@ -189,7 +202,7 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                     </Paper>
                 </Container>
             </Box> */}
-{/* 
+            {/* 
             {connected ? <>
                 <Typography variant={'h3'}>Snapshot of your wallet</Typography>
 
@@ -266,6 +279,19 @@ export default function DashboardComponent({ updateValues, setNode, tokens, x7pr
                 valueCurrency={valueCurrency}
                 tokenData={tokenData}
                 setTokenData={setTokenData} />
+
+            <Divider sx={{ mt: 3 }} />
+            <Typography mt={3} variant='h5' width={'100%'} display="flex" flexDirection="row">CoinGecko</Typography>
+            <Box sx={{ mt: 3, width: '100%', display: 'inline-grid', gridTemplateColumns: { md: '2fr 2fr' }, gap: 5, rowGap: 3 }}>
+                <Paper elevation={3} dangerouslySetInnerHTML={{
+                    __html: `<script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
+    <coingecko-coin-price-chart-widget  coin-id="x7r" currency="usd" height="300" locale="en" background-color="#252525"></coingecko-coin-price-chart-widget>` }}>
+                </Paper>
+                <Paper id='cg-x7dao' elevation={3} ref={x7daoRef} dangerouslySetInnerHTML={{
+                    __html: `<script src="https://widgets.coingecko.com/coingecko-coin-price-chart-widget.js"></script>
+    <coingecko-coin-price-chart-widget coin-id="x7dao" currency="usd" height="300" locale="en" background-color="#252525"></coingecko-coin-price-chart-widget>` }}>
+                </Paper>
+            </Box>
 
             <DashboardUtilityComponent />
 

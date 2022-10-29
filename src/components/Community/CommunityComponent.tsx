@@ -1,12 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react';
 import { Box, Container, Card, Typography, Button } from '@mui/material';
-import discordLogo from '../../assets/images/discordLogo-w.png'
-import telegramLogo from '../../assets/images/telegramLogo-w.png'
-import mediumLogo from '../../assets/images/mediumLogo.png'
-import webpageLogo from '../../assets/images/webpageLogo.png'
-import youtubeLogo from '../../assets/images/youtubeLogo.png'
-import duneLogo from '../../assets/images/DuneAnalyticsLogo.png'
-import twitterLogo from '../../assets/images/twitterLogo.png'
+import discordLogo from '../../assets/images/discordLogo-w.png';
+import telegramLogo from '../../assets/images/telegramLogo-w.png';
+import mediumLogo from '../../assets/images/mediumLogo.png';
+import webpageLogo from '../../assets/images/webpageLogo.png';
+import youtubeLogo from '../../assets/images/youtubeLogo.png';
+import duneLogo from '../../assets/images/DuneAnalyticsLogo.png';
+import twitterLogo from '../../assets/images/twitterLogo.png';
 import ethereumLogo from '../../assets/images/ethereumLogo.png';
 
 interface CommunityCardProps {

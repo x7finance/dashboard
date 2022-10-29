@@ -41,8 +41,8 @@ export const V2TokensObjects = {
 }
 
 
-export const LiquidityHub_X7R = "0x712a166e741405fcb9815aa5c3442f2cd3328ebb";
-export const LiquidityHub_X7DAOv2 = "0x7da0a524d323cddaf3d465ba617230f6b91d3ebb";
+export const LiquidityHub_X7R = "0x712e87520f35a0a17a49bcca4d87c201f0a46ebb";
+export const LiquidityHub_X7DAOv2 = "0x7da0e45ce7fd8359544be00a6618215770851ebb";
 export const LiquidityHub_X7100 = "0x7102407afa5d6581aab694feb03feb0e7cf69ebb";
 
 export const Discount_X7100 = "0x7100AAcC6047281b105201cb9e0DEcF9Ae5431DA";
@@ -52,6 +52,14 @@ export const Discount_X7DAOv2 = "0x7da05D75f51056f3B83b43F397668Cf6A5051cDa";
 export const TokenBurner_X7100 = "0x70008F0B06060A31515733DB6dCB515c64f3DeAd";
 export const TokenTimeLock_X7 = "0x7000f4cddca46fb77196466c3833be4e89ab810c";
 export const EcoSystemSplitter = "0x70001BA1BA4d85739E7B6A7C646B8aba5ed6c888";
-export const TreasurySplitter = "0x70001e625F8C763BE03ffb4135789c7116fef999";
+export const TreasurySplitter = "0x70006B785AA87821331a974C3d5af81CdE5BB999";
 
 export const MigrationContract = "0x710515Bf543fDb6834144F9269BBf0D1d32B1702";
+
+export const NFTs = {
+    EcosystemMaxi: {ca: "0x7000cae2c1016e7de45ec9b54f1835b966bca4f7", openSeaID:"x7-ecosystem-maxi"},
+    LiquidityMaxi: {ca: "0x7000f8270b955377e047da8202ae3c408186b4f7", openSeaID:"x7-liquidity-maxi"},
+    DexMaxi: {ca: "0x7000b3B5e4e126610A7b7d1Af2D2DE8685c7C4f7", openSeaID:"x7-dex-maxi"},
+    BorrowingMaxi: {ca: "0x7000D5d7707Bf86b317deC635e459E47b9aBD4F7", openSeaID:"x7-borrowing-maxi"},
+    Magister:{ca:  "0x7dA0bb55E4097FC2d78a1822105057F36C5F360d", openSeaID:"x7-magister"}
+};

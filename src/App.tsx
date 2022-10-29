@@ -20,6 +20,7 @@ import WalletConnectionDialog from './components/WalletConnectionDialog'
 import { initialStatus, initialMigratedTokens, initialAlreadyMigratedTokens, initialUserMigratedTokens, AlreadyMigratedTokens, MigratedTokens } from './InitialValues';
 import { X7_ECOSYSTEM_PRICE_QUERY } from './services/UniswapService'
 import GameComponent from './components/Game/GameComponent';
+import NFTsComponent from './components/NFT/NFTsComponent';
 
 const drawerWidth = 240;
 const darkTheme = createTheme({
@@ -337,6 +338,7 @@ function App() {
               <Route path="/v2" element={<V2ResourcesComponent />} />
               <Route path="/ecosystem" element={<EcosystemComponent />} />
               <Route path="/community" element={<CommunityComponent />} />
+              <Route path="/nfts" element={<NFTsComponent />} />
             </Routes>
           </Box>
           <Snackbar sx={{ mt: 10 }} anchorOrigin={{ horizontal: 'right', vertical: 'top' }} open={SnackBarOpen} autoHideDuration={6000} onClose={handleCloseSnackbar}>
