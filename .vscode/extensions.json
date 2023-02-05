@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "apollographql.vscode-apollo",
+    "philfontaine.autolaunch",
+    "dbaeumer.vscode-eslint",
+    "heybourn.headwind",
+    "bradlc.vscode-tailwindcss",
+    "esbenp.prettier-vscode",
+    "stylelint.vscode-stylelint",
+    "dsznajder.es7-react-js-snippets"
+  ]
+}

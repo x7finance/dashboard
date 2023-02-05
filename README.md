@@ -1,38 +1,77 @@
 ![x7BannerLogo](https://raw.githubusercontent.com/WoxieX/x7-dashboard/main/src/assets/images/x7banner.png)
-# About
-**This is a community run project, which you can use to view all your X7 tokens.**
 
-# Website
-You can view live preview on **[https://x7community.space](https://x7community.space)**
+<br />
+<div align="center"><strong>X7 Finance</strong></div>
+<div align="center">Trust No One. Trust Code. Long Live DeFi</div>
+<div align="center">X7 is a completely decentralized exchange - complete with it's innovative lending protocols.</div>
+<br />
+<div align="center">
+<a href="https://x7finance.org/">Website</a> 
+<span> · </span>
+<a href="https://t.me/X7m105portal">Telegram</a> 
+<span> · </span>
+<a href="https://twitter.com/x7_finance">Twitter</a>
+</div>
 
-### Announcement message in our [Telegram group (https://t.me/X7m105portal)](https://t.me/X7m105portal) 
+## About
+
+This is a repo is maintained and deployed by the X7 DAO .
+
+<br />
+
+## Syntax
+
+Syntax is a [Tailwind UI](https://tailwindui.com) [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+
+<br />
+
+## Getting started
+
+To get started with this template, first install the npm dependencies:
+
+```bash
+npm install
+cp .env.example .env.local
 ```
-We are proud to present our first X7 community tool! 
-Welcome to:
- [https://X7community.space/](https://x7community.space/)
-A dashboard that shows all of your X7 holdings and displays the overall $ or ETH value,
-aswell as overall supply percentage across each token in the ecosystem. 
-The DApp also contains following features:
-- Swap feature via Uniswap DEX
-- New ecosystem overview 
-- Link portal
-- Information on main X7 contracts and wallets
-The DApp will be up-to-date and updated along with new released information and/ or changes within the ecosystem. 
-We thank @WoxieX, one of our dedicated community members, 
-for taking the lead and putting in hard work and effort to provide us this tool. 
-From the community, for the community!
-Trust no one. Trust code. Long live DeFi.
+
+Next, run the development server:
+
+```bash
+npm run dev
 ```
 
-# Running this project locally
-* Clone this project
-* Make sure you have nodeJS and NPM installed.
-* Open this project in terminal/command
-* type: `npm install` and wait for everything to install
-* type: `npm start` and wait for it to start. 
-* After few seconds local server should be available on `localhost:3000/`
+Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-## Contribute
-To contribute you can make a pull request. It will be reviewed by the team. Also notify @WoxieX on Telegram about your pull request.
+<br />
+
+## Global search
+
+By default this template uses [Algolia DocSearch](https://docsearch.algolia.com) for the global search. DocSearch is free for open-source projects, and you can sign up for an account on their website. Once your DocSearch account is ready, update the following [environment variables](https://nextjs.org/docs/basic-features/environment-variables) in your project with the values provided by Algolia:
+
+```
+NEXT_PUBLIC_DOCSEARCH_APP_ID=
+NEXT_PUBLIC_DOCSEARCH_API_KEY=
+NEXT_PUBLIC_DOCSEARCH_INDEX_NAME=
+```
+
+<br />
+
+## License
+
+This site template is a commercial product and is licensed under the [Tailwind UI license](https://tailwindui.com/license).
+
+<br />
+
+## Learn more
+
+To learn more about the technologies used in this site template, see the following resources:
+
+- [Tailwind CSS](https://tailwindcss.com/docs) - the official Tailwind CSS documentation
+- [Next.js](https://nextjs.org/docs) - the official Next.js documentation
+- [Headless UI](https://headlessui.dev) - the official Headless UI documentation
+- [Markdoc](https://markdoc.io) - the official Markdoc documentation
+- [DocSearch](https://docsearch.algolia.com) - the official DocSearch documentation
+
+<br />
 
 _**Trust no one. Trust code. Long live DeFi.**_
