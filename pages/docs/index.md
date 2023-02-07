@@ -13,7 +13,6 @@ The X7 DAO has been granted 20 NFT's that provide project founders with a discou
 ### LoanTerm Example
 
 ```js
-// cache-advance.config.js
 interface IX7LoanTerms is IERC721 {
 
     // The interface that will be used to define loan terms.
