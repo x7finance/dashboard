@@ -3,48 +3,6 @@ import DashboardAddTokensToMetamaskList from './DashboardAddTokensToMetamaskList
 import { useState } from 'react';
 
 export default function DashboardUtilityComponent() {
-  const [tokenListDataV1, setTokenListData] = useState({
-    X7M105: {
-      status: true,
-      function: MetaMaskService.addX7M105ToWatchList,
-      disabled: false,
-    },
-    X7DAO: {
-      status: true,
-      function: MetaMaskService.addX7DAOToWatchList,
-      disabled: false,
-    },
-    X7: {
-      status: true,
-      function: MetaMaskService.addX7ToWatchList,
-      disabled: false,
-    },
-    X7001: {
-      status: true,
-      function: MetaMaskService.addX7001ToWatchList,
-      disabled: false,
-    },
-    X7002: {
-      status: true,
-      function: MetaMaskService.addX7002ToWatchList,
-      disabled: false,
-    },
-    X7003: {
-      status: true,
-      function: MetaMaskService.addX7003ToWatchList,
-      disabled: false,
-    },
-    X7004: {
-      status: true,
-      function: MetaMaskService.addX7004ToWatchList,
-      disabled: false,
-    },
-    X7005: {
-      status: true,
-      function: MetaMaskService.addX7005ToWatchList,
-      disabled: false,
-    },
-  });
   const [tokenListDataV2, setTokenListDataV2] = useState({
     X7R: {
       status: true,

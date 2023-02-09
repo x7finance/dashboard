@@ -1,6 +1,11 @@
+import arbitrum from './glyphs/arbitrum';
+import bsc from './glyphs/bsc';
+import ethereum from './glyphs/ethereum';
+import loading from './glyphs/loading';
+import optimism from './glyphs/optimism';
+import polygon from './glyphs/polygon';
 import clsx from 'clsx';
 import { createElement, MemoExoticComponent } from 'react';
-import loading from './glyphs/loading';
 
 interface IconProps {
   glyph: glyph;
@@ -17,10 +22,20 @@ interface IconProps {
 
 export enum glyph {
   loading,
+  arbitrum,
+  bsc,
+  ethereum,
+  optimism,
+  polygon,
 }
 
 export const GLYPH_MAPS: Record<glyph, MemoExoticComponent<any>> = {
   [glyph.loading]: loading,
+  [glyph.arbitrum]: arbitrum,
+  [glyph.bsc]: bsc,
+  [glyph.ethereum]: ethereum,
+  [glyph.optimism]: optimism,
+  [glyph.polygon]: polygon,
 };
 
 function Icon(props: IconProps): JSX.Element {

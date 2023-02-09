@@ -1,6 +1,6 @@
 import { Heading } from '../components/heading';
 
-export default function DashboardPage() {
+export default function HomePage() {
   return (
     <div className="my-16 xl:max-w-none">
       <Heading level={2} id="dashboard">

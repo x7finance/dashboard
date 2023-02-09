@@ -6,6 +6,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import {
   BanknotesIcon,
   Bars3BottomLeftIcon,
+  CodeBracketIcon,
   CogIcon,
   FolderIcon,
   RectangleStackIcon,
@@ -31,6 +32,7 @@ const navigation = [
     icon: RectangleStackIcon,
     current: false,
   },
+  { name: 'Contracts', href: '/contracts', icon: CodeBracketIcon },
   { name: 'Loans', href: '/loans', icon: BanknotesIcon },
   {
     name: 'Community',

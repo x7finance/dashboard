@@ -1,4 +1,4 @@
-import { Icon } from './icon';
+import { Icon } from './docsIcon';
 import Link from 'next/link';
 
 export function QuickLinks({
