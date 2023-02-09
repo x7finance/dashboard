@@ -1,4 +1,4 @@
-import * as Addresses from '../lib/EthereumAddresses';
+import { ContractsEnum } from '../lib/types';
 
 const decimals = 18;
 interface WatchListInterface {
@@ -91,53 +91,29 @@ class MetaMaskService {
       });
   }
 
-  addX7M105ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7m105, 'X7M105', decimals);
-  };
-  addX7ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7, 'X7', decimals);
-  };
-  addX7DAOToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7DAO, 'X7DAO', decimals);
-  };
-  addX7001ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7001, 'X7001', decimals);
-  };
-  addX7002ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7002, 'X7002', decimals);
-  };
-  addX7003ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7003, 'X7003', decimals);
-  };
-  addX7004ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7004, 'X7004', decimals);
-  };
-  addX7005ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7005, 'X7005', decimals);
-  };
   addX7RToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7R, 'X7R', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7R, 'X7R', decimals);
   };
   addX7DAOv2ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7DAOv2, 'X7DAO', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7DAO, 'X7DAO', decimals);
   };
   addX7DToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7D, 'X7D', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7D, 'X7D', decimals);
   };
   addX7101ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7101, 'X7101', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7101, 'X7101', decimals);
   };
   addX7102ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7102, 'X7102', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7102, 'X7102', decimals);
   };
   addX7103ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7103, 'X7103', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7103, 'X7103', decimals);
   };
   addX7104ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7104, 'X7104', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7104, 'X7104', decimals);
   };
   addX7105ToWatchList = () => {
-    this.addATokenToWatchList(Addresses.X7105, 'X7105', decimals);
+    this.addATokenToWatchList(ContractsEnum.X7105, 'X7105', decimals);
   };
 
   warnUserToInstallMetaMask() {

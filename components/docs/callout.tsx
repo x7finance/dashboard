@@ -1,4 +1,4 @@
-import { Icon } from './icon';
+import { Icon } from './docsIcon';
 import clsx from 'clsx';
 
 const styles: any = {

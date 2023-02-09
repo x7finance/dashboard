@@ -47,7 +47,7 @@ export function Footer() {
         <div className="mt-2 md:order-1 md:mt-0">
           <p className="text-center text-xs leading-5 text-gray-400 dark:text-gray-500">
             built & maintained by X7DAO
-            <span className="hidden sm:inline-block">
+            <span className="ml-1 hidden sm:inline-block">
               - special thank you to [Woxie, Adz, MikeMurpher, d0c]
             </span>
           </p>

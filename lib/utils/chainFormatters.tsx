@@ -1,28 +1,19 @@
-import { BSCIcon } from '../../components/svgs/bsc';
-import { ErcIcon } from '../../components/svgs/erc';
-import { PolygonIcon } from '../../components/svgs/polygon';
-import {
-  ARBISCAN_URL,
-  BSCSCAN_URL,
-  ETHERSCAN_URL,
-  OPTIMISTIC_URL,
-  POLYSCAN_URL,
-} from '../constants';
-import { BlockchainType, ChainEnum } from '../types';
+import Icon from '../../components/icons';
+import { BlockchainType, ChainEnum, ChainScannerLinksEnum } from '../types';
 import { SignalSlashIcon } from '@heroicons/react/20/solid';
 
 export function generateChainBase(chain?: BlockchainType) {
   switch (chain) {
     case ChainEnum.erc:
-      return ETHERSCAN_URL;
+      return ChainScannerLinksEnum.erc;
     case ChainEnum.bsc:
-      return BSCSCAN_URL;
+      return ChainScannerLinksEnum.bsc;
     case ChainEnum.polygon:
-      return POLYSCAN_URL;
+      return ChainScannerLinksEnum.polygon;
     case ChainEnum.arbitrum:
-      return ARBISCAN_URL;
+      return ChainScannerLinksEnum.arbitrum;
     case ChainEnum.optimism:
-      return OPTIMISTIC_URL;
+      return ChainScannerLinksEnum.optimism;
     default:
       ``;
   }
@@ -65,11 +56,15 @@ export function generateNativeQueryCommands(chainId?: BlockchainType) {
 export function renderConnectedChain(chain?: BlockchainType) {
   switch (chain) {
     case ChainEnum.erc:
-      return <ErcIcon />;
+      return <Icon glyph={Icon.glyph.ethereum} size={5} />;
     case ChainEnum.bsc:
-      return <BSCIcon />;
+      return <Icon glyph={Icon.glyph.bsc} size={5} />;
     case ChainEnum.polygon:
-      return <PolygonIcon />;
+      return <Icon glyph={Icon.glyph.polygon} size={5} />;
+    case ChainEnum.optimism:
+      return <Icon glyph={Icon.glyph.optimism} size={5} />;
+    case ChainEnum.arbitrum:
+      return <Icon glyph={Icon.glyph.arbitrum} size={5} />;
     case ChainEnum.offline:
       return (
         <SignalSlashIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
