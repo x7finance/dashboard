@@ -337,6 +337,76 @@ const docsNavigation = [
   },
 ];
 
+const whitepaperNavigation = [
+  {
+    title: 'Whitepaper',
+    links: [
+      { title: 'Ethos', href: '/whitepaper/Ethos' },
+      { title: 'Executive Summary', href: '/whitepaper/Executive-Summary' },
+      { title: 'Tokenholder Value', href: '/whitepaper/Tokenholder-Value' },
+      { title: 'Problem Summary', href: '/whitepaper/Problem-Summary' },
+      {
+        title: 'Total Addressable Market',
+        href: '/whitepaper/Total-Addressable-Market',
+      },
+      { title: 'Multi-chain Rollout', href: '/whitepaper/Multi-chain-Rollout' },
+      {
+        title: 'Customers And Use Cases',
+        href: '/whitepaper/Customers-And-Use-Cases',
+      },
+      { title: 'Team', href: '/whitepaper/Team' },
+      {
+        title: 'Community Stealth Launch',
+        href: '/whitepaper/Community-Stealth-Launch',
+      },
+      {
+        title: 'X7 System Design Philosophy',
+        href: '/whitepaper/X7-System-Design-Philosophy',
+      },
+      {
+        title: 'X7 Functionality Summary',
+        href: '/whitepaper/X7-Functionality-Summary',
+      },
+      {
+        title: 'Xchange: A Leveraged Initial Liquidity Decentralized',
+        href: '/whitepaper/Xchange-A-Leveraged-Initial-Liquidity-DEX',
+      },
+      {
+        title: 'Trading Functionality',
+        href: '/whitepaper/Trading-Functionality',
+      },
+      {
+        title: 'Understanding Swap Creation',
+        href: '/whitepaper/Understanding-Swap-Creation',
+      },
+      {
+        title: 'Liquidity Functionality',
+        href: '/whitepaper/Liquidity-Functionality',
+      },
+      { title: 'Lending Pool', href: '/whitepaper/Lending-Pool' },
+      {
+        title: 'Lending Functionality',
+        href: '/whitepaper/Lending-Functionality',
+      },
+      { title: 'Borrowing', href: '/whitepaper/Borrowing' },
+      { title: 'Governance', href: '/whitepaper/Governance' },
+      {
+        title: 'X7 ecosystem token Liquidity Provider Tokens (LP)',
+        href: '/whitepaper/X7-Ecosystem-Token-Liquidity-Provider-Tokens',
+      },
+      { title: 'Tokenomics', href: '/whitepaper/Tokenomics' },
+      { title: 'Ecosystem Overview', href: '/whitepaper/Ecosystem-Overview' },
+      { title: 'X7R', href: '/whitepaper/X7R' },
+      { title: 'X7DAO', href: '/whitepaper/X7DAO' },
+      { title: 'X7Deposit (X7D)', href: '/whitepaper/X7Deposit' },
+      { title: 'Non-Fungible Tokens', href: '/whitepaper/Non-Fungible-Tokens' },
+      { title: 'Roadmap', href: '/whitepaper/Roadmap' },
+      { title: 'DAO Handoff', href: '/whitepaper/DAO-Handoff' },
+      { title: 'Future Developments', href: '/whitepaper/Future-Developments' },
+    ],
+  },
+];
+
 function useTableOfContents(tableOfContents: any) {
   let [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id);
 
@@ -394,7 +464,11 @@ export function DocsBase({
 }: any) {
   let router = useRouter();
   const navigation =
-    docsType === 'onchains' ? onchainsNavigation : docsNavigation;
+    docsType === 'onchains'
+      ? onchainsNavigation
+      : docsType === 'whitepaper'
+      ? whitepaperNavigation
+      : docsNavigation;
 
   let isHomePage = router.pathname === '/';
   let allLinks = navigation.flatMap((section) => section.links);

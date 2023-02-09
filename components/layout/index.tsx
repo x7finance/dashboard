@@ -6,6 +6,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import {
   BanknotesIcon,
   Bars3BottomLeftIcon,
+  NewspaperIcon,
   CodeBracketIcon,
   CogIcon,
   FolderIcon,
@@ -41,6 +42,7 @@ const navigation = [
     current: false,
   },
   { name: 'NFTs', href: '/nfts', icon: CogIcon },
+  { name: 'Whitepaper', href: '/whitepaper', icon: NewspaperIcon },
 ];
 
 // @ts-ignore
@@ -57,10 +59,12 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
   const router = useRouter();
   const docsMatch = new RegExp('^/(docs)(/.*)?$');
   const onchainsMatch = new RegExp('^/(onchains)(/.*)?$');
+  const onwhitepaperMatch = new RegExp('^/(whitepaper)(/.*)?$');
   const isDocs = docsMatch.test(router.pathname);
   const isOnChains = onchainsMatch.test(router.pathname);
+  const isWhitepaper = onwhitepaperMatch.test(router.pathname);
 
-  const showDocs = isDocs || isOnChains;
+  const showDocs = isDocs || isOnChains || isWhitepaper;
   const docsType = router?.pathname?.split('/')[1];
 
   return (
