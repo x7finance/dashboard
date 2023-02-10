@@ -476,6 +476,7 @@ export function DocsBase({
   docsType,
 }: any) {
   let router = useRouter();
+
   const navigation =
     docsType === 'onchains'
       ? onchainsNavigation
@@ -483,7 +484,6 @@ export function DocsBase({
       ? whitepaperNavigation
       : docsNavigation;
 
-  let isHomePage = router.pathname === '/';
   let allLinks = navigation.flatMap((section) => section.links);
   let linkIndex = allLinks.findIndex((link) => link.href === router.pathname);
   let previousPage = allLinks[linkIndex - 1];

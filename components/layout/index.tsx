@@ -57,12 +57,14 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const router = useRouter();
+
   const docsMatch = new RegExp('^/(docs)(/.*)?$');
   const onchainsMatch = new RegExp('^/(onchains)(/.*)?$');
-  const onwhitepaperMatch = new RegExp('^/(whitepaper)(/.*)?$');
+  const whitepaperMatch = new RegExp('^/(whitepaper)(/.*)?$');
+
   const isDocs = docsMatch.test(router.pathname);
   const isOnChains = onchainsMatch.test(router.pathname);
-  const isWhitepaper = onwhitepaperMatch.test(router.pathname);
+  const isWhitepaper = whitepaperMatch.test(router.pathname);
 
   const showDocs = isDocs || isOnChains || isWhitepaper;
   const docsType = router?.pathname?.split('/')[1];

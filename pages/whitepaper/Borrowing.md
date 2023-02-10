@@ -1,5 +1,6 @@
 ---
 title: Borrowing
+tags: [whitepaper]
 ---
 
 Much in the same way an IPO is underwritten by a bank as a market maker, the X7 borrowing capability provides this capacity within the context of the Uniswap V2 automated market maker technology.
