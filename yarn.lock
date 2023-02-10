@@ -997,10 +997,10 @@
   optionalDependencies:
     "@types/markdown-it" "12.2.3"
 
-"@markdoc/next.js@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@markdoc/next.js/-/next.js-0.2.1.tgz#6217d5c840b388f4166a3aae682096d172f4b473"
-  integrity sha512-SJ+Pe4uJdD0vasEhsMQ0eVBJ4E1opoxlfVtskQ6UzN5+uh4CLoH6RbohL4upV3Snk41s5LfrEeQh/QCK3+qr/A==
+"@markdoc/next.js@0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@markdoc/next.js/-/next.js-0.2.2.tgz#7128bd468c3909cae7bb2c3c503fb211cc043be0"
+  integrity sha512-qHCwcTwyHOHrvxmUcueL+RREhHJxef9p6MS45CxHIChV9JHBcWOJt9v++T8HCf4iCbCdnIVCcR9OYzOj3Kq7XQ==
   dependencies:
     js-yaml "^4.1.0"
 
@@ -3459,10 +3459,10 @@ eslint-visitor-keys@^3.3.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.3.0.tgz#f6480fa6b1f30efe2d1968aa8ac745b862469826"
   integrity sha512-mQ+suqKJVyeuwGYHAdjMFqjCyfl8+Ldnxuyp3ldiMBFKkvytrXUZWaiPCEav8qDHKty44bD+qV1IP4T+w+xXRA==
 
-eslint@8.33.0:
-  version "8.33.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.33.0.tgz#02f110f32998cb598c6461f24f4d306e41ca33d7"
-  integrity sha512-WjOpFQgKK8VrCnAtl8We0SUOy/oVZ5NHykyMiagV1M9r8IFpIJX7DduK6n1mpfhlG7T1NLWm2SuD8QB7KFySaA==
+eslint@8.34.0:
+  version "8.34.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.34.0.tgz#fe0ab0ef478104c1f9ebc5537e303d25a8fb22d6"
+  integrity sha512-1Z8iFsucw+7kSqXNZVslXS8Ioa4u2KM7GPwuKtkTFAqZ/cHMcEaR+1+Br0wLlot49cNxIiZk5wp8EAbPcYZxTg==
   dependencies:
     "@eslint/eslintrc" "^1.4.1"
     "@humanwhocodes/config-array" "^0.11.8"
@@ -6489,7 +6489,7 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zustand@4.3.2, zustand@^4.3.1:
+zustand@^4.3.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.3.2.tgz#bb121fcad84c5a569e94bd1a2695e1a93ba85d39"
   integrity sha512-rd4haDmlwMTVWVqwvgy00ny8rtti/klRoZjFbL/MAcDnmD5qSw/RZc+Vddstdv90M5Lv6RPgWvm1Hivyn0QgJw==

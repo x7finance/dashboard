@@ -10,7 +10,7 @@ export function Navigation({ navigation, className }: any) {
       <ul role="list" className="space-y-9">
         {navigation.map((section: any) => (
           <li key={section.title}>
-            <h2 className="font-medium font-display text-slate-900 dark:text-white">
+            <h2 className="font-display font-medium text-slate-900 dark:text-white">
               {section.title}
             </h2>
             <ul
@@ -22,6 +22,7 @@ export function Navigation({ navigation, className }: any) {
                   <Link
                     href={link.href}
                     className={clsx(
+                      link.href === router.pathname ? `before:bg-sky-500` : ``,
                       'block w-full pl-3.5 before:pointer-events-none before:absolute before:-left-1 before:top-1/2 before:h-1.5 before:w-1.5 before:-translate-y-1/2 before:rounded-full'
                     )}
                   >

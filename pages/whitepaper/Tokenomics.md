@@ -1,4 +1,6 @@
-## Tokenomics
+---
+title: Tokenomics
+---
 
 A typical structure for funding project operations from tokens is to collect a percentage of traded tokens and periodically swap those tokens in the ETH pair.
 
@@ -14,7 +16,7 @@ The variables associated with this activity are:
 
 All of these settings will be dynamic and modifiable to affect the allocations of capital throughout the ecosystem.
 
-### Advanced Trading and Revenues
+## Advanced Trading and Revenues
 
 There will be a complex interplay between the transfer of funds between:
 

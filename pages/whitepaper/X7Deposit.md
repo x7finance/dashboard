@@ -1,3 +1,7 @@
+---
+title: X7D
+---
+
 ## X7Deposit (X7D)
 
 A wrapped ETH token will exist to encourage capital injection into the Lending Pool. Users will mint these X7Deposit tokens at a 1:1 face value of ETH.

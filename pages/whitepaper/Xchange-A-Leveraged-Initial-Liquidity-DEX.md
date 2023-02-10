@@ -1,8 +1,10 @@
-## Xchange: A Leveraged Initial Liquidity Decentralized Exchange
+---
+title: Xchange - A Leveraged Initial Liquidity Decentralized Exchange
+---
 
 X7’s Decentralized Exchange is a peer-to-peer Automated Market Making (AMM) platform integrated with a novel trustless, permissionless on-chain undercollateralized loan origination and servicing system known as the Lending Pool. This section will describe the core functionality of the operations of DEX.
 
-### Technical Abstract
+## Technical Abstract
 
 Xchange is built on a forked version of the Uniswap V2 Factory, Liquidity Pair, and Router contracts. There are two notable changes:
 

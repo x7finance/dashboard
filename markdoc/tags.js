@@ -32,6 +32,9 @@ const tags = {
   'quick-links': {
     render: QuickLinks,
   },
+  header: {
+    render: ({ children }) => <h2>{children}</h2>,
+  },
   'quick-link': {
     selfClosing: true,
     render: QuickLink,

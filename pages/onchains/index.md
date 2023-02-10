@@ -10,6 +10,6 @@ On-chain messaging through the blockchain ensures the protocol remains censorshi
 
 {% quick-link title="View On-Chain" icon="plugins" href="https://etherscan.io/address/0x7000a09c425abf5173ff458df1370c25d1c58105?toaddress=0x000000000000000000000000000000000000dead" description="View the messages from the founding team directly on-chain" /%}
 
-{% quick-link title="Latest Message" icon="installation" href="/onchains/929-Feb-06-2023-052259-AM-+UTC" description="Read the latest message from the founding team." /%}
+{% quick-link title="Latest Message" icon="installation" href="/onchains/929-feb-06-2023-052259-am-+utc" description="Read the latest message from the founding team." /%}
 
 {% /quick-links %}

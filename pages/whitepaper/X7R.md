@@ -1,4 +1,6 @@
-## X7R
+---
+title: X7R
+---
 
 In order to attract as many interested parties into the ecosystem and ensure that the number of people that can benefit from this decentralized system is maximized, a deflationary “benefit” or “reward” token will exist that will receive buybacks, burns, and liquidity additions.
 

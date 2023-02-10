@@ -1,4 +1,6 @@
-## X7DAO
+---
+title: X7DAO
+---
 
 An ERC20 governance token which allows holders to vote on fee rates, loan terms, funding terms, tradable token tax terms, distribution of capital flows and any additional settings on and off chain. This includes the establishment of committees and other foundational efforts off chain.
 
