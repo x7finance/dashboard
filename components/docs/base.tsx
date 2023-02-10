@@ -10,28 +10,41 @@ const onchainsNavigation = [
     title: 'February 2023',
     links: [
       {
+        title: 'Feb-10-2023-094459-PM',
+        href: '/onchains/926-feb-10-2023-094459-pm-+utc',
+      },
+      {
+        title: 'Feb-10-2023-013535-AM',
+        href: '/onchains/927-feb-10-2023-013535-am-+utc',
+      },
+      {
+        title: 'Feb-09-2023-104147-PM',
+        href: '/onchains/928-feb-09-2023-104147-pm-+utc',
+      },
+
+      {
         title: 'Feb-06-2023-100135-PM',
-        href: '/onchains/929-Feb-06-2023-052259-AM-+UTC',
+        href: '/onchains/929-feb-06-2023-052259-am-+utc',
       },
       {
         title: 'Feb-03-2023-064611-PM',
-        href: '/onchains/930-Feb-03-2023-064611-PM-+UTC',
+        href: '/onchains/930-feb-03-2023-064611-pm-+utc',
       },
       {
         title: 'Feb-02-2023-112347-PM',
-        href: '/onchains/931-Feb-02-2023-112347-PM-+UTC',
+        href: '/onchains/931-feb-02-2023-112347-pm-+utc',
       },
       {
         title: 'Feb-02-2023-100135-PM',
-        href: '/onchains/932-Feb-02-2023-100135-PM-+UTC',
+        href: '/onchains/932-feb-02-2023-100135-pm-+utc',
       },
       {
         title: 'Feb-01-2023-073047-AM',
-        href: '/onchains/933-Feb-01-2023-073047-AM-+UTC',
+        href: '/onchains/933-feb-01-2023-073047-am-+utc',
       },
       {
         title: 'Feb-01-2023-035835-PM',
-        href: '/onchains/934-Feb-01-2023-035835-PM-+UTC',
+        href: '/onchains/934-feb-01-2023-035835-pm-+utc',
       },
     ],
   },
@@ -40,43 +53,43 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Jan-31-2023-063823-PM',
-        href: '/onchains/935-Jan-31-2023-063823-PM-+UTC',
+        href: '/onchains/935-jan-31-2023-063823-pm-+utc',
       },
       {
         title: 'Jan-29-2023-092159-PM',
-        href: '/onchains/936-Jan-29-2023-092159-PM-+UTC',
+        href: '/onchains/936-jan-29-2023-092159-pm-+utc',
       },
       {
         title: 'Jan-27-2023-073311-PM',
-        href: '/onchains/937-Jan-27-2023-073311-PM-+UTC',
+        href: '/onchains/937-jan-27-2023-073311-pm-+utc',
       },
       {
         title: 'Jan-26-2023-085811-PM',
-        href: '/onchains/938-Jan-26-2023-085811-PM-+UTC',
+        href: '/onchains/938-jan-26-2023-085811-pm-+utc',
       },
       {
         title: 'Jan-24-2023-112311-PM',
-        href: '/onchains/939-Jan-24-2023-112311-PM-+UTC',
+        href: '/onchains/939-jan-24-2023-112311-pm-+utc',
       },
       {
         title: 'Jan-19-2023-085835-PM',
-        href: '/onchains/940-Jan-19-2023-085835-PM-+UTC',
+        href: '/onchains/940-jan-19-2023-085835-pm-+utc',
       },
       {
         title: 'Jan-16-2023-012223-PM',
-        href: '/onchains/941-Jan-16-2023-012223-PM-+UTC',
+        href: '/onchains/941-jan-16-2023-012223-pm-+utc',
       },
       {
         title: 'Jan-10-2023-055123-AM',
-        href: '/onchains/942-Jan-10-2023-055123-AM-+UTC',
+        href: '/onchains/942-jan-10-2023-055123-am-+utc',
       },
       {
         title: 'Jan-03-2023-053423-AM',
-        href: '/onchains/943-Jan-03-2023-053423-AM-+UTC',
+        href: '/onchains/943-jan-03-2023-053423-am-+utc',
       },
       {
         title: 'Jan-02-2023-105811-PM',
-        href: '/onchains/944-Jan-02-2023-105811-PM-+UTC',
+        href: '/onchains/944-jan-02-2023-105811-pm-+utc',
       },
     ],
   },
@@ -85,23 +98,23 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Dec-30-2022-115323-PM',
-        href: '/onchains/945-Dec-30-2022-115323-PM-+UTC',
+        href: '/onchains/945-dec-30-2022-115323-pm-+utc',
       },
       {
         title: 'Dec-16-2022-123223-AM',
-        href: '/onchains/946-Dec-16-2022-123223-AM-+UTC',
+        href: '/onchains/946-dec-16-2022-123223-am-+utc',
       },
       {
         title: 'Dec-14-2022-065059-PM',
-        href: '/onchains/947-Dec-14-2022-065059-PM-+UTC',
+        href: '/onchains/947-dec-14-2022-065059-pm-+utc',
       },
       {
         title: 'Dec-06-2022-081159-AM',
-        href: '/onchains/948-Dec-06-2022-081159-AM-+UTC',
+        href: '/onchains/948-dec-06-2022-081159-am-+utc',
       },
       {
         title: 'Dec-02-2022-034459-AM',
-        href: '/onchains/949-Dec-02-2022-034459-AM-+UTC',
+        href: '/onchains/949-dec-02-2022-034459-am-+utc',
       },
     ],
   },
@@ -110,23 +123,23 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Nov-11-2022-011811-AM',
-        href: '/onchains/950-Nov-11-2022-011811-AM-+UTC',
+        href: '/onchains/950-nov-11-2022-011811-am-+utc',
       },
       {
         title: 'Nov-10-2022-033259-AM',
-        href: '/onchains/951-Nov-10-2022-033259-AM-+UTC',
+        href: '/onchains/951-nov-10-2022-033259-am-+utc',
       },
       {
         title: 'Nov-09-2022-071947-PM',
-        href: '/onchains/952-Nov-09-2022-071947-PM-+UTC',
+        href: '/onchains/952-nov-09-2022-071947-pm-+utc',
       },
       {
         title: 'Nov-08-2022-100935-PM',
-        href: '/onchains/953-Nov-08-2022-100935-PM-+UTC',
+        href: '/onchains/953-nov-08-2022-100935-pm-+utc',
       },
       {
         title: 'Nov-08-2022-012623-AM',
-        href: '/onchains/954-Nov-08-2022-012623-AM-+UTC',
+        href: '/onchains/954-nov-08-2022-012623-am-+utc',
       },
     ],
   },
@@ -135,39 +148,39 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Oct-31-2022-064923-AM',
-        href: '/onchains/955-Oct-31-2022-064923-AM-+UTC',
+        href: '/onchains/955-oct-31-2022-064923-am-+utc',
       },
       {
         title: 'Oct-22-2022-061011-AM',
-        href: '/onchains/956-Oct-22-2022-061011-AM-+UTC',
+        href: '/onchains/956-oct-22-2022-061011-am-+utc',
       },
       {
         title: 'Oct-16-2022-055223-PM',
-        href: '/onchains/957-Oct-16-2022-055223-PM-+UTC',
+        href: '/onchains/957-oct-16-2022-055223-pm-+utc',
       },
       {
         title: 'Oct-14-2022-061747-PM',
-        href: '/onchains/958-Oct-14-2022-061747-PM-+UTC',
+        href: '/onchains/958-oct-14-2022-061747-pm-+utc',
       },
       {
         title: 'Oct-13-2022-075135-AM',
-        href: '/onchains/959-Oct-13-2022-075135-AM-+UTC',
+        href: '/onchains/959-oct-13-2022-075135-am-+utc',
       },
       {
         title: 'Oct-07-2022-100759-PM',
-        href: '/onchains/960-Oct-07-2022-100759-PM-+UTC',
+        href: '/onchains/960-oct-07-2022-100759-pm-+utc',
       },
       {
         title: 'Oct-06-2022-084123-AM',
-        href: '/onchains/961-Oct-06-2022-084123-AM-+UTC',
+        href: '/onchains/961-oct-06-2022-084123-am-+utc',
       },
       {
         title: 'Oct-03-2022-072111-AM',
-        href: '/onchains/962-Oct-03-2022-072111-AM-+UTC',
+        href: '/onchains/962-oct-03-2022-072111-am-+utc',
       },
       {
         title: 'Oct-01-2022-070111-AM',
-        href: '/onchains/963-Oct-01-2022-070111-AM-+UTC',
+        href: '/onchains/963-oct-01-2022-070111-am-+utc',
       },
     ],
   },
@@ -176,87 +189,87 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Sep-29-2022-125135-PM',
-        href: '/onchains/964-Sep-29-2022-125135-PM-+UTC',
+        href: '/onchains/964-sep-29-2022-125135-pm-+utc',
       },
       {
         title: 'Sep-28-2022-090211-AM',
-        href: '/onchains/965-Sep-28-2022-090211-AM-+UTC',
+        href: '/onchains/965-sep-28-2022-090211-am-+utc',
       },
       {
         title: 'Sep-28-2022-050511-AM',
-        href: '/onchains/966-Sep-28-2022-050511-AM-+UTC',
+        href: '/onchains/966-sep-28-2022-050511-am-+utc',
       },
       {
         title: 'Sep-28-2022-020547-AM',
-        href: '/onchains/967-Sep-28-2022-020547-AM-+UTC',
+        href: '/onchains/967-sep-28-2022-020547-am-+utc',
       },
       {
         title: 'Sep-27-2022-021523-PM',
-        href: '/onchains/968-Sep-27-2022-021523-PM-+UTC',
+        href: '/onchains/968-sep-27-2022-021523-pm-+utc',
       },
       {
         title: 'Sep-27-2022-035535-AM',
-        href: '/onchains/969-Sep-27-2022-035535-AM-+UTC',
+        href: '/onchains/969-sep-27-2022-035535-am-+utc',
       },
       {
         title: 'Sep-26-2022-092347-PM',
-        href: '/onchains/970-Sep-26-2022-092347-PM-+UTC',
+        href: '/onchains/970-sep-26-2022-092347-pm-+utc',
       },
       {
         title: 'Sep-26-2022-044647-PM',
-        href: '/onchains/971-Sep-26-2022-044647-PM-+UTC',
+        href: '/onchains/971-sep-26-2022-044647-pm-+utc',
       },
       {
         title: 'Sep-26-2022-033035-AM',
-        href: '/onchains/972-Sep-26-2022-033035-AM-+UTC',
+        href: '/onchains/972-sep-26-2022-033035-am-+utc',
       },
       {
         title: 'Sep-26-2022-023011-AM',
-        href: '/onchains/973-Sep-26-2022-023011-AM-+UTC',
+        href: '/onchains/973-sep-26-2022-023011-am-+utc',
       },
       {
         title: 'Sep-25-2022-035347-AM',
-        href: '/onchains/974-Sep-25-2022-035347-AM-+UTC',
+        href: '/onchains/974-sep-25-2022-035347-am-+utc',
       },
       {
         title: 'Sep-24-2022-093123-PM',
-        href: '/onchains/975-Sep-24-2022-093123-PM-+UTC',
+        href: '/onchains/975-sep-24-2022-093123-pm-+utc',
       },
       {
         title: 'Sep-24-2022-103711-AM',
-        href: '/onchains/976-Sep-24-2022-103711-AM-+UTC',
+        href: '/onchains/976-sep-24-2022-103711-am-+utc',
       },
       {
         title: 'Sep-24-2022-023335-AM',
-        href: '/onchains/977-Sep-24-2022-023335-AM-+UTC',
+        href: '/onchains/977-sep-24-2022-023335-am-+utc',
       },
       {
         title: 'Sep-22-2022-090935-PM',
-        href: '/onchains/978-Sep-22-2022-090935-PM-+UTC',
+        href: '/onchains/978-sep-22-2022-090935-pm-+utc',
       },
       {
         title: 'Sep-19-2022-080259-AM',
-        href: '/onchains/979-Sep-19-2022-080259-AM-+UTC',
+        href: '/onchains/979-sep-19-2022-080259-am-+utc',
       },
       {
         title: 'Sep-13-2022-105207-AM',
-        href: '/onchains/980-Sep-13-2022-105207-AM-+UTC',
+        href: '/onchains/980-sep-13-2022-105207-am-+utc',
       },
       {
         title: 'Sep-12-2022-095341-AM',
-        href: '/onchains/981-Sep-12-2022-095341-AM-+UTC',
+        href: '/onchains/981-sep-12-2022-095341-am-+utc',
       },
       {
         title: 'Sep-07-2022-082157-AM',
-        href: '/onchains/982-Sep-07-2022-082157-AM-+UTC',
+        href: '/onchains/982-sep-07-2022-082157-am-+utc',
       },
       {
         title: 'Sep-04-2022-083900-AM',
-        href: '/onchains/983-Sep-04-2022-083900-AM-+UTC',
+        href: '/onchains/983-sep-04-2022-083900-am-+utc',
       },
       {
         title: 'Sep-01-2022-051839-AM',
-        href: '/onchains/984-Sep-01-2022-051839-AM-+UTC',
+        href: '/onchains/984-sep-01-2022-051839-am-+utc',
       },
     ],
   },
@@ -265,63 +278,63 @@ const onchainsNavigation = [
     links: [
       {
         title: 'Aug-31-2022-092227-PM',
-        href: '/onchains/985-Aug-31-2022-092227-PM-+UTC',
+        href: '/onchains/985-aug-31-2022-092227-pm-+utc',
       },
       {
         title: 'Aug-31-2022-055456-AM',
-        href: '/onchains/986-Aug-31-2022-055456-AM-+UTC',
+        href: '/onchains/986-aug-31-2022-055456-am-+utc',
       },
       {
         title: 'Aug-30-2022-032405-AM',
-        href: '/onchains/987-Aug-30-2022-032405-AM-+UTC',
+        href: '/onchains/987-aug-30-2022-032405-am-+utc',
       },
       {
         title: 'Aug-29-2022-044830-PM',
-        href: '/onchains/988-Aug-29-2022-044830-PM-+UTC',
+        href: '/onchains/988-aug-29-2022-044830-pm-+utc',
       },
       {
         title: 'Aug-29-2022-114635-AM',
-        href: '/onchains/989-Aug-29-2022-114635-AM-+UTC',
+        href: '/onchains/989-aug-29-2022-114635-am-+utc',
       },
       {
         title: 'Aug-28-2022-020448-AM',
-        href: '/onchains/990-Aug-28-2022-020448-AM-+UTC',
+        href: '/onchains/990-aug-28-2022-020448-am-+utc',
       },
       {
         title: 'Aug-26-2022-091751-PM',
-        href: '/onchains/991-Aug-26-2022-091751-PM-+UTC',
+        href: '/onchains/991-aug-26-2022-091751-pm-+utc',
       },
       {
         title: 'Aug-25-2022-104049-PM',
-        href: '/onchains/992-Aug-25-2022-104049-PM-+UTC',
+        href: '/onchains/992-aug-25-2022-104049-pm-+utc',
       },
       {
         title: 'Aug-25-2022-045900-AM',
-        href: '/onchains/993-Aug-25-2022-045900-AM-+UTC',
+        href: '/onchains/993-aug-25-2022-045900-am-+utc',
       },
       {
         title: 'Aug-24-2022-043226-AM',
-        href: '/onchains/994-Aug-24-2022-043226-AM-+UTC',
+        href: '/onchains/994-aug-24-2022-043226-am-+utc',
       },
       {
         title: 'Aug-24-2022-030749-AM',
-        href: '/onchains/995-Aug-24-2022-030749-AM-+UTC',
+        href: '/onchains/995-aug-24-2022-030749-am-+utc',
       },
       {
         title: 'Aug-23-2022-062730-PM',
-        href: '/onchains/996-Aug-23-2022-062730-PM-+UTC',
+        href: '/onchains/996-aug-23-2022-062730-pm-+utc',
       },
       {
         title: 'Aug-22-2022-092218-AM',
-        href: '/onchains/997-Aug-22-2022-092218-AM-+UTC',
+        href: '/onchains/997-aug-22-2022-092218-am-+utc',
       },
       {
         title: 'Aug-21-2022-072625-AM',
-        href: '/onchains/998-Aug-21-2022-072625-AM-+UTC',
+        href: '/onchains/998-aug-21-2022-072625-am-+utc',
       },
       {
         title: 'Aug-19-2022-073411-PM',
-        href: '/onchains/999-Aug-19-2022-073411-PM-+UTC',
+        href: '/onchains/999-aug-19-2022-073411-pm-+utc',
       },
     ],
   },
@@ -341,68 +354,68 @@ const whitepaperNavigation = [
   {
     title: 'Whitepaper',
     links: [
-      { title: 'Ethos', href: '/whitepaper/Ethos' },
-      { title: 'Executive Summary', href: '/whitepaper/Executive-Summary' },
-      { title: 'Tokenholder Value', href: '/whitepaper/Tokenholder-Value' },
-      { title: 'Problem Summary', href: '/whitepaper/Problem-Summary' },
+      { title: 'Ethos', href: '/whitepaper/ethos' },
+      { title: 'Executive Summary', href: '/whitepaper/executive-summary' },
+      { title: 'Tokenholder Value', href: '/whitepaper/tokenholder-value' },
+      { title: 'Problem Summary', href: '/whitepaper/problem-summary' },
       {
         title: 'Total Addressable Market',
-        href: '/whitepaper/Total-Addressable-Market',
+        href: '/whitepaper/total-addressable-market',
       },
-      { title: 'Multi-chain Rollout', href: '/whitepaper/Multi-chain-Rollout' },
+      { title: 'Multi-chain Rollout', href: '/whitepaper/multi-chain-rollout' },
       {
         title: 'Customers And Use Cases',
-        href: '/whitepaper/Customers-And-Use-Cases',
+        href: '/whitepaper/customers-and-use-cases',
       },
-      { title: 'Team', href: '/whitepaper/Team' },
+      { title: 'Team', href: '/whitepaper/team' },
       {
         title: 'Community Stealth Launch',
-        href: '/whitepaper/Community-Stealth-Launch',
+        href: '/whitepaper/community-stealth-launch',
       },
       {
         title: 'X7 System Design Philosophy',
-        href: '/whitepaper/X7-System-Design-Philosophy',
+        href: '/whitepaper/x7-system-design-philosophy',
       },
       {
         title: 'X7 Functionality Summary',
-        href: '/whitepaper/X7-Functionality-Summary',
+        href: '/whitepaper/x7-functionality-summary',
       },
       {
         title: 'Xchange: A Leveraged Initial Liquidity Decentralized',
-        href: '/whitepaper/Xchange-A-Leveraged-Initial-Liquidity-DEX',
+        href: '/whitepaper/xchange-a-leveraged-initial-liquidity-dex',
       },
       {
         title: 'Trading Functionality',
-        href: '/whitepaper/Trading-Functionality',
+        href: '/whitepaper/trading-functionality',
       },
       {
         title: 'Understanding Swap Creation',
-        href: '/whitepaper/Understanding-Swap-Creation',
+        href: '/whitepaper/understanding-swap-creation',
       },
       {
         title: 'Liquidity Functionality',
-        href: '/whitepaper/Liquidity-Functionality',
+        href: '/whitepaper/liquidity-functionality',
       },
-      { title: 'Lending Pool', href: '/whitepaper/Lending-Pool' },
+      { title: 'Lending Pool', href: '/whitepaper/lending-pool' },
       {
         title: 'Lending Functionality',
-        href: '/whitepaper/Lending-Functionality',
+        href: '/whitepaper/lending-functionality',
       },
-      { title: 'Borrowing', href: '/whitepaper/Borrowing' },
-      { title: 'Governance', href: '/whitepaper/Governance' },
+      { title: 'Borrowing', href: '/whitepaper/borrowing' },
+      { title: 'Governance', href: '/whitepaper/governance' },
       {
         title: 'X7 ecosystem token Liquidity Provider Tokens (LP)',
-        href: '/whitepaper/X7-Ecosystem-Token-Liquidity-Provider-Tokens',
+        href: '/whitepaper/x7-ecosystem-token-liquidity-provider-tokens',
       },
-      { title: 'Tokenomics', href: '/whitepaper/Tokenomics' },
-      { title: 'Ecosystem Overview', href: '/whitepaper/Ecosystem-Overview' },
-      { title: 'X7R', href: '/whitepaper/X7R' },
-      { title: 'X7DAO', href: '/whitepaper/X7DAO' },
-      { title: 'X7Deposit (X7D)', href: '/whitepaper/X7Deposit' },
-      { title: 'Non-Fungible Tokens', href: '/whitepaper/Non-Fungible-Tokens' },
-      { title: 'Roadmap', href: '/whitepaper/Roadmap' },
-      { title: 'DAO Handoff', href: '/whitepaper/DAO-Handoff' },
-      { title: 'Future Developments', href: '/whitepaper/Future-Developments' },
+      { title: 'Tokenomics', href: '/whitepaper/tokenomics' },
+      { title: 'Ecosystem Overview', href: '/whitepaper/ecosystem-overview' },
+      { title: 'X7R', href: '/whitepaper/x7r' },
+      { title: 'X7DAO', href: '/whitepaper/x7dao' },
+      { title: 'X7Deposit (X7D)', href: '/whitepaper/x7deposit' },
+      { title: 'Non-Fungible Tokens', href: '/whitepaper/non-fungible-tokens' },
+      { title: 'Roadmap', href: '/whitepaper/roadmap' },
+      { title: 'DAO Handoff', href: '/whitepaper/dao-handoff' },
+      { title: 'Future Developments', href: '/whitepaper/future-developments' },
     ],
   },
 ];
@@ -527,7 +540,7 @@ export function DocsBase({
                     );
                   })}
                 {title && (
-                  <h1 className="font-display text-3xl tracking-tight text-slate-900 dark:text-white">
+                  <h1 className="font-display text-2xl tracking-tight text-slate-900 dark:text-white">
                     {title}
                   </h1>
                 )}

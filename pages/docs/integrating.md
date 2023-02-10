@@ -1,5 +1,5 @@
 ---
-title: Integrating
+title: Integration Docs
 tags: [docs]
 ---
 

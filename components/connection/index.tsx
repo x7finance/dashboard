@@ -15,7 +15,7 @@ export function ConnectionComponent(props: { id: 'mobile' | 'desktop' }) {
               <button
                 type="button"
                 onClick={show}
-                className="ml-1 inline-flex h-6 items-center whitespace-nowrap rounded-full bg-white font-bold shadow-md shadow-black/5 ring-1 ring-black/5 hover:bg-opacity-60 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-sky-400 dark:ring-inset dark:ring-white/5 hover:dark:bg-slate-600 sm:ml-0 sm:px-4 sm:text-sm"
+                className="ml-1 inline-flex h-6 items-center whitespace-nowrap rounded-full bg-white px-1 text-xs font-bold shadow-md shadow-black/5 ring-1 ring-black/5 hover:bg-opacity-60 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 dark:bg-slate-700 dark:text-sky-400 dark:ring-inset dark:ring-white/5 hover:dark:bg-slate-600 sm:ml-0 sm:px-4 sm:text-sm"
               >
                 {ensName ?? `${shortenHex(address ?? ``, 4)}`}
               </button>

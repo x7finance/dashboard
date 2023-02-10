@@ -1,4 +1,6 @@
-## Ethos
+---
+title: Ethos
+---
 
 > _X7's founding team believes that capital should be available to those
 > with great ideas and that the unflinching reliability of code and

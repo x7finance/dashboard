@@ -1,4 +1,6 @@
-## Roadmap
+---
+title: Roadmap
+---
 
 At the time of publishing of this whitepaper a significant portion of the above described ecosystem has already been built and tested, however it is critical to note that software systems are best released incrementally so as to ensure each component works properly “in the wild” before considering it released and “locking it in place”. The following represents the current (as of this version of the whitepaper) roadmap. These should be considered more like milestones than a calendar of events. As each is accomplished we know we are one step closer to general release of the ecosystem into the global wild.
 
@@ -13,12 +15,12 @@ At the time of publishing of this whitepaper a significant portion of the above 
 
 In addition to the above development milestones, the following additional deliveries can be expected:
 
-### Marketing Materials:
+## Marketing Materials:
 
 - Investor deck/summary
 - Prettified ecosystem diagrams and explanations
 
-### Development Tooling and Documentation:
+## Development Tooling and Documentation:
 
 - Technical design document for all smart contracts
 - Smart contract trust diagram

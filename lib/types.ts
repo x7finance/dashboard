@@ -92,30 +92,14 @@ export enum ContractsEnum {
   TokenTimeLock = '0x7000f4cddca46fb77196466c3833be4e89ab810c',
   X7100_TokenBurner = '0x70008F0B06060A31515733DB6dCB515c64f3DeAd',
   X7_LendingPool = '0x740015c39da5d148fca25a467399d00bce10c001',
-}
 
-export const NFTs = {
-  EcosystemMaxi: {
-    contract: '0x7000cae2c1016e7de45ec9b54f1835b966bca4f7',
-    openSeaID: 'x7-ecosystem-maxi',
-  },
-  LiquidityMaxi: {
-    contract: '0x7000f8270b955377e047da8202ae3c408186b4f7',
-    openSeaID: 'x7-liquidity-maxi',
-  },
-  DexMaxi: {
-    contract: '0x7000b3B5e4e126610A7b7d1Af2D2DE8685c7C4f7',
-    openSeaID: 'x7-dex-maxi',
-  },
-  BorrowingMaxi: {
-    contract: '0x7000D5d7707Bf86b317deC635e459E47b9aBD4F7',
-    openSeaID: 'x7-borrowing-maxi',
-  },
-  Magister: {
-    contract: '0x7dA0bb55E4097FC2d78a1822105057F36C5F360d',
-    openSeaID: 'x7-magister',
-  },
-};
+  // NFT Contracts
+  EcosystemMaxi = '0x7000cae2c1016e7de45ec9b54f1835b966bca4f7',
+  LiquidityMaxi = '0x7000f8270b955377e047da8202ae3c408186b4f7',
+  DexMaxi = '0x7000b3B5e4e126610A7b7d1Af2D2DE8685c7C4f7',
+  BorrowingMaxi = '0x7000D5d7707Bf86b317deC635e459E47b9aBD4F7',
+  Magister = '0x7dA0bb55E4097FC2d78a1822105057F36C5F360d',
+}
 
 export const MigrationContract = '0x710515Bf543fDb6834144F9269BBf0D1d32B1702';
 

@@ -6,10 +6,10 @@ import { Dialog, Transition } from '@headlessui/react';
 import {
   BanknotesIcon,
   Bars3BottomLeftIcon,
-  NewspaperIcon,
   CodeBracketIcon,
   CogIcon,
   FolderIcon,
+  NewspaperIcon,
   RectangleStackIcon,
   Squares2X2Icon as Squares2X2IconOutline,
   UserGroupIcon,
@@ -181,7 +181,7 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
                             className={clsx(
                               item.current
                                 ? 'bg-indigo-800 text-white'
-                                : 'text-indigo-100 hover:bg-indigo-800 hover:text-white',
+                                : 'text-indigo-100 hover:bg-sky-700 hover:text-white',
                               'group flex items-center rounded-md py-2 px-3 text-sm font-medium'
                             )}
                             aria-current={item.current ? 'page' : undefined}

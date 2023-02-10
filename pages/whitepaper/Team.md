@@ -1,4 +1,6 @@
-## Team
+---
+title: Team
+---
 
 X7 Finance is a globally distributed collective of developers. We strongly believe that who we are is irrelevant.
 

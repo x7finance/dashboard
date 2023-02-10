@@ -1,6 +1,8 @@
-## Governance
+---
+title: Governance
+---
 
-### Charter
+## Charter
 
 All dynamic aspects of the X7 ecosystem will ultimately rest with the DAO to decide upon.
 
@@ -10,7 +12,7 @@ The **X7DAO** token is the voting token within the DAO,and a portion of project 
 
 The expected outcome is that DAO holders will maximize the medium and long-term gain of the DAO token. The ecosystem properly aligns this selfish profit motive with the efficient and healthy operation of the ecosystem.
 
-### Control Structure
+## Control Structure
 
 The DAO shall operate through central governance contracts. For all functions the DAO may control, there will be two options:
 
@@ -23,13 +25,13 @@ At any time a DAO vote can be undertaken to revoke authority from a committee if
 
 For example, one feature that will exist is the addition of new loan term contracts. In order to efficiently respond to the market, the DAO could vote to allow a developer or a multi-signature wallet controlled by a number of known parties the ability to add and remove loan term contracts. This group could also be funded by the treasury to pay for the development and audits of new loan term contracts. This group could do market research and rapidly iterate to find profit-maximizing terms. If this group begins to operate maliciously or ineffectively, their control of the loan term change capability can be revoked.
 
-### DAO configuration
+## DAO configuration
 
 The core quorum and proposal thresholds are not configurable.
 
 However, it is not known a-priori how rapid voting phases should be. There is a tradeoff between speed of execution and time for deliberation that must be balanced. The initial durations for each proposal phase will be set as a starting point. However, these durations may be changed (within hard-coded limits) to meet future governance needs.
 
-### Proposals and Voting
+## Proposals and Voting
 
 Voting will occur in multiple phases, each of which has either a minimum or maximum time phase duration.
 
