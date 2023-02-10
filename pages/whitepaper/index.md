@@ -48,4 +48,4 @@ This product white paper will lay out the core components and utility that each 
 
 > Trust no one. Trust code. Long live Def
 
-_X7 Dev's_
+_X7 DAO Founding Devs_
