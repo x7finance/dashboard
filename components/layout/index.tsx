@@ -10,6 +10,7 @@ import {
   CogIcon,
   FolderIcon,
   NewspaperIcon,
+  QuestionMarkCircleIcon,
   RectangleStackIcon,
   Squares2X2Icon as Squares2X2IconOutline,
   UserGroupIcon,
@@ -43,6 +44,7 @@ const navigation = [
   },
   { name: 'NFTs', href: '/nfts', icon: CogIcon },
   { name: 'Whitepaper', href: '/whitepaper', icon: NewspaperIcon },
+  { name: 'FAQs', href: '/faq', icon: QuestionMarkCircleIcon },
 ];
 
 // @ts-ignore
