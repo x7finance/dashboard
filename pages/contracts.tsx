@@ -1,13 +1,7 @@
 import { Button } from '../components/button';
-import Icon from '../components/icons';
 import { XCHANGE } from '../lib/constants';
-import {
-  ChainIdentifierEnum,
-  ChainNameEnum,
-  ChainScannerEnum,
-  ChainScannerLinksEnum,
-  ContractsEnum,
-} from '../lib/types';
+import { ContractsEnum } from '../lib/types';
+import { chainsArray } from '../lib/utils/chainFormatters';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
@@ -132,44 +126,6 @@ const misc = [
   },
 ];
 
-const chains = [
-  {
-    name: ChainNameEnum.erc,
-    icon: <Icon glyph={Icon.glyph.ethereum} size={4} />,
-    scanner: ChainScannerEnum.erc,
-    scannerLink: ChainScannerLinksEnum.erc,
-    identifier: ChainIdentifierEnum.erc,
-  },
-  {
-    name: ChainNameEnum.bsc,
-    icon: <Icon glyph={Icon.glyph.bsc} size={4} />,
-    scanner: ChainScannerEnum.bsc,
-    scannerLink: ChainScannerLinksEnum.bsc,
-    identifier: ChainIdentifierEnum.bsc,
-  },
-  {
-    name: ChainNameEnum.polygon,
-    icon: <Icon glyph={Icon.glyph.polygon} size={4} />,
-    scanner: ChainScannerEnum.polygon,
-    scannerLink: ChainScannerLinksEnum.polygon,
-    identifier: ChainIdentifierEnum.polygon,
-  },
-  {
-    name: ChainNameEnum.arbitrum,
-    icon: <Icon glyph={Icon.glyph.arbitrum} size={4} />,
-    scanner: ChainScannerEnum.arbitrum,
-    scannerLink: ChainScannerLinksEnum.arbitrum,
-    identifier: ChainIdentifierEnum.arbitrum,
-  },
-  {
-    name: ChainNameEnum.optimism,
-    icon: <Icon glyph={Icon.glyph.optimism} size={4} />,
-    scanner: ChainScannerEnum.optimism,
-    scannerLink: ChainScannerLinksEnum.optimism,
-    identifier: ChainIdentifierEnum.optimism,
-  },
-];
-
 export default function ContractsPage() {
   const clipboard = useClipboard({
     onSuccess() {
@@ -249,7 +205,7 @@ export default function ContractsPage() {
                           <div className="relative top-1 ml-2 inline-block lg:hidden">
                             <div className="flex items-center space-x-2">
                               <div className="flex flex-shrink-0 space-x-1">
-                                {chains.map((c, id) => (
+                                {chainsArray.map((c, id) => (
                                   <Link
                                     href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
                                     target="_blank"
@@ -322,7 +278,7 @@ export default function ContractsPage() {
                       >
                         <div className="flex items-center space-x-2">
                           <div className="flex flex-shrink-0 space-x-1">
-                            {chains.map((c, id) => (
+                            {chainsArray.map((c, id) => (
                               <Link
                                 href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
                                 target="_blank"
@@ -1167,7 +1123,7 @@ function Dropdown({
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-slate-100 rounded-md bg-slate-100 shadow-lg ring-1 ring-black focus:outline-none dark:bg-slate-800 dark:ring-zinc-50/7.5">
           <div className="py-1">
-            {chains.map((c, id) => {
+            {chainsArray.map((c, id) => {
               return (
                 <Menu.Item key={`${id}-${type}-${c?.identifier}`}>
                   {({ active }) => (

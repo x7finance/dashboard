@@ -24,6 +24,14 @@ export enum ChainNameEnum {
   offline = 'offline',
 }
 
+export enum ChainDenominationEnum {
+  erc = 'ETH',
+  bsc = 'BNB',
+  optimism = 'ETH',
+  arbitrum = 'ETH',
+  polygon = 'MATIC',
+}
+
 export enum ChainIdentifierEnum {
   erc = 'ether',
   bsc = 'bnb',
