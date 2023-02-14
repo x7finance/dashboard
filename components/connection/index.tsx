@@ -1,5 +1,6 @@
 import { shortenHex } from '../../lib/utils/shortenHex';
 import { ChainSelect } from '../chainSelect';
+import clsx from 'clsx';
 import { ConnectKitButton } from 'connectkit';
 import { useNetwork } from 'wagmi';
 
@@ -36,11 +37,9 @@ export function ConnectionComponent(props: { id: 'mobile' | 'desktop' }) {
         }}
       </ConnectKitButton.Custom>
 
-      {chain?.id && (
-        <div className="ml-1 sm:ml-4">
-          <ChainSelect chainId={chain?.id} />
-        </div>
-      )}
+      <div className={clsx(!!chain?.id ? `` : `hidden`, `ml-1 sm:ml-4`)}>
+        <ChainSelect chainId={chain?.id} />
+      </div>
     </div>
   );
 }

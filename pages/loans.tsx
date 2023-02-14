@@ -1,5 +1,6 @@
 import { Button } from '../components/button';
 import { X7Logo } from '../components/svgs/x7';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 
 export default function DashboardPage() {
@@ -80,27 +81,6 @@ const loans = [
   },
 ];
 
-function CheckIcon(props: any) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M9.307 12.248a.75.75 0 1 0-1.114 1.004l1.114-1.004ZM11 15.25l-.557.502a.75.75 0 0 0 1.15-.043L11 15.25Zm4.844-5.041a.75.75 0 0 0-1.188-.918l1.188.918Zm-7.651 3.043 2.25 2.5 1.114-1.004-2.25-2.5-1.114 1.004Zm3.4 2.457 4.25-5.5-1.187-.918-4.25 5.5 1.188.918Z"
-        fill="currentColor"
-      />
-      <circle
-        cx="12"
-        cy="12"
-        r="8.25"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function Loan({
   id,
   name,
@@ -147,7 +127,9 @@ function Loan({
         >
           {features.map((feature: any) => (
             <li key={feature} className="flex w-full py-2">
-              <CheckIcon className={clsx('h-6 w-6 flex-none text-sky-500')} />
+              <CheckCircleIcon
+                className={clsx('h-6 w-6 flex-none text-sky-500')}
+              />
               <span className="ml-4 text-slate-600 dark:text-slate-400">
                 {feature[0]}
               </span>

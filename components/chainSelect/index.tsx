@@ -10,14 +10,19 @@ interface ChainSelectProps {
 
 export function ChainSelect(props: ChainSelectProps) {
   const { chainId } = props;
-  const { chains, switchNetwork } = useSwitchNetwork();
+  const { chains, switchNetworkAsync } = useSwitchNetwork({
+    throwForSwitchChainNotSupported: true,
+    onError(error) {
+      console.error(error);
+    },
+  });
 
   return (
     <Listbox
       value={chainId}
-      onChange={(event) => {
-        if (chainId !== event && switchNetwork) {
-          switchNetwork(event);
+      onChange={async (event) => {
+        if (chainId !== event && switchNetworkAsync) {
+          await switchNetworkAsync(event);
         }
       }}
     >
