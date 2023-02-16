@@ -28,7 +28,7 @@ const loans = [
       ['Repayment periods', '1'],
       ['Premium periods', '0'],
       ['Min Loan Duration', '1'],
-      ['Min Loan Duration', '7'],
+      ['Max Loan Duration', '7'],
     ],
     liquidation:
       'Failure to pay the principal by the end of the loan will result in liquidation',
@@ -51,7 +51,7 @@ const loans = [
       ['Repayment periods', '4'],
       ['Premium periods', '4'],
       ['Min Loan Duration', '1'],
-      ['Min Loan Duration', '7'],
+      ['Max Loan Duration', '7'],
     ],
     liquidation:
       'Failure to pay the principal or premium on time will result in full liquidation up to the liability amount',
@@ -73,7 +73,7 @@ const loans = [
       ['Repayment periods', '1'],
       ['Premium periods', '4'],
       ['Min Loan Duration', '1'],
-      ['Min Loan Duration', '7'],
+      ['Max Loan Duration', '7'],
     ],
     liquidation:
       'Failure to pay the principal or premium on time will result in full liquidation up to the liability amount',
