@@ -40,7 +40,7 @@ export const LegendItem: React.FC<Props> = ({ item }) => {
           rel="noopener noreferrer"
           target="_blank"
           href={contractAddress}
-          className="text-xs underline text-slate-600 hover:text-sky-600"
+          className="text-xs underline text-slate-400 hover:text-sky-600 dark:text-slate-600"
         >
           <span className="hidden overflow-hidden md:block">
             {contractAddress}
