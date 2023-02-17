@@ -126,6 +126,37 @@ const misc = [
   },
 ];
 
+const xchange = [
+  {
+    name: 'Xchange Factory',
+    contract: ContractsEnum.XchangeFactory,
+    description:
+      'The secret sauce - this contract has yet to be verified to maintain competitive advantage',
+  },
+  {
+    name: 'Xchange Router',
+    contract: ContractsEnum.XchangeRouter,
+    description:
+      'Uniswap v2 Fork - this contract includes functionality to remove liquidity in a failsafe manner to permit liquidation of fee liquidity in all cases.',
+  },
+  {
+    name: 'Xchange Discount Authority',
+    contract: ContractsEnum.XchangeDiscountAuthority,
+    description: 'Smart Contract for Xchange fee discounts',
+  },
+  {
+    name: 'Lending Discount Authority',
+    contract: ContractsEnum.LendingDiscountAuthority,
+    description: 'Smart Contract for calculating lending discounts',
+  },
+  {
+    name: 'Lending Pool Reserve',
+    contract: ContractsEnum.LendingPoolReserve,
+    description:
+      'Smart Contract for minting and redeeming X7D and funding the Lending Pool with ETH.',
+  },
+];
+
 export default function ContractsPage() {
   const clipboard = useClipboard({
     onSuccess() {
@@ -872,7 +903,7 @@ export default function ContractsPage() {
                   </tr>
                 </thead>
                 <tbody>
-                  {splitters.map((t, idx) => (
+                  {xchange.map((t, idx) => (
                     <tr key={t.contract}>
                       <td
                         className={clsx(

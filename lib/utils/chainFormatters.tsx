@@ -76,11 +76,11 @@ export function renderConnectedChain(chain?: BlockchainType) {
       return <Icon glyph={Icon.glyph.arbitrum} size={5} />;
     case ChainEnum.offline:
       return (
-        <SignalSlashIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+        <SignalSlashIcon className="w-5 h-5 text-gray-900" aria-hidden="true" />
       );
     default:
       return (
-        <SignalSlashIcon className="h-5 w-5 text-black" aria-hidden="true" />
+        <SignalSlashIcon className="w-5 h-5 text-black" aria-hidden="true" />
       );
   }
 }
