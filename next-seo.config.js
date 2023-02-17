@@ -2,9 +2,9 @@ export default {
   title: 'X7 Finance - Dashboard',
   openGraph: {
     url: 'https://www.x7finance.org',
-    title: 'X7 Finance - docs, info and updates on the protocol',
+    title: 'X7 Finance - DEX + Lending + Governance',
     description:
-      'documentation, information and updates on the X7 Finance protocol',
+      'Documentation, live updates and detailed information on the X7 Finance protocol',
     images: [
       {
         url: '/og-background.png',

@@ -7,12 +7,12 @@ import {
   BanknotesIcon,
   Bars3BottomLeftIcon,
   CodeBracketIcon,
-  CogIcon,
+  CubeTransparentIcon,
+  CursorArrowRippleIcon,
   FolderIcon,
   NewspaperIcon,
   QuestionMarkCircleIcon,
   RectangleStackIcon,
-  Squares2X2Icon as Squares2X2IconOutline,
   UserGroupIcon,
   XMarkIcon,
 } from '@heroicons/react/24/outline';
@@ -23,9 +23,9 @@ import { Fragment, useState } from 'react';
 
 const navigation = [
   {
-    name: 'Dashboard',
-    href: '/dashboard',
-    icon: Squares2X2IconOutline,
+    name: 'Live',
+    href: '/live',
+    icon: CursorArrowRippleIcon,
   },
   { name: 'Docs', href: '/docs', icon: FolderIcon },
   {
@@ -42,7 +42,7 @@ const navigation = [
     icon: UserGroupIcon,
     current: false,
   },
-  { name: 'NFTs', href: '/nfts', icon: CogIcon },
+  { name: 'NFTs', href: '/nfts', icon: CubeTransparentIcon },
   { name: 'Whitepaper', href: '/whitepaper', icon: NewspaperIcon },
   { name: 'FAQs', href: '/faq', icon: QuestionMarkCircleIcon },
 ];

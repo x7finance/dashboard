@@ -124,7 +124,7 @@ const { chains, provider } = configureChains(
         }`,
       }),
     }),
-    //
+    // PUBLIC
     publicProvider({
       priority: 8,
     }),
@@ -161,7 +161,12 @@ export default function App({ Component, pageProps }: AppProps) {
         `}
       </style>
       <WagmiConfig client={client}>
-        <ConnectKitProvider theme="rounded">
+        <ConnectKitProvider
+          theme="rounded"
+          options={{
+            initialChainId: 0,
+          }}
+        >
           <DefaultSeo {...SEO} />
           <Layout
             title={title}
