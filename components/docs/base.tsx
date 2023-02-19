@@ -420,6 +420,25 @@ const whitepaperNavigation = [
   },
 ];
 
+const faqNavigation = [
+  {
+    title: 'FAQ',
+    links: [
+      { title: 'Constellation tokens', href: '/faq/constellationtokens' },
+      { title: 'Developer Questions', href: '/faq/developerquestions' },
+      { title: 'General Questions', href: '/faq/generalquestions' },
+      { title: 'Governance Questions', href: '/faq/governancequestions' },
+      { title: 'Investor Questions', href: '/faq/investorquestions' },
+      {
+        title: 'Liquidity Lending Questions',
+        href: '/faq/liquiditylendingquestions',
+      },
+      { title: 'NFT Questions', href: '/faq/nftquestions' },
+      { title: 'Xchange Questions', href: '/faq/xchangequestions' },
+    ],
+  },
+];
+
 function useTableOfContents(tableOfContents: any) {
   let [currentSection, setCurrentSection] = useState(tableOfContents[0]?.id);
 
@@ -482,6 +501,8 @@ export function DocsBase({
       ? onchainsNavigation
       : docsType === 'whitepaper'
       ? whitepaperNavigation
+      : docsType === 'faq'
+      ? faqNavigation
       : docsNavigation;
 
   let allLinks = navigation.flatMap((section) => section.links);
