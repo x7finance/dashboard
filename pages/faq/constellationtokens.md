@@ -45,7 +45,7 @@ $X7105 / $ETH, $X7105 / $X7104, $X7105 / $X7103, $X7105 / $X7102, $X7105 / $X710
 
 ### What does the constellation tokens interactivity look like
 
-![](https://raw.githubusercontent.com/x7finance/dashboard/public/assets/images/constellation-tokens-map.jpg)
+![](https://raw.githubusercontent.com/x7finance/dashboard/main/public/assets/images/constellation-tokens-map.jpg)
 
 ### How do the constellation tokens affect the X7D interest rates
 
