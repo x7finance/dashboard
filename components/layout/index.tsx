@@ -63,12 +63,14 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
   const docsMatch = new RegExp('^/(docs)(/.*)?$');
   const onchainsMatch = new RegExp('^/(onchains)(/.*)?$');
   const whitepaperMatch = new RegExp('^/(whitepaper)(/.*)?$');
+  const faqMatch = new RegExp('^/(faq)(/.*)?$');
 
   const isDocs = docsMatch.test(router.pathname);
   const isOnChains = onchainsMatch.test(router.pathname);
   const isWhitepaper = whitepaperMatch.test(router.pathname);
+  const isFaq = faqMatch.test(router.pathname);
 
-  const showDocs = isDocs || isOnChains || isWhitepaper;
+  const showDocs = isDocs || isOnChains || isWhitepaper || isFaq;
   const docsType = router?.pathname?.split('/')[1];
 
   return (
