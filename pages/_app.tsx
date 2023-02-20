@@ -69,25 +69,27 @@ const { chains, provider } = configureChains(
     alchemyProvider({
       apiKey: `${process.env.NEXT_PUBLIC_ALCHEMY_ID}`,
       priority: 1,
-      stallTimeout: 1_000,
+      // stallTimeout: 1_000,
     }),
     infuraProvider({
       apiKey: `${process.env.NEXT_PUBLIC_INFURA_ID}`,
       priority: 2,
-      stallTimeout: 1_000,
+      // stallTimeout: 1_000,
     }),
     // ANKR
     jsonRpcProvider({
       priority: 3,
-      stallTimeout: 250,
-      rpc: () => ({
-        http: `https://rpc.ankr.com/multichain/${process.env.NEXT_PUBLIC_ANKR_ID}`,
+      // stallTimeout: 250,
+      rpc: (chain) => ({
+        http: `https://rpc.ankr.com/${providerLinkGenerator(chain)?.ankr}/${
+          process.env.NEXT_PUBLIC_ANKR_ID
+        }`,
       }),
     }),
     // POCKET
     jsonRpcProvider({
       priority: 4,
-      stallTimeout: 250,
+      // stallTimeout: 250,
       rpc: (chain) => ({
         http: `https://${
           providerLinkGenerator(chain)?.pocket
@@ -97,7 +99,7 @@ const { chains, provider } = configureChains(
     // BLOCKPI
     jsonRpcProvider({
       priority: 5,
-      stallTimeout: 250,
+      // stallTimeout: 250,
       rpc: (chain) => ({
         http: `https://${
           providerLinkGenerator(chain)?.blockpi
@@ -117,7 +119,7 @@ const { chains, provider } = configureChains(
     // BLASTAPI
     jsonRpcProvider({
       priority: 7,
-      stallTimeout: 250,
+      // stallTimeout: 250,
       rpc: (chain) => ({
         http: `https://${providerLinkGenerator(chain)?.blast}.blastapi.io/${
           process.env.NEXT_PUBLIC_BLAST_ID

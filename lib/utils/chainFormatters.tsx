@@ -89,6 +89,7 @@ export function providerLinkGenerator(chain: Chain) {
   switch (chain?.id) {
     case ChainEnum.erc: {
       return {
+        ankr: 'eth',
         blast: 'eth-mainnet',
         blockpi: 'ethereum',
         getblock: 'eth',
@@ -97,6 +98,7 @@ export function providerLinkGenerator(chain: Chain) {
     }
     case ChainEnum.bsc: {
       return {
+        ankr: 'bsc',
         blast: 'bsc-mainnet',
         blockpi: 'bsc',
         getblock: 'bsc',
@@ -105,6 +107,7 @@ export function providerLinkGenerator(chain: Chain) {
     }
     case ChainEnum.polygon: {
       return {
+        ankr: 'polygon',
         blast: 'polygon-mainnet',
         blockpi: 'polygon',
         getblock: 'matic',
@@ -113,6 +116,7 @@ export function providerLinkGenerator(chain: Chain) {
     }
     case ChainEnum.optimism: {
       return {
+        ankr: 'optimism',
         blast: 'optimism-mainnet',
         blockpi: 'optimism',
         getblock: 'op',
@@ -121,6 +125,7 @@ export function providerLinkGenerator(chain: Chain) {
     }
     case ChainEnum.arbitrum: {
       return {
+        ankr: 'arbitrum',
         blast: 'eth-mainnet',
         blockpi: 'arbitrum',
         getblock: 'arbitrum',
