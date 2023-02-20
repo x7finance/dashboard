@@ -24,7 +24,7 @@ import { Fragment, useState } from 'react';
 const navigation = [
   {
     name: 'Live',
-    href: '/live',
+    href: '/',
     icon: CursorArrowRippleIcon,
   },
   { name: 'Docs', href: '/docs', icon: FolderIcon },
@@ -77,16 +77,16 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
     <>
       <div className="flex h-full">
         {/* Narrow sidebar */}
-        <div className="hidden w-28 overflow-y-auto bg-gradient-to-br from-sky-900 via-indigo-900 to-slate-900 md:block">
-          <div className="flex w-full flex-col items-center py-6">
-            <div className="flex flex-shrink-0 items-center">
+        <div className="hidden overflow-y-auto w-28 bg-gradient-to-br from-sky-900 via-indigo-900 to-slate-900 md:block">
+          <div className="flex flex-col items-center w-full py-6">
+            <div className="flex items-center flex-shrink-0">
               <img
-                className="h-8 w-auto"
+                className="w-auto h-8"
                 src="/logos/x7.svg"
                 alt="X7 Finance"
               />
             </div>
-            <div className="mt-6 w-full flex-1 space-y-1 px-2">
+            <div className="flex-1 w-full px-2 mt-6 space-y-1">
               {navigation.map((item) => (
                 <a
                   key={item.name}
@@ -146,7 +146,7 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
                 leaveFrom="translate-x-0"
                 leaveTo="-translate-x-full"
               >
-                <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-gradient-to-br from-sky-900 via-indigo-900 to-slate-900 pt-5 pb-4">
+                <Dialog.Panel className="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 bg-gradient-to-br from-sky-900 via-indigo-900 to-slate-900">
                   <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-300"
@@ -156,29 +156,29 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                   >
-                    <div className="absolute right-0 top-1 -mr-14 p-1">
+                    <div className="absolute right-0 p-1 top-1 -mr-14">
                       <button
                         type="button"
-                        className="flex h-12 w-12 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+                        className="flex items-center justify-center w-12 h-12 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
                         onClick={() => setMobileMenuOpen(false)}
                       >
                         <XMarkIcon
-                          className="h-6 w-6 text-white"
+                          className="w-6 h-6 text-white"
                           aria-hidden="true"
                         />
                         <span className="sr-only">Close sidebar</span>
                       </button>
                     </div>
                   </Transition.Child>
-                  <div className="flex flex-shrink-0 items-center px-4">
+                  <div className="flex items-center flex-shrink-0 px-4">
                     <img
-                      className="h-8 w-auto"
+                      className="w-auto h-8"
                       src="/logos/x7.svg"
                       alt="X7 Finance"
                     />
                   </div>
-                  <div className="mt-5 h-0 flex-1 overflow-y-auto px-2">
-                    <nav className="flex h-full flex-col">
+                  <div className="flex-1 h-0 px-2 mt-5 overflow-y-auto">
+                    <nav className="flex flex-col h-full">
                       <div className="space-y-1">
                         {navigation.map((item) => (
                           <a
@@ -209,7 +209,7 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
-              <div className="w-14 flex-shrink-0" aria-hidden="true">
+              <div className="flex-shrink-0 w-14" aria-hidden="true">
                 {/* Dummy element to force sidebar to shrink to fit close icon */}
               </div>
             </div>
@@ -217,20 +217,20 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
         </Transition.Root>
 
         {/* Content area */}
-        <div className="flex flex-1 flex-col overflow-hidden">
+        <div className="flex flex-col flex-1 overflow-hidden">
           <header className="w-full">
-            <div className="relative z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-slate-900">
+            <div className="relative z-10 flex flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm dark:border-gray-800 dark:bg-slate-900">
               <button
                 type="button"
-                className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:border-gray-800 md:hidden"
+                className="px-4 text-gray-500 border-r border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 dark:border-gray-800 md:hidden"
                 onClick={() => setMobileMenuOpen(true)}
               >
                 <span className="sr-only">Open sidebar</span>
-                <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true" />
+                <Bars3BottomLeftIcon className="w-6 h-6" aria-hidden="true" />
               </button>
-              <div className="flex flex-1 justify-between px-4 sm:px-6">
+              <div className="flex justify-between flex-1 px-4 sm:px-6">
                 <Search />
-                <div className="ml-2 flex items-center space-x-4 sm:ml-6">
+                <div className="flex items-center ml-2 space-x-4 sm:ml-6">
                   <ConnectionComponent id="desktop" />
                   <ThemeSelector className="relative z-10" />
                 </div>
@@ -239,8 +239,8 @@ export function Layout({ children, title, tableOfContents, tags, date }: any) {
           </header>
 
           {/* Main content */}
-          <div className="flex flex-1 items-stretch overflow-hidden text-black dark:text-white">
-            <main className="scrollbar flex-1 overflow-y-auto">
+          <div className="flex items-stretch flex-1 overflow-hidden text-black dark:text-white">
+            <main className="flex-1 overflow-y-auto scrollbar">
               {showDocs ? (
                 <DocsBase
                   docsType={docsType}
