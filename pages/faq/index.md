@@ -2,7 +2,18 @@
 title: FAQ
 ---
 
-A section for Frequently Asked Questions
+## Frequently Asked Questions
+
+[Constellation Tokens](/faq/constellations)\
+[Developer Questions](/faq/devs)\
+[General Questions](/faq/general)\
+[Governance Questions](/faq/governance)\
+[Investor Questions](/faq/investors)\
+[Liquidity Lending Questions](/faq/liquiditylending)\
+[NFT Questions](/faq/nfts)\
+[Xchange Questions](/faq/xchange)
+
+For more information, please read the developers whitepaper - or check out the X7 Finance GitHub for some detailed contract analysis
 
 {% quick-links %}
 
