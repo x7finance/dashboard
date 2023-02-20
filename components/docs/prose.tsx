@@ -5,9 +5,9 @@ export function Prose({ as: Component = 'div', className, ...props }: any) {
     <Component
       className={clsx(
         className,
-        'prose prose-slate max-w-none break-words dark:prose-invert dark:text-slate-400',
+        'prose prose-slate max-w-none break-words text-slate-500 dark:prose-invert dark:text-slate-400',
         // headings
-        'prose-headings:font-display prose-headings:scroll-mt-28 prose-headings:font-normal lg:prose-headings:scroll-mt-[8.5rem]',
+        'prose-headings:font-display prose-headings:scroll-mt-28 prose-headings:font-normal prose-h2:text-3xl prose-h2:font-bold prose-h3:font-semibold prose-h3:tracking-tight lg:prose-headings:scroll-mt-[8.5rem]',
         // lead
         'prose-lead:text-slate-500 dark:prose-lead:text-slate-400',
         // links

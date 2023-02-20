@@ -424,17 +424,17 @@ const faqNavigation = [
   {
     title: 'FAQ',
     links: [
-      { title: 'Constellation tokens', href: '/faq/constellationtokens' },
-      { title: 'Developer Questions', href: '/faq/developerquestions' },
-      { title: 'General Questions', href: '/faq/generalquestions' },
-      { title: 'Governance Questions', href: '/faq/governancequestions' },
-      { title: 'Investor Questions', href: '/faq/investorquestions' },
+      { title: 'Constellation tokens', href: '/faq/constellations' },
+      { title: 'Developer Questions', href: '/faq/devs' },
+      { title: 'General Questions', href: '/faq/general' },
+      { title: 'Governance Questions', href: '/faq/governance' },
+      { title: 'Investor Questions', href: '/faq/investors' },
       {
         title: 'Liquidity Lending Questions',
-        href: '/faq/liquiditylendingquestions',
+        href: '/faq/liquiditylending',
       },
-      { title: 'NFT Questions', href: '/faq/nftquestions' },
-      { title: 'Xchange Questions', href: '/faq/xchangequestions' },
+      { title: 'NFT Questions', href: '/faq/nfts' },
+      { title: 'Xchange Questions', href: '/faq/xchange' },
     ],
   },
 ];
@@ -526,11 +526,11 @@ export function DocsBase({
 
   return (
     <>
-      <div className="relative mx-auto flex max-w-8xl justify-center sm:px-2 lg:px-8 xl:px-12">
+      <div className="relative flex justify-center mx-auto max-w-8xl sm:px-2 lg:px-8 xl:px-12">
         <div className="hidden lg:relative lg:block lg:flex-none">
           <div className="absolute inset-y-0 right-0 w-[50vw] bg-slate-50 dark:hidden" />
-          <div className="absolute bottom-0 right-0 top-16 hidden h-12 w-px bg-gradient-to-t from-slate-800 dark:block" />
-          <div className="absolute bottom-0 right-0 top-28 hidden w-px bg-slate-800 dark:block" />
+          <div className="absolute bottom-0 right-0 hidden w-px h-12 top-16 bg-gradient-to-t from-slate-800 dark:block" />
+          <div className="absolute bottom-0 right-0 hidden w-px top-28 bg-slate-800 dark:block" />
           <div className="scrollbar sticky top-[4.5rem] -ml-0.5 h-[calc(100vh-4.5rem)] overflow-y-auto overflow-x-hidden py-16 pl-0.5">
             <Navigation
               navigation={navigation}
@@ -538,13 +538,13 @@ export function DocsBase({
             />
           </div>
         </div>
-        <div className="min-h-screen min-w-0 max-w-2xl flex-auto overflow-auto px-4 py-16 lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
+        <div className="flex-auto max-w-2xl min-w-0 min-h-screen px-4 py-16 overflow-auto lg:max-w-none lg:pr-0 lg:pl-8 xl:px-16">
           <article>
             {(title || section) && (
-              <header className="mb-9 space-y-1">
+              <header className="space-y-1 mb-9">
                 {section && (
-                  <div className="font-display text-sm font-medium">
-                    <span className="bg-gradient-to-r from-sky-500 to-violet-500 bg-clip-text text-transparent">
+                  <div className="text-sm font-medium font-display">
+                    <span className="text-transparent bg-gradient-to-r from-sky-500 to-violet-500 bg-clip-text">
                       {section.title}
                     </span>
                   </div>
@@ -561,12 +561,12 @@ export function DocsBase({
                     );
                   })}
                 {title && (
-                  <h1 className="font-display text-2xl tracking-tight text-slate-900 dark:text-white">
+                  <h1 className="text-2xl tracking-tight font-display text-slate-900 dark:text-white">
                     {title}
                   </h1>
                 )}
                 {date && (
-                  <h2 className="font-display text-xl tracking-tight text-slate-900 dark:text-white">
+                  <h2 className="text-xl tracking-tight font-display text-slate-900 dark:text-white">
                     {date}
                   </h2>
                 )}
@@ -574,10 +574,10 @@ export function DocsBase({
             )}
             <Prose>{children}</Prose>
           </article>
-          <dl className="mt-12 flex border-t border-slate-200 pt-6 dark:border-slate-800">
+          <dl className="flex pt-6 mt-12 border-t border-slate-200 dark:border-slate-800">
             {previousPage && (
               <div>
-                <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
+                <dt className="text-sm font-medium font-display text-slate-900 dark:text-white">
                   Previous
                 </dt>
                 <dd className="mt-1">
@@ -592,7 +592,7 @@ export function DocsBase({
             )}
             {nextPage && (
               <div className="ml-auto text-right">
-                <dt className="font-display text-sm font-medium text-slate-900 dark:text-white">
+                <dt className="text-sm font-medium font-display text-slate-900 dark:text-white">
                   Next
                 </dt>
                 <dd className="mt-1">
@@ -613,7 +613,7 @@ export function DocsBase({
               <>
                 <h2
                   id="on-this-page-title"
-                  className="font-display text-sm font-medium text-slate-900 dark:text-white"
+                  className="text-sm font-medium font-display text-slate-900 dark:text-white"
                 >
                   On this page
                 </h2>
@@ -635,7 +635,7 @@ export function DocsBase({
                       {section.children.length > 0 && (
                         <ol
                           role="list"
-                          className="mt-2 space-y-3 pl-5 text-slate-500 dark:text-slate-400"
+                          className="pl-5 mt-2 space-y-3 text-slate-500 dark:text-slate-400"
                         >
                           {section.children.map((subSection: any) => (
                             <li key={subSection.id}>

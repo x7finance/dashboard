@@ -1,5 +1,6 @@
 import { Callout } from '../components/docs/callout';
 import { QuickLink, QuickLinks } from '../components/docs/quickLinks';
+import { Spacer } from '../components/docs/spacer';
 
 const tags = {
   callout: {
@@ -44,6 +45,10 @@ const tags = {
       icon: { type: String },
       href: { type: String },
     },
+  },
+  spacer: {
+    selfClosing: true,
+    render: Spacer,
   },
 };
 
