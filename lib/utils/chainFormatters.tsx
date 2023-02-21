@@ -24,7 +24,7 @@ export function generateChainBase(chain?: BlockchainType) {
     case ChainEnum.optimism:
       return ChainScannerLinksEnum.optimism;
     default:
-      ``;
+      return ChainScannerLinksEnum.erc;
   }
 }
 

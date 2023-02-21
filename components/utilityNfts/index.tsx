@@ -5,6 +5,7 @@ import { ChainEnum, ContractsEnum } from '../../lib/types';
 import {
   chainsArray,
   generateChainAbbreviation,
+  generateChainBase,
 } from '../../lib/utils/chainFormatters';
 import { Button } from '../button';
 import { formatEther } from '@ethersproject/units';
@@ -15,6 +16,7 @@ import {
 } from '@heroicons/react/20/solid';
 import { CheckCircleIcon, Squares2X2Icon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
+import { ConnectKitButton } from 'connectkit';
 import { BigNumber } from 'ethers';
 import Image from 'next/image';
 import { useCallback, useState } from 'react';
@@ -159,28 +161,47 @@ function UtilityNftData({ nft }: any) {
         </ul>
       </div>
       <div className="bottom-1 mx-auto mb-0.5 flex w-full flex-col items-center justify-center">
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href={`${generateChainBase(chain?.id)}/address/${nft.contract}`}
+          className="relative text-xs underline text-slate-700 dark:text-slate-300"
+        >
+          contract
+        </a>
         <p className="text-sm text-slate-700 dark:text-slate-300">
           mint on other chains
         </p>
         <div className="flex flex-shrink-0 space-x-1">
           {chainsArray.map((c, id) => (
-            <button
-              onClick={async (e) => {
-                e.preventDefault();
+            <ConnectKitButton.Custom>
+              {({ isConnected, show }) => {
+                return (
+                  <button
+                    onClick={async (e) => {
+                      e.preventDefault();
 
-                // @ts-expect-error
-                await switchNetworkAsync(c?.id);
+                      if (!isConnected && show) {
+                        show();
+                        return;
+                      }
+
+                      // @ts-expect-error
+                      await switchNetworkAsync(c?.id);
+                    }}
+                    key={`${nft.slug}-${id}-chain`}
+                    className={clsx(
+                      chain?.id === c?.id
+                        ? ``
+                        : `grayscale transition-all duration-200 hover:grayscale-0`,
+                      'cursor-pointer'
+                    )}
+                  >
+                    <span>{c.icon}</span>
+                  </button>
+                );
               }}
-              key={`${nft.slug}-${id}-chain`}
-              className={clsx(
-                chain?.id === c?.id
-                  ? ``
-                  : `grayscale transition-all duration-200 hover:grayscale-0`,
-                'cursor-pointer'
-              )}
-            >
-              <span>{c.icon}</span>
-            </button>
+            </ConnectKitButton.Custom>
           ))}
         </div>
       </div>
