@@ -80,7 +80,7 @@ export function Pair({ index, pairsLength }: PairsProps) {
               rel="noopener noreferrer"
               className="opacity-80 hover:opacity-100"
             >
-              <span>View Chart</span>
+              <span>View Scan</span>
             </a>
           </div>
         </div>
