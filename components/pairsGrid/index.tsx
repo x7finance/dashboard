@@ -38,9 +38,7 @@ const PairsGrid = () => {
   const pairsCount = parseInt(data?.toString() || '0', 10);
 
   useEffect(() => {
-    if (pairsCount > 0) {
-      setAllPairsLength(pairsCount);
-    }
+    setAllPairsLength(pairsCount);
   }, [pairsCount]);
 
   return (
@@ -80,11 +78,11 @@ const PairsGrid = () => {
                 </thead>
                 <tbody>
                   {allPairsLength > 0 ? (
-                    Array.from({ length: pairsCount }, (_, i) => (
+                    Array.from({ length: allPairsLength }, (_, i) => (
                       <Pair
                         key={i}
-                        index={pairsCount - i - 1}
-                        pairsLength={pairsCount - 1}
+                        index={allPairsLength - i - 1}
+                        pairsLength={allPairsLength - 1}
                       />
                     ))
                   ) : (
