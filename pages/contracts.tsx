@@ -1,13 +1,13 @@
-import { Button } from '../components/button';
-import { XCHANGE } from '../lib/constants';
-import { ContractsEnum } from '../lib/types';
-import { chainsArray } from '../lib/utils/chainFormatters';
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/20/solid';
+import { Dropdown } from '../components/dropdown/contracts';
+import { Heading } from '../components/heading';
+import { BlockchainType, ContractsEnum } from '../lib/types';
+import {
+  chainsArray,
+  generateChainIdentifier,
+} from '../lib/utils/chainFormatters';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { Fragment } from 'react';
 import toast from 'react-hot-toast';
 import { useClipboard } from 'use-clipboard-copy';
 
@@ -178,18 +178,16 @@ export default function ContractsPage() {
   return (
     <>
       <div className="my-16 xl:max-w-none">
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="px-4 sm:px-0">
           <>
-            <div className="sm:flex sm:items-center" id="tokens">
-              <div className="sm:flex-auto">
-                <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  X7 Finance Tokens
-                </h1>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  These are the main tokens powering the X7 Finance ecosystem.
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={1}
+              id="tokens"
+              subHeader="These are the main tokens powering the X7 Finance ecosystem"
+            >
+              X7 Finance Tokens
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -238,7 +236,9 @@ export default function ContractsPage() {
                               <div className="flex flex-shrink-0 space-x-1">
                                 {chainsArray.map((c, id) => (
                                   <Link
-                                    href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
+                                    href={`https://www.dextools.io/app/en/${generateChainIdentifier(
+                                      c?.id
+                                    )}/pair-explorer/${t.contract}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     key={`${t.contract}-${id}-chart`}
@@ -311,7 +311,9 @@ export default function ContractsPage() {
                           <div className="flex flex-shrink-0 space-x-1">
                             {chainsArray.map((c, id) => (
                               <Link
-                                href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
+                                href={`https://www.dextools.io/app/en/${generateChainIdentifier(
+                                  c?.id as BlockchainType
+                                )}/pair-explorer/${t.contract}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 key={`${t.contract}-${id}-chart`}
@@ -351,7 +353,7 @@ export default function ContractsPage() {
                             contract={t.contract}
                             label={'Trade this token on Xchange'}
                             name={
-                              <span className=" whitespace-nowrap">
+                              <span className="whitespace-nowrap">
                                 <span>Trade</span>
                                 <span className="hidden xl:ml-2 xl:inline-block">
                                   on Xchange
@@ -372,17 +374,14 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="utility">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Utility Tokens
-                </h3>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  Tokens which are utilized to fund and borrow liquidity within
-                  the X7 ecosystem.
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="utility"
+              subHeader="Tokens which are utilized to fund and borrow liquidity within the X7 ecosystem"
+            >
+              Utility Tokens
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -496,16 +495,14 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="liquidity">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Liquidity Hubs
-                </h3>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  Manages liquidity for a token within the X7 Finance ecosystem
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="liquidity"
+              subHeader="Manages liquidity for a token within the X7 Finance ecosystem"
+            >
+              Liquidity Hubs
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -619,17 +616,14 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="discount">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Discount Authorities
-                </h3>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  Ensures discounts provided by X7 Utility NFT's are valid and
-                  applied appropriately.
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="discount"
+              subHeader="Ensures discounts provided by X7 Utility NFT's are valid and applied appropriately."
+            >
+              Discount Authorities
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -743,17 +737,14 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="splitter">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Ecosystem Splitters
-                </h3>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  Moves a portion of the fees to different smart contracts
-                  within the X7 Ecosystem
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="splitter"
+              subHeader="Moves a portion of the fees to different smart contracts within the X7 Ecosystem"
+            >
+              Ecosystem Splitters
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -867,16 +858,14 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="xchange">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Xchange Smart Contracts
-                </h3>
-                <p className="mt-2 text-sm text-slate-700 dark:text-slate-300">
-                  Key contracts that allow tokens to be traded on Xchange
-                </p>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="xchange"
+              subHeader="Key contracts that allow tokens to be traded on Xchange"
+            >
+              Xchange Smart Contracts
+            </Heading>
 
             <div className="-mx-4 mt-10 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -990,13 +979,13 @@ export default function ContractsPage() {
           </>
 
           <>
-            <div className="mt-24 sm:flex sm:items-center" id="misc">
-              <div className="sm:flex-auto">
-                <h3 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
-                  Miscellaneous Smart Contracts
-                </h3>
-              </div>
-            </div>
+            <Heading
+              className="not-prose mt-24 mb-10 border-b border-zinc-900/5 text-xl font-semibold text-slate-900 dark:border-white/5 dark:text-slate-100"
+              level={3}
+              id="misc"
+            >
+              Miscellaneous Smart Contracts
+            </Heading>
 
             <div className="-mx-4 mt-10 mb-60 ring-1 ring-zinc-900/7.5 dark:ring-white/10 sm:-mx-6 md:mx-0 md:rounded-2xl">
               <table className="min-w-full divide-y divide-zinc-900/7.5 dark:divide-white/10">
@@ -1112,85 +1101,4 @@ export default function ContractsPage() {
       </div>
     </>
   );
-}
-
-function Dropdown({
-  name,
-  label,
-  type,
-  contract,
-}: {
-  name: JSX.Element | string;
-  label: string;
-  type: string;
-  contract: string;
-}) {
-  return (
-    <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button as="div" className="inline-flex w-full justify-center ">
-          <Button
-            href={''}
-            variant={type === 'scan' ? 'secondary' : 'primary'}
-            aria-label={label}
-          >
-            {name}
-            <ChevronDownIcon
-              className="relative top-0.5 -mr-1 h-5 w-5"
-              aria-hidden="true"
-            />
-          </Button>
-        </Menu.Button>
-      </div>
-
-      <Transition
-        as={Fragment}
-        enter="transition ease-out duration-100"
-        enterFrom="transform opacity-0 scale-95"
-        enterTo="transform opacity-100 scale-100"
-        leave="transition ease-in duration-75"
-        leaveFrom="transform opacity-100 scale-100"
-        leaveTo="transform opacity-0 scale-95"
-      >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-slate-100 rounded-md bg-slate-100 shadow-lg ring-1 ring-black focus:outline-none dark:bg-slate-800 dark:ring-zinc-50/7.5">
-          <div className="py-1">
-            {chainsArray.map((c, id) => {
-              return (
-                <Menu.Item key={`${id}-${type}-${c?.identifier}`}>
-                  {({ active }) => (
-                    <a
-                      href={generateLink(c, type, contract)}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                      className={clsx(
-                        active
-                          ? 'bg-slate-300 text-slate-900 dark:bg-slate-900 dark:text-slate-100'
-                          : 'text-slate-700 dark:text-slate-300',
-                        'group flex items-center px-4 py-2 text-sm'
-                      )}
-                    >
-                      {c.icon}
-                      <span className="ml-2">{c.name}</span>
-                    </a>
-                  )}
-                </Menu.Item>
-              );
-            })}
-          </div>
-        </Menu.Items>
-      </Transition>
-    </Menu>
-  );
-}
-
-function generateLink(c: any, type: string, contract: string) {
-  switch (type) {
-    case 'xchange':
-      // TODO: figure out if I can the chain query param will trigger a network change
-      return `${XCHANGE}/#/swap?outputCurrency=${contract}`;
-    case 'scan':
-      return `${c?.scannerLink}/token/${contract}`;
-    default:
-      return '';
-  }
 }

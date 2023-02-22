@@ -11,6 +11,40 @@ import {
 import { SignalSlashIcon } from '@heroicons/react/20/solid';
 import { Chain } from 'wagmi';
 
+export function generateChainDenomination(chain: BlockchainType) {
+  switch (chain) {
+    case ChainEnum.erc:
+      return ChainDenominationEnum.erc;
+    case ChainEnum.optimism:
+      return ChainDenominationEnum.optimism;
+    case ChainEnum.bsc:
+      return ChainDenominationEnum.bsc;
+    case ChainEnum.polygon:
+      return ChainDenominationEnum.polygon;
+    case ChainEnum.arbitrum:
+      return ChainDenominationEnum.arbitrum;
+    default:
+      return ChainDenominationEnum.erc;
+  }
+}
+
+export function generateChainIdentifier(chain: BlockchainType) {
+  switch (chain) {
+    case ChainEnum.erc:
+      return ChainIdentifierEnum.erc;
+    case ChainEnum.optimism:
+      return ChainIdentifierEnum.optimism;
+    case ChainEnum.bsc:
+      return ChainIdentifierEnum.bsc;
+    case ChainEnum.polygon:
+      return ChainIdentifierEnum.polygon;
+    case ChainEnum.arbitrum:
+      return ChainIdentifierEnum.arbitrum;
+    default:
+      return ChainIdentifierEnum.erc;
+  }
+}
+
 export function generateChainBase(chain?: BlockchainType) {
   switch (chain) {
     case ChainEnum.erc:
@@ -76,11 +110,11 @@ export function renderConnectedChain(chain?: BlockchainType) {
       return <Icon glyph={Icon.glyph.arbitrum} size={5} />;
     case ChainEnum.offline:
       return (
-        <SignalSlashIcon className="w-5 h-5 text-gray-900" aria-hidden="true" />
+        <SignalSlashIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
       );
     default:
       return (
-        <SignalSlashIcon className="w-5 h-5 text-black" aria-hidden="true" />
+        <SignalSlashIcon className="h-5 w-5 text-black" aria-hidden="true" />
       );
   }
 }
@@ -142,7 +176,6 @@ export const chainsArray = [
     icon: <Icon glyph={Icon.glyph.ethereum} size={5} />,
     scanner: ChainScannerEnum.erc,
     scannerLink: ChainScannerLinksEnum.erc,
-    identifier: ChainIdentifierEnum.erc,
   },
   {
     name: ChainNameEnum.bsc,
@@ -150,7 +183,6 @@ export const chainsArray = [
     icon: <Icon glyph={Icon.glyph.bsc} size={5} />,
     scanner: ChainScannerEnum.bsc,
     scannerLink: ChainScannerLinksEnum.bsc,
-    identifier: ChainIdentifierEnum.bsc,
   },
   {
     name: ChainNameEnum.polygon,
@@ -158,7 +190,6 @@ export const chainsArray = [
     icon: <Icon glyph={Icon.glyph.polygon} size={5} />,
     scanner: ChainScannerEnum.polygon,
     scannerLink: ChainScannerLinksEnum.polygon,
-    identifier: ChainIdentifierEnum.polygon,
   },
   {
     name: ChainNameEnum.arbitrum,
@@ -166,7 +197,6 @@ export const chainsArray = [
     icon: <Icon glyph={Icon.glyph.arbitrum} size={5} />,
     scanner: ChainScannerEnum.arbitrum,
     scannerLink: ChainScannerLinksEnum.arbitrum,
-    identifier: ChainIdentifierEnum.arbitrum,
   },
   {
     name: ChainNameEnum.optimism,
@@ -174,6 +204,5 @@ export const chainsArray = [
     icon: <Icon glyph={Icon.glyph.optimism} size={5} />,
     scanner: ChainScannerEnum.optimism,
     scannerLink: ChainScannerLinksEnum.optimism,
-    identifier: ChainIdentifierEnum.optimism,
   },
 ];

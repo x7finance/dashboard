@@ -253,9 +253,9 @@ export function SplittersOverview() {
       <div className="col-span-1 px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="text-xl text-slate-900 dark:text-slate-100">
               Treasury Splitter Breakdown
-            </h1>
+            </h3>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 xl:min-h-[150px]">
               A percentage of all taxed tokens are sent to the treasury. Below
               is how the treasury allocation is split. This allocation can be
@@ -273,9 +273,9 @@ export function SplittersOverview() {
       <div className="col-span-1 px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-slate-900 dark:text-slate-100">
+            <h3 className="text-xl text-slate-900 dark:text-slate-100">
               Ecosystem Splitter Breakdown
-            </h1>
+            </h3>
             <p className="mt-2 text-sm text-slate-700 dark:text-slate-300 xl:min-h-[150px]">
               A percentage of all taxed tokens are sent to the ecosystem
               splitter. This splitter ensures an liquidity is spread throughout
