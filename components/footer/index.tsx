@@ -1,4 +1,5 @@
 import { SocialsEnum } from '../../lib/types';
+import Link from 'next/link';
 
 const navigation = [
   {
@@ -33,7 +34,7 @@ export function Footer() {
       <div className="mx-auto py-2 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
         <div className="flex flex-wrap justify-center space-x-4 sm:space-x-6 md:order-2">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               target="_blank"
@@ -41,7 +42,7 @@ export function Footer() {
               className="whitespace-nowrap text-xs text-gray-600 hover:text-gray-500 dark:text-gray-400 dark:hover:text-gray-500"
             >
               <span>{item.name}</span>
-            </a>
+            </Link>
           ))}
         </div>
         <div className="mt-2 md:order-1 md:mt-0">

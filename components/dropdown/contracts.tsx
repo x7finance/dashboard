@@ -48,7 +48,7 @@ export function Dropdown({
           <div className="py-1">
             {chainsArray.map((c, id) => {
               return (
-                <Menu.Item key={`${id}-${type}-${c?.identifier}`}>
+                <Menu.Item key={`${id}-${type}-${c?.scanner}`}>
                   {({ active }) => (
                     <a
                       href={generateLink(c, type, contract)}

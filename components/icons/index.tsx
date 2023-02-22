@@ -1,5 +1,6 @@
 import arbitrum from './glyphs/arbitrum';
 import bsc from './glyphs/bsc';
+import dextools from './glyphs/dextools';
 import ethereum from './glyphs/ethereum';
 import loading from './glyphs/loading';
 import optimism from './glyphs/optimism';
@@ -27,6 +28,7 @@ export enum glyph {
   ethereum,
   optimism,
   polygon,
+  dextools,
 }
 
 export const GLYPH_MAPS: Record<glyph, MemoExoticComponent<any>> = {
@@ -36,6 +38,7 @@ export const GLYPH_MAPS: Record<glyph, MemoExoticComponent<any>> = {
   [glyph.ethereum]: ethereum,
   [glyph.optimism]: optimism,
   [glyph.polygon]: polygon,
+  [glyph.dextools]: dextools,
 };
 
 function Icon(props: IconProps): JSX.Element {

@@ -1,7 +1,10 @@
 import { Dropdown } from '../components/dropdown/contracts';
 import { Heading } from '../components/heading';
-import { ContractsEnum } from '../lib/types';
-import { chainsArray } from '../lib/utils/chainFormatters';
+import { BlockchainType, ContractsEnum } from '../lib/types';
+import {
+  chainsArray,
+  generateChainIdentifier,
+} from '../lib/utils/chainFormatters';
 import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
@@ -233,7 +236,9 @@ export default function ContractsPage() {
                               <div className="flex flex-shrink-0 space-x-1">
                                 {chainsArray.map((c, id) => (
                                   <Link
-                                    href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
+                                    href={`https://www.dextools.io/app/en/${generateChainIdentifier(
+                                      c?.id
+                                    )}/pair-explorer/${t.contract}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     key={`${t.contract}-${id}-chart`}
@@ -306,7 +311,9 @@ export default function ContractsPage() {
                           <div className="flex flex-shrink-0 space-x-1">
                             {chainsArray.map((c, id) => (
                               <Link
-                                href={`https://www.dextools.io/app/en/${c.identifier}/pair-explorer/${t.contract}`}
+                                href={`https://www.dextools.io/app/en/${generateChainIdentifier(
+                                  c?.id as BlockchainType
+                                )}/pair-explorer/${t.contract}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 key={`${t.contract}-${id}-chart`}
@@ -346,7 +353,7 @@ export default function ContractsPage() {
                             contract={t.contract}
                             label={'Trade this token on Xchange'}
                             name={
-                              <span className=" whitespace-nowrap">
+                              <span className="whitespace-nowrap">
                                 <span>Trade</span>
                                 <span className="hidden xl:ml-2 xl:inline-block">
                                   on Xchange
