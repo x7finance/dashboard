@@ -164,3 +164,7 @@ export const V1TokensObjects = {
   X7004: { address: X7004, tokenName: 'X7004' },
   X7005: { address: X7005, tokenName: 'X7005' },
 };
+
+export const TokenContractAddresses = {
+  WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+};
