@@ -1,124 +1,180 @@
-import { ChainIdentifierEnum, PairsProps } from '../../lib/types';
-import { ContractsEnum, ChainScannerLinksEnum } from '../../lib/types';
-import { useContractReads, useNetwork } from 'wagmi';
+import AllPairs from '../../contracts/AllPairs.json';
+import { ContractsEnum } from '../../lib/types';
+import { chainsArray } from '../../lib/utils/chainFormatters';
+import { Dropdown } from '../dropdown/contracts';
+import { ClipboardDocumentIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
+import Link from 'next/link';
+import toast from 'react-hot-toast';
+import { useClipboard } from 'use-clipboard-copy';
+import { useContractReads } from 'wagmi';
 
-const allPairsAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256',
-      },
-    ],
-    name: 'allPairs',
-    outputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address',
-      },
-    ],
-    stateMutability: 'view',
-    type: 'function',
-  },
-];
+interface PairsProps {
+  id: number;
+}
 
-const X7PairsContract = {
-  address: ContractsEnum.XchangeFactory,
-  abi: allPairsAbi,
-};
-
-export function Pair({ index, pairsLength }: PairsProps) {
-  const { chain } = useNetwork();
+export function Pair({ id }: PairsProps) {
   const { data } = useContractReads({
     contracts: [
       {
-        ...X7PairsContract,
+        address: ContractsEnum.XchangeFactory,
+        abi: AllPairs,
         functionName: 'allPairs',
-        args: [index],
+        args: [id],
       },
     ],
   });
 
+  const clipboard = useClipboard({
+    onSuccess() {
+      toast.success(<span>Contract Copied</span>, {
+        duration: 3000,
+        style: {
+          border: `none`,
+          background: '#000',
+          color: 'white',
+        },
+        iconTheme: {
+          primary: '#fff',
+          secondary: '#000',
+        },
+      });
+    },
+  });
+
+  const contractData = data?.[0];
+
   return (
-    <tr key={index}>
-      <td className="relative py-4 pl-4 pr-3 text-sm sm:pl-6">
+    <tr key={id}>
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-transparent',
+          'relative py-4 pl-4 pr-3 text-sm sm:pl-6'
+        )}
+      >
         <div className="font-medium text-slate-900 dark:text-slate-100">
-          {index}
+          Ticker
+          <div className="relative top-1 ml-2 inline-block lg:hidden">
+            <div className="flex items-center space-x-2">
+              <div className="flex flex-shrink-0 space-x-1">
+                {chainsArray.map((c, id) => (
+                  <Link
+                    href={`https:www.dextools.io/app/en/${c.identifier}/pair-explorer/${contractData}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    key={`${contractData}-${id}-chart`}
+                    className="opacity-80 hover:opacity-100"
+                  >
+                    <span>{c.icon}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-      </td>
-      <td className="px-3 py-3.5 text-xs text-slate-500 dark:text-slate-400 lg:table-cell">
-        <div className="font-medium text-slate-900 dark:text-slate-100">
-          {data?.toString()}
+        <div className="mt-1 flex flex-col text-sm text-slate-500 dark:text-slate-400 sm:block lg:hidden">
+          <span>description</span>
+          <span
+            onClick={() => {
+              clipboard.copy(contractData);
+            }}
+            className="flex cursor-pointer items-center opacity-70 hover:underline dark:opacity-50"
+          >
+            Contract
+            <span className="ml-0.5">
+              <ClipboardDocumentIcon
+                className="inline-block h-4 w-4 "
+                aria-hidden="true"
+              />
+              <span className="sr-only">Copy Contract</span>
+            </span>
+          </span>
         </div>
+        {id !== 0 ? (
+          <div className="absolute right-0 left-6 -top-px h-px bg-zinc-900/7.5 dark:bg-white/10" />
+        ) : null}
       </td>
-      <td className="px-3 py-3.5 text-xs text-slate-500 dark:text-slate-400 lg:table-cell">
+
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-zinc-900/7.5 dark:border-white/10',
+          'hidden px-3 py-3.5 text-xs text-slate-500 dark:text-slate-400 lg:table-cell'
+        )}
+      >
+        <span
+          onClick={() => {
+            clipboard.copy(contractData);
+          }}
+          className="flex cursor-pointer items-center opacity-70 hover:underline dark:opacity-50"
+        >
+          <>
+            {contractData}
+            <span className="ml-0.5">
+              <ClipboardDocumentIcon
+                className="inline-block h-4 w-4 "
+                aria-hidden="true"
+              />
+              <span className="sr-only">Copy Contract</span>
+            </span>
+          </>
+        </span>
+      </td>
+
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-zinc-900/7.5 dark:border-white/10',
+          'hidden px-3 py-3.5 text-sm text-slate-500 dark:text-slate-400 lg:table-cell'
+        )}
+      >
         <div className="flex items-center space-x-2">
           <div className="flex flex-shrink-0 space-x-1">
-            <a
-              href={`https://www.dextools.io/app/en/${generateChainIdentifierLinks(
-                chain?.id ?? 0
-              )}/pair-explorer/${data?.toString()}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100"
-            >
-              <span>View Chart</span>
-            </a>
+            {chainsArray.map((c, id) => (
+              <Link
+                href={`https:www.dextools.io/app/en/${c.identifier}/pair-explorer/${contractData}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={`${contractData}-${id}-chart`}
+                className="opacity-80 hover:opacity-100"
+              >
+                <span>{c.icon}</span>
+              </Link>
+            ))}
           </div>
         </div>
       </td>
-      <td className="relative py-3.5 pl-3 pr-4 text-right text-xs  font-medium text-slate-500  dark:text-slate-400 sm:pr-6">
-        <div className="flex items-center space-x-2">
-          <div className="flex flex-shrink-0 space-x-1">
-            <a
-              href={`${generateScannerLinks(
-                chain?.id ?? 0
-              )}/address/${data?.toString()}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="opacity-80 hover:opacity-100"
-            >
-              <span>View Scan</span>
-            </a>
-          </div>
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-zinc-900/7.5 dark:border-white/10',
+          'hidden px-3 py-3.5 text-sm text-slate-500 dark:text-slate-400 lg:table-cell'
+        )}
+      >
+        Scanner
+      </td>
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-transparent',
+          'relative py-3.5 pl-3 pr-4 text-right text-sm font-medium sm:pr-6'
+        )}
+      >
+        <div className="flex w-full justify-center">
+          <Dropdown
+            type="xchange"
+            contract={`${contractData}`}
+            label={'Trade this token on Xchange'}
+            name={
+              <span className=" whitespace-nowrap">
+                <span>Trade</span>
+                <span className="hidden xl:ml-2 xl:inline-block">
+                  on Xchange
+                </span>
+              </span>
+            }
+          />
         </div>
+        {id !== 0 ? (
+          <div className="absolute left-0 right-6 -top-px h-px bg-zinc-900/7.5 dark:bg-white/10" />
+        ) : null}
       </td>
     </tr>
   );
-
-  function generateScannerLinks(chainId: any) {
-    switch (chainId.toString()) {
-      case '1':
-        return ChainScannerLinksEnum.erc;
-      case '10':
-        return ChainScannerLinksEnum.optimism;
-      case '56':
-        return ChainScannerLinksEnum.bsc;
-      case '137':
-        return ChainScannerLinksEnum.polygon;
-      case '42161':
-        return ChainScannerLinksEnum.arbitrum;
-      default:
-        return ChainScannerLinksEnum.erc;
-    }
-  }
-
-  function generateChainIdentifierLinks(chainId: any) {
-    switch (chainId.toString()) {
-      case '1':
-        return ChainIdentifierEnum.erc;
-      case '10':
-        return ChainIdentifierEnum.optimism;
-      case '56':
-        return ChainIdentifierEnum.bsc;
-      case '137':
-        return ChainIdentifierEnum.polygon;
-      case '42161':
-        return ChainIdentifierEnum.arbitrum;
-      default:
-        return ChainIdentifierEnum.erc;
-    }
-  }
 }

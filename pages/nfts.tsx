@@ -11,9 +11,15 @@ const UtilityNftsComponent = dynamic(
 export default function NftsPage() {
   return (
     <div className="my-16 xl:max-w-none">
-      <Heading level={2} id="nfts">
-        Nfts
+      <Heading
+        className="text-xl font-semibold text-slate-900 dark:text-slate-100"
+        level={1}
+        id="nfts"
+        subHeader="X7 Finance has made a series of NFTs available for all types of users of Xchange and the protocol"
+      >
+        NFTs
       </Heading>
+
       <div className="not-prose border-t border-zinc-900/5 pt-10 dark:border-white/5">
         <UtilityNftsComponent />
       </div>

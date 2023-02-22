@@ -60,6 +60,7 @@ export function Heading({
   id,
   tag,
   label,
+  subHeader,
   anchor = true,
   ...props
 }: any) {
@@ -87,6 +88,11 @@ export function Heading({
           </Anchor>
         ) : (
           children
+        )}
+        {subHeader && (
+          <p className="mt-2 text-sm font-normal text-slate-700 dark:text-slate-300">
+            {subHeader}
+          </p>
         )}
       </Component>
     </>

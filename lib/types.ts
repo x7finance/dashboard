@@ -164,8 +164,3 @@ export const V1TokensObjects = {
   X7004: { address: X7004, tokenName: 'X7004' },
   X7005: { address: X7005, tokenName: 'X7005' },
 };
-
-export type PairsProps = {
-  index: number;
-  pairsLength: number;
-};

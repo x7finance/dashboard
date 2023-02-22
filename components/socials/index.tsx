@@ -208,7 +208,12 @@ function Social({ social }: any) {
 export function Socials() {
   return (
     <div className="my-16 xl:max-w-none">
-      <Heading level={2} id="community">
+      <Heading
+        className="text-xl font-semibold text-slate-900 dark:text-slate-100"
+        level={1}
+        id="community"
+        subHeader="One of the best communities in all of DeFi, come say hello"
+      >
         Community Links
       </Heading>
       <div className="not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
