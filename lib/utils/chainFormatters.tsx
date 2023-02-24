@@ -7,6 +7,7 @@ import {
   ChainNameEnum,
   ChainScannerEnum,
   ChainScannerLinksEnum,
+  ChainTokenOracleEnum,
 } from '../types';
 import { SignalSlashIcon } from '@heroicons/react/20/solid';
 import { Chain } from 'wagmi';
@@ -93,6 +94,23 @@ export function generateNativeQueryCommands(chainId?: BlockchainType) {
       return { nativeCurrency: 'ethereum' };
     default:
       return { nativeCurrency: 'ethereum' };
+  }
+}
+
+export function generateChainTokenOracleEnum(chainId?: BlockchainType) {
+  switch (chainId) {
+    case ChainEnum.erc:
+      return ChainTokenOracleEnum.erc;
+    case ChainEnum.bsc:
+      return ChainTokenOracleEnum.bsc;
+    case ChainEnum.polygon:
+      return ChainTokenOracleEnum.polygon;
+    case ChainEnum.arbitrum:
+      return ChainTokenOracleEnum.arbitrum;
+    case ChainEnum.optimism:
+      return ChainTokenOracleEnum.optimism;
+    default:
+      return ChainTokenOracleEnum.erc;
   }
 }
 

@@ -142,6 +142,14 @@ export enum ContractsEnum {
   DevelopersMultiSig = '0x5CF4288Bf373BBe17f76948E39Baf33B9f6ac2e0',
 }
 
+export enum ChainTokenOracleEnum {
+  erc = '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
+  bsc = '0x0567f2323251f0aab15c8dfb1967e4e8a7d42aee',
+  optimism = '0x13e3ee699d1909e989722e753853ae30b17e08c5',
+  arbitrum = '0x639fe6ab55c921f74e7fac1ee960c0b6293ba612',
+  polygon = '0xab594600376ec9fd91f8e885dadf0ce036862de0',
+}
+
 export const MigrationContract = '0x710515Bf543fDb6834144F9269BBf0D1d32B1702';
 
 // V1 deprecated
