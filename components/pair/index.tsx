@@ -120,7 +120,7 @@ export function Pair({ id }: PairsProps) {
       <td
         className={clsx(
           id === 0 ? '' : 'border-t border-zinc-900/7.5 dark:border-white/10',
-          'hidden px-3 py-3.5 text-sm text-slate-500 dark:text-slate-400 lg:table-cell'
+          'relative py-4 pl-1 pr-3 text-sm sm:pl-1'
         )}
       >
         <div className="flex items-center space-x-2">
