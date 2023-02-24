@@ -37,7 +37,7 @@ Details of this can be found in an [onchain message here](https://www.x7finance.
 
 {% spacer /%}
 
-### What Cryptocurrency chains are X7 Finance on?
+### What chains are X7 Finance on?
 
 Ethereum, Binance Smart Chain, Polygon, Arbitrum, Optimism
 
