@@ -91,6 +91,8 @@ Overall, arbitrage trading helps to bring the prices of the same asset into alig
 
 ### Do I need to have an arbitrage bot to invest in them?
 
-No, the arbitrage part of the constellation tokens is only designed for traders or bots who want to take advantage of the price difference between them. You can simply buy, hold and trade these tokens two.
+No, the arbitrage part of the constellation tokens is only designed for traders or bots who want to take advantage of the price difference between them.
+
+You can simply buy, hold and trade these tokens.
 
 {% spacer /%}

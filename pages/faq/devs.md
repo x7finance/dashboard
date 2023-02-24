@@ -54,7 +54,7 @@ X7, with its lending pool, will inject liquidity to naturally make the token pri
 
 ### What is the liquidity provider fee?
 
-The liquidity provider fee has been reduced from 0.2%.
+The liquidity provider fee is 0.2%.
 
 {% spacer /%}
 
@@ -65,5 +65,5 @@ If your token contract has an onlyOwner function you can set the router in your 
 If the router is hard coded into the token contract, you have 3 options;
 
 1. Upgrade your token contract to a V2, for example, and use the X7 Finance Router
-2. If your LP tokens are locked or burnt, create a second new liquidity pair on X7 Finance which would allow for arbitrage bot trading when there is a price different
-3. If your LP tokens are not locked or burnt, same as above, but you can also move a portion of your lp funds to the new pair on X7 Finance
+2. If your LP tokens are locked or burnt, create a second new liquidity pair on X7 Finance which would allow for arbitrage bot trading when there is a price difference.
+3. If your LP tokens are not locked or burnt, same as above, but you can also move a portion of your LP funds to the new pair on X7 Finance

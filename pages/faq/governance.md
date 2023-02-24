@@ -26,7 +26,7 @@ Yes, a portion of project revenue will flow into the DAO token in the form of li
 
 ### How many X7DAO tokens do I need to create a vote?
 
-Do create a proposal you are required to have 500,000 $X7DAO Tokens
+To create a proposal you are required to have 500,000 $X7DAO tokens
 
 {% spacer /%}
 
@@ -66,10 +66,10 @@ Any proposal may be vetoed by a majority of minted Magister tokens. It will requ
 
 ### Where can I buy the Magister NFT?
 
-You can mint it in on [X7Finance.org here](/nfts/)
+You can mint it on [X7Finance.org here](/nfts/)
 
 or
 
-You can mint in on the [X7.Finance site here](https://x7.finance/x/nft/mint)
+You can mint it on [X7.Finance site here](https://x7.finance/x/nft/mint)
 
 {% spacer /%}
