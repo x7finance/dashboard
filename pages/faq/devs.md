@@ -36,6 +36,20 @@ No, the funds are always in the ownership of the X7 Finance smart contracts and 
 
 {% spacer /%}
 
+### What stops someone from creating a fake project and running off with the funds?
+
+The liquidity pairs contract is aware of the loan amount at all times. If a sell transaction was created that would leave less ETH in the liquidity pair than the loan amount then the transaction will be rejected.
+
+{% spacer /%}
+
+### How is the loaned liquidity protected when Xchange is supposed to be in an AMM?
+
+An AMM is just the underlying logic of a DEX to calculate a token price and is independent of the liquidity pair.
+
+Xchange DEX has its own router, factory and pairs contracts. Although they function in line with uniswapV2 contracts they have some extra added functions. One of these functions checks during a sell transaction if the loan ETH in the liquidity pair will be less than the loaned amount. If so the trade will be rejected.
+
+{% spacer /%}
+
 ### How does the liquidity pair creation work on X7 Finance?
 
 More details and diagrams can be found on the [Swap Creation Guide Here](/whitepaper/understanding-swap-creation/)
