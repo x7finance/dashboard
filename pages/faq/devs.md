@@ -8,7 +8,7 @@ Please find details on the [loans page here](/loans/)
 
 ### Does X7 Finance have its own liquidity pools?
 
-Yes.
+Yes..
 
 X7 Finance has its own router, factory, and pairs contract to create liquidity pools and allows trading.
 
