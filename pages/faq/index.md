@@ -4,6 +4,7 @@ title: FAQ
 
 ## Frequently Asked Questions
 
+[Multichain Airdrop](/faq/airdrop)\
 [Constellation Tokens](/faq/constellations)\
 [Developer Questions](/faq/devs)\
 [General Questions](/faq/general)\
