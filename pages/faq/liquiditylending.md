@@ -8,7 +8,7 @@ The loan terms can be found on the [loan page here](/loans/)
 
 ### How do I take a loan?
 
-A loan can only be taken when you initially deploy your liquidity pair.
+A loan can only be taken when you initially deploy your liquidity pair..
 
 {% spacer /%}
 
