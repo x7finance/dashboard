@@ -142,7 +142,7 @@ export enum ContractsEnum {
   DevelopersMultiSig = '0x5CF4288Bf373BBe17f76948E39Baf33B9f6ac2e0',
 }
 
-export enum ChainTokenOracleEnum {
+export enum ChainTokenOracleEtherUSDEnum {
   erc = '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419',
   bsc = '0x0567f2323251f0aab15c8dfb1967e4e8a7d42aee',
   optimism = '0x13e3ee699d1909e989722e753853ae30b17e08c5',
@@ -175,4 +175,6 @@ export const V1TokensObjects = {
 
 export const TokenContractAddresses = {
   WETH: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  BNB: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
+  MATIC: '0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270',
 };

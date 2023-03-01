@@ -1,8 +1,16 @@
 import AllPairs from '../../contracts/AllPairs.json';
+import ChainLinkAbi from '../../contracts/ChainLinkAbi.json';
 import ERC20 from '../../contracts/ERC20.json';
 import PairsAbi from '../../contracts/PairsAbi.json';
-import { ContractsEnum, TokenContractAddresses } from '../../lib/types';
-import { generateChainTokenOracleEnum } from '../utils/chainFormatters';
+import {
+  BlockchainType,
+  ContractsEnum,
+  TokenContractAddresses,
+} from '../../lib/types';
+import {
+  generateChainTokenOracleEnum,
+  generateChainEtherTokenEnum,
+} from '../utils/chainFormatters';
 import { Address, useContractReads, useNetwork } from 'wagmi';
 
 export function useXchangeTokenData(id: number) {
@@ -42,21 +50,7 @@ export function useXchangeTokenData(id: number) {
     contracts: [
       {
         address: generateChainTokenOracleEnum(chain?.id), // Chainlink's Price Feed contract address
-        abi: [
-          {
-            inputs: [],
-            name: 'latestAnswer',
-            outputs: [
-              {
-                internalType: 'int256',
-                name: '',
-                type: 'int256',
-              },
-            ],
-            stateMutability: 'view',
-            type: 'function',
-          },
-        ],
+        abi: ChainLinkAbi,
         functionName: 'latestAnswer',
       },
     ],
@@ -87,50 +81,57 @@ export function useXchangeTokenData(id: number) {
   const symbol = erc20Details?.[1];
   const contractData = data?.[0];
 
-  let ethInUSD = 0;
-  if (usdPrice) {
-    ethInUSD = parseInt(usdPrice.toString()) / 10 ** 8;
-  }
+  const etherInUSD = !!usdPrice ? parseInt(usdPrice.toString()) / 10 ** 8 : 0;
 
   return {
     isLoading: isLoading || isTokenPairLoading || isInitialPairLoading,
     tokenName: name,
     tokenSymbol: symbol,
     tokenContract: contractData,
-    tokenReserve: generatePairReserve(pairTokens),
-    tokenPrice: generatePairUSDPrice(pairTokens, ethInUSD),
+    tokenReserve: generatePairReserve(pairTokens, chain?.id),
+    tokenPrice: generatePairUSDPrice(pairTokens, etherInUSD, chain?.id),
   };
 }
 
-function generatePairReserve(pairTokens: any) {
+function generatePairReserve(pairTokens: any, chainId?: BlockchainType) {
   const reserves = pairTokens?.[2];
   if (reserves) {
     const { _reserve0, _reserve1 } = reserves;
 
-    const ethReserve =
-      pairTokens?.[0] === TokenContractAddresses.WETH ? _reserve0 : _reserve1;
+    const etherReserve =
+      pairTokens?.[0] === generateChainEtherTokenEnum(chainId)
+        ? _reserve0
+        : _reserve1;
 
-    return (ethReserve / 10 ** 18).toFixed(2);
+    return (etherReserve / 10 ** 18).toFixed(2);
   }
 
   return '0';
 }
 
-function generatePairUSDPrice(pairTokens: any, ethInUSD: number) {
+function generatePairUSDPrice(
+  pairTokens: any,
+  etherInUSD: number,
+  chainId?: BlockchainType
+) {
   const reserves = pairTokens?.[2];
 
   if (reserves) {
     const { _reserve0, _reserve1 } = reserves;
 
-    const ethReserve =
-      pairTokens?.[0] === TokenContractAddresses.WETH ? _reserve0 : _reserve1;
+    const etherReserve =
+      pairTokens?.[0] === generateChainEtherTokenEnum(chainId)
+        ? _reserve0
+        : _reserve1;
 
     const tokenReserve =
-      pairTokens?.[0] === TokenContractAddresses.WETH ? _reserve1 : _reserve0;
+      pairTokens?.[0] === generateChainEtherTokenEnum(chainId)
+        ? _reserve1
+        : _reserve0;
 
-    const unitPriceEth = ethReserve / tokenReserve;
+    const unitPriceEther = etherReserve / tokenReserve;
 
-    return (ethInUSD * (unitPriceEth / 10 ** 18)).toFixed(4);
+    return (etherInUSD * (unitPriceEther / 10 ** 18)).toFixed(4);
   }
 
   return 0;
