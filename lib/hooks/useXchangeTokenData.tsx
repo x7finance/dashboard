@@ -8,7 +8,7 @@ import {
   TokenContractAddresses,
 } from '../../lib/types';
 import {
-  generateChainTokenOracleEnum,
+  generateChainTokenOracleEtherUSDEnum,
   generateChainEtherTokenEnum,
 } from '../utils/chainFormatters';
 import { Address, useContractReads, useNetwork } from 'wagmi';
@@ -49,7 +49,7 @@ export function useXchangeTokenData(id: number) {
   const { data: usdPrice } = useContractReads({
     contracts: [
       {
-        address: generateChainTokenOracleEnum(chain?.id), // Chainlink's Price Feed contract address
+        address: generateChainTokenOracleEtherUSDEnum(chain?.id), // Chainlink's Price Feed contract address
         abi: ChainLinkAbi,
         functionName: 'latestAnswer',
       },

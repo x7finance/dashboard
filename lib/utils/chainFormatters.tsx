@@ -115,7 +115,7 @@ export function generateChainEtherTokenEnum(chainId?: BlockchainType) {
   }
 }
 
-export function generateChainTokenOracleEnum(chainId?: BlockchainType) {
+export function generateChainTokenOracleEtherUSDEnum(chainId?: BlockchainType) {
   switch (chainId) {
     case ChainEnum.erc:
       return ChainTokenOracleEtherUSDEnum.erc;
