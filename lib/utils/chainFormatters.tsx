@@ -7,6 +7,8 @@ import {
   ChainNameEnum,
   ChainScannerEnum,
   ChainScannerLinksEnum,
+  ChainTokenOracleEtherUSDEnum,
+  TokenContractAddresses,
 } from '../types';
 import { SignalSlashIcon } from '@heroicons/react/20/solid';
 import { Chain } from 'wagmi';
@@ -93,6 +95,40 @@ export function generateNativeQueryCommands(chainId?: BlockchainType) {
       return { nativeCurrency: 'ethereum' };
     default:
       return { nativeCurrency: 'ethereum' };
+  }
+}
+
+export function generateChainEtherTokenEnum(chainId?: BlockchainType) {
+  switch (chainId) {
+    case ChainEnum.erc:
+      return TokenContractAddresses.WETH;
+    case ChainEnum.bsc:
+      return TokenContractAddresses.BNB;
+    case ChainEnum.polygon:
+      return TokenContractAddresses.MATIC;
+    case ChainEnum.arbitrum:
+      return TokenContractAddresses.WETH;
+    case ChainEnum.optimism:
+      return TokenContractAddresses.WETH;
+    default:
+      return TokenContractAddresses.WETH;
+  }
+}
+
+export function generateChainTokenOracleEtherUSDEnum(chainId?: BlockchainType) {
+  switch (chainId) {
+    case ChainEnum.erc:
+      return ChainTokenOracleEtherUSDEnum.erc;
+    case ChainEnum.bsc:
+      return ChainTokenOracleEtherUSDEnum.bsc;
+    case ChainEnum.polygon:
+      return ChainTokenOracleEtherUSDEnum.polygon;
+    case ChainEnum.arbitrum:
+      return ChainTokenOracleEtherUSDEnum.arbitrum;
+    case ChainEnum.optimism:
+      return ChainTokenOracleEtherUSDEnum.optimism;
+    default:
+      return ChainTokenOracleEtherUSDEnum.erc;
   }
 }
 

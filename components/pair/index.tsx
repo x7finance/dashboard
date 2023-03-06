@@ -20,7 +20,7 @@ interface PairsProps {
 export function Pair({ id }: PairsProps) {
   const { chain } = useNetwork();
 
-  const { tokenName, tokenSymbol, tokenContract, tokenReserve } =
+  const { tokenName, tokenSymbol, tokenContract, tokenReserve, tokenPrice } =
     useXchangeTokenData(id);
 
   const clipboard = useClipboard({
@@ -116,6 +116,19 @@ export function Pair({ id }: PairsProps) {
             </span>
           </>
         </span>
+      </td>
+      <td
+        className={clsx(
+          id === 0 ? '' : 'border-t border-zinc-900/7.5 dark:border-white/10',
+          'relative py-4 pl-1 pr-3 text-sm sm:pl-1'
+        )}
+      >
+        <div className="flex items-center space-x-2">
+          <div className="flex flex-shrink-0 space-x-1">
+            <span className="pl-1">$</span>
+            {tokenReserve ? tokenPrice : '$ 0.00'}
+          </div>
+        </div>
       </td>
       <td
         className={clsx(
